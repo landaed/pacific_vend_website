@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Pacific Vending Distributors - Home</title>
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="./assets/css/main.css"/>
+		<noscript><link rel="stylesheet" href="./assets/css/noscript.css" /></noscript>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
+		<script src="https://cdn.babylonjs.com/babylon.js"></script>
+		<script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+		<script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<script>
+		function updatemenu() {
+  if (document.getElementById('responsive-menu').checked == true) {
+    document.getElementById('menu').style.borderBottomRightRadius = '0';
+    document.getElementById('menu').style.borderBottomLeftRadius = '0';
+  }else{
+    document.getElementById('menu').style.borderRadius = '50px';
+  }
+}
+</script>
+	</head>
+
+	<body>
+		<!-- Header -->
+		<!--header id="header">
+
+
+			<div class="hamburger">
+				<i class="fas fa-bars"></i>
+			</div>
+			<nav class="menu">
+				<ul>
+					<li><a href="about.html">About</a></li>
+					<li><a href="services.html">Services</a></li>
+					<li><a href="innovation.html">Innovation Lab</a></li>
+					<li><a href="research.html">Research</a></li>
+				</ul>
+			</nav>
+		</header-->
+		<nav id='menu'>
+  <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+  <ul>
+    <li><a href='http://'><img id="home_btn" src="./assets/images/pacific_vend_logo.png" alt="logo"></a></li>
+    <li><a href='http://'>Contact</a></li>
+    <li><a href='http://'>Pool</a></li>
+    <li><a href='http://'>Games</a></li>
+    <li><a href='http://'>Parts</a></li>
+  </ul>
+</nav>
+
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- Intro -->
+			<section id="intro" class="wrapper style1 fullscreen">
+				<div class="iframe-container">
+						<iframe src="https://lumalabs.ai/embed/f8d5ff31-4d4a-4aa8-bbaf-ce1b8173d7fc?mode=sparkles&background=%23ffffff&color=%23000000&showTitle=false&loadBg=true&logoPosition=bottom-left&infoPosition=bottom-right&cinematicVideo=undefined&showMenu=false" width="100%" height="900" frameborder="0" title="luma embed" style="border: none;"></iframe>
+
+				    <div class="iframe-overlay"></div>
+				</div>
+
+				<div id="black_bar"></div>
+				<canvas id="renderCanvas"></canvas>
+				<script src="./assets/js/scene.js"></script>
+			</section>
+
+			<section class="wrapper style2 spotlights">
+				<!-- Who We Are -->
+				<section>
+					<a href="#" class="image"><img src="./assets/images/SimChopIcon.png" alt="SimChop Icon" data-position="center center" /></a>
+					<div class="content">
+						<div class="inner leftMarginAlign">
+							<h2 id="about">Who We Are</h2>
+							<p>We are trailblazing researchers and scientists shaping the future of computer graphics technology.</p>
+							<ul class="actions">
+								<li><a href="about_us.html" class="button">EXPLORE OUR JOURNEY</a></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+
+
+				<!-- What We Do -->
+				<section class="wrapper">
+					<div class="inner leftMarginAlign">
+						<h2 id="work">What We Do</h2>
+							<section>
+								<span class="icon solid major fa-graduation-cap"></span>
+								<h3>Mentorship Program</h3>
+								<p>Maximize your potential with our innovative mentorship program. Join our free trial program in computer graphics.</p>
+								<ul class="actions">
+									<li><a href="innovation.html" class="button">EXPLORE THE LAB</a></li>
+								</ul>
+							</section>
+							<section>
+								<span class="icon solid major fa-handshake"></span>
+								<h3>Contracting</h3>
+								<p>We are GPU and graphics specialists, focused on GPU orchestration for HPC data centers. We are capable of working with teams of any size develop innovative solutions.</p>
+								<ul class="actions">
+									<li><a href="services.html" class="button">LET'S COLLABORATE</a></li>
+								</ul>
+							</section>
+							<section>
+								<span class="icon solid major fa-code"></span>
+								<h3>Research</h3>
+								<p>We are dedicated to research and development and are proud to have contributed to several innovative technologies in computer graphics.</p>
+								<ul class="actions">
+									<li><a href="research.html" class="button">DIVE INTO OUR RESEARCH</a></li>
+								</ul>
+							</section>
+						</div>
+				</section>
+
+				<!-- Get in touch -->
+				<section class="wrapper style1">
+					<div class="inner leftMarginAlign">
+						<h2>Get In Touch</h2>
+						<p>Reach out to us anytime. We're always excited to hear from you.</p>
+						<section>
+							<ul class="contact">
+								<li>
+									<h3>Email</h3>
+									<a href="team@unboundedresearch.dev">team@unboundedresearch.dev</a>
+								</li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<p>&copy; Unbounded Research And Development Corp. All rights reserved.</p>
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+		<script src="./assets/js/jquery.min.js"></script>
+		<script src="./assets/js/jquery.scrollex.min.js"></script>
+		<script src="./assets/js/jquery.scrolly.min.js"></script>
+		<script src="./assets/js/browser.min.js"></script>
+		<script src="./assets/js/breakpoints.min.js"></script>
+		<script src="./assets/js/util.js"></script>
+		<script src="./assets/js/main.js"></script>
+		<script src="./assets/js/hamburger.js"></script>
+		<script src="./assets/js/touch_screen_canvas.js"></script>
+	</body>
+</html>
