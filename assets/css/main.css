@@ -62,113 +62,357 @@ footer, header, hgroup, menu, nav, section {
 	/** {
 	    outline: 1px solid red;
 	}*/
-  #menu {
-    z-index: 10;
-    background: rgba(255,255,255,.7);
-    height: 80px;
-    padding-left: 18px;
-    position: relative; /* Add this line */
-    font-family: 'Poppins', sans-serif;
+  #wrapper {
+      position: relative;
   }
+  .container {
+    position: absolute;
+    top: 0; /* Adjust as needed */
+    left: 0;
+    z-index: 10; /* Ensure this is above the iframe */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px; /* or any value that suits your design */
+}
 
-#menu ul, #menu li {
-	margin: 0 auto;
-	padding: 0;
-	list-style: none
-}
-#menu ul {
-	width: 100%;
-	text-align: left;
-}
-#menu li {
-	display: inline-block;
+.container .btn {
 	position: relative;
-}
-#menu a {
-	display: block;
-	line-height: 80px;
-	padding: 0 14px;
-	text-decoration: none;
-	color: rgba(0,0,0,1);
-	font-size: 16px;
-  font-family: 'Poppins', sans-serif;
-}
-#menu a.dropdown-arrow:after {
-	content: "\25BE";
-	margin-left: 5px;
-}
-#menu li a:hover {
-	color: #0099CC;
-	background: #F2F2F2;
-}
-#menu input {
-	display: none;
+	top: 0;
+	left: 0;
+	width: 250px;
+	height: 50px;
 	margin: 0;
-	padding: 0;
-	height: 80px;
-	width: 100%;
-	opacity: 0;
-	cursor: pointer
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-#menu label {
-	display: none;
-	line-height: 80px;
-	text-align: center;
+.container .btn a {
 	position: absolute;
-	left: 35px
-}
-#menu label:before {
-	font-size: 1.6em;
-	color: #FFFFFF;
-	content: "\2261";
-	margin-left: 20px;
-}
-#menu ul.sub-menus{
-	height: auto;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgba(255, 255, 255, .5);
+	box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 30px;
+	padding: 10px;
+	letter-spacing: 1px;
+	text-decoration: none;
 	overflow: hidden;
-	width: 170px;
-	background: #CCCCCC;
+	color: #fff;
+	font-weight: 400px;
+	z-index: 1;
+	transition: 0.5s;
+	backdrop-filter: blur(15px);
+}
+.container .btn:hover a {
+	letter-spacing: 3px;
+}
+.container .btn a::before {
+	content: "";
 	position: absolute;
-	z-index: 99;
-	display: none;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+	transform: skewX(45deg) translate(0);
+	transition: 0.5s;
+	filter: blur(0px);
 }
-#menu ul.sub-menus li {
-	display: block;
-	text-align: left;
-	width: 100%;
+.container .btn:hover a::before {
+	transform: skewX(45deg) translate(200px);
 }
-#menu ul.sub-menus a {
-	color: #FFFFFF;
-	font-size: 16px;
+.container .btn::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translatex(-50%);
+	bottom: -5px;
+	width: 30px;
+	height: 10px;
+	background: #f00;
+	border-radius: 10px;
+	transition: 0.5s;
+	transition-delay: 0.5;
 }
-#menu li:hover ul.sub-menus {
-	display: block
+.container .btn:hover::before /*lightup button*/ {
+	bottom: 0;
+	height: 50%;
+	width: 80%;
+	border-radius: 30px;
 }
-#menu ul.sub-menus a:hover{
-	background: #F2F2F2;
-	color: #444444;
+
+.container .btn::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translatex(-50%);
+	top: -5px;
+	width: 30px;
+	height: 10px;
+	background: #f00;
+	border-radius: 10px;
+	transition: 0.5s;
+	transition-delay: 0.5;
+}
+.container .btn:hover::after /*lightup button*/ {
+	top: 0;
+	height: 50%;
+	width: 80%;
+	border-radius: 30px;
+}
+.container .btn:nth-child(1)::before, /*chnage 1*/
+.container .btn:nth-child(1)::after {
+	background: #ff1f71;
+	box-shadow: 0 0 5px #ff1f71, 0 0 15px #ff1f71, 0 0 30px #ff1f71,
+		0 0 60px #ff1f71;
+}
+.container .btn:nth-child(2)::before, /* 2*/
+.container .btn:nth-child(2)::after {
+	background: #2db2ff;
+	box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff,
+		0 0 60px #2db2ff;
+}
+.container .btn:nth-child(3)::before, /* 3*/
+.container .btn:nth-child(3)::after {
+	background: #1eff45;
+	box-shadow: 0 0 5px #1eff45, 0 0 15px #1eff45, 0 0 30px #1eff45,
+		0 0 60px #1eff45;
+}
+.container .btn:nth-child(4)::before, /* 4*/
+.container .btn:nth-child(4)::after {
+	background: #b020ae;
+	box-shadow: 0 0 5px #b020ae, 0 0 15px #b020ae, 0 0 30px #b020ae,
+		0 0 60px #b020ae;
+}
+.container .btn:nth-child(5)::before, /* 4*/
+.container .btn:nth-child(5)::after {
+	background: #bfc215;
+	box-shadow: 0 0 5px #bfc215, 0 0 15px #bfc215, 0 0 30px #bfc215,
+		0 0 60px #bfc215;
+}
+
+
+.product_container .card {
+    z-index: 10;
+    position: absolute;
+    top: 200px;
+    left: calc(50% - 160px);
+    width: 320px;
+    height: 450px;
+    background: rgba(0,0,0,.5);
+    border-radius: 20px;
+    overflow: hidden;
+}
+@media screen and (max-width: 480px) {
+    .product_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%; /* Full width */
+        margin-bottom: 20px; /* Space after container */
+    }
+
+    .product_container .card {
+        position: absolute;
+        width: 80%; /* Adjust width as needed */
+        min-height: 500px; /* Set a minimum height for the cards */
+        margin-bottom: 20px; /* Space between cards */
+        top: 450px;
+    }
+
+    /* Additional styles to ensure content dictates height */
+    .product_container .card .imgBx,
+    .product_container .card .contentBx {
+        position: relative; /* Ensure content contributes to height */
+    }
+    iframe{
+      min-height: 1100px;
+    }
+}
+
+
+
+.product_container .card:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1BBFE9;
+    clip-path: circle(150px at 80% 20%);
+    transition: 0.5s ease-in-out;
+}
+
+.product_container .card:hover:before {
+    clip-path: circle(300px at 80% -20%);
+}
+
+.product_container .card:after {
+    content: "Featured";
+    position: absolute;
+    top: 30%;
+    left: -20%;
+    font-size: 12em;
+    font-weight: 800;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.04);
+
+}
+
+.product_container .card .imgBx {
+    position: absolute;
+    top: 30%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    transition: .5s;
+}
+
+.product_container .card:hover .imgBx {
+    top: 0%;
+    transform: translateY(-25%);
+    /* bug  */
+}
+
+.product_container .card .imgBx img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(20deg);
+    width: 150px;
+}
+
+.product_container .card .contentBx {
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    transition: 1s;
+    z-index: 90;
+}
+
+.product_container .card:hover .contentBx {
+    height: 210px;
+}
+
+.product_container .card .contentBx h2 {
+    position: relative;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.product_container .card .contentBx .size,
+.product_container .card .contentBx .color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 20px;
+    transition: .5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.product_container .card:hover .contentBx .size {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: .5s;
+}
+
+.product_container .card:hover .contentBx .color {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: .6s;
+}
+
+.product_container .card .contentBx .size h3,
+.product_container .card .contentBx .color h3 {
+    color: white;
+    font-weight: 300;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-right: 10px;
+}
+
+.product_container .card .contentBx .size span {
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    font-size: 14px;
+    display: inline-block;
+    color: #111;
+    background: #fff;
+    margin: 0 5px;
+    transition: .5s;
+    color: #111;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.product_container .card .contentBx .size span:hover {  /* other bug */
+    background: #B90000;
+}
+
+.product_container .card .contentBx .color span {
+    width: 20px;
+    height: 20px;
+    background: #ff0;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.product_container .card .contentBx .color span:nth-child(2) {
+     background: #1BBFE9;
+}
+
+.product_container .card .contentBx .color span:nth-child(3) {
+     background: #1B2FE9;
+}
+
+.product_container .card .contentBx .color span:nth-child(4) {
+     background: #080481;
+}
+
+.product_container .card .contentBx a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 4px;
+    margin-top: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #111;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: .5s;
+}
+
+.product_container .card:hover .contentBx a {
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .7s;
 }
 #home_btn{
-  width: 300px;
-  top: 90px;
-  transform: translate(0%,10px);
-
-}
-@media screen and (max-width: 800px){
-	#menu {position:relative}
-	#menu ul {background:#CCCCCC;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none;text-align:left;}
-	#menu ul.sub-menus {width:100%;position:static;}
-	#menu ul.sub-menus a {padding-left:30px;}
-	#menu li {display:block;float:none;width:auto;}
-	#menu input, #menu label {position:absolute;top:0;left:0;display:block}
-	#menu input {z-index:4}
-	#menu input:checked + label {color:#FFFFFF}
-	#menu input:checked + label:before {content:"\00d7"}
-	#menu input:checked ~ ul {display:block}
+  width: 100%;
 }
 
   .iframe-container {
-      top: -100px;
+
       z-index: 0;
       position: relative;
   }
@@ -416,10 +660,7 @@ body {
 
 
 
-button.more:focus {
-    outline: none !important; /* Removes the focus outline */
-    /* Add any additional focus styles if needed */
-}
+
 .center-container {
 
 }
@@ -3281,6 +3522,7 @@ input, select, textarea {
 	}
 
 		.image img {
+      max-width: 100px !important;
 			border-radius: 0.25em;
 			display: block;
 		}
@@ -3290,6 +3532,7 @@ input, select, textarea {
 		}
 
 			.image.left img, .image.right img {
+        max-width: 100px !important;
 				width: 100%;
 			}
 
@@ -3697,14 +3940,16 @@ text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.1);
 			min-height: 0;
 		}
 
-		.spotlights > section > .image {
-			background-position: center center;
-			background-size: cover;
-			border-radius: 0;
-			display: block;
-			position: relative;
-			width: 25em;
-		}
+    .spotlights > section > .image {
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 0;
+    display: block;
+    position: relative;
+    width: 500px;
+}
+
 
 			.spotlights > section > .image img {
 				border-radius: 0;
@@ -4956,7 +5201,7 @@ ul.blog > li:first-child {
   width: 100%; /* default size */
   height: 100px;
   background-color: rgba(0, 0, 0, 1);
-  transform: translate(0%, -200px);
+  transform: translate(0%, -100px);
 }
 
   @media only screen and (max-width: 1000px) {
