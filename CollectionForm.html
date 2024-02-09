@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Revenue Report Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<div class="form-container">
+    <form action="submit_revenue_report.php" method="post">
+        <h2>Revenue Report</h2>
+
+        <label for="MachineID">Machine ID:</label>
+        <input type="text" id="MachineID" name="MachineID" required>
+
+        <label for="LocationID">Location ID:</label>
+        <input type="text" id="LocationID" name="LocationID" required>
+
+        <label for="CollectionDate">Collection Date:</label>
+        <input type="date" id="CollectionDate" name="CollectionDate" required>
+
+        <label for="RevenueAmount">Revenue Amount:</label>
+        <input type="number" id="RevenueAmount" name="RevenueAmount" step="0.01" required>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<script>
+    // Parse URL parameters and pre-fill form
+    window.onload = function() {
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('MachineID').value = params.get('MachineID') || '';
+        document.getElementById('LocationID').value = params.get('LocationID') || '';
+        document.getElementById('CollectionDate').value = params.get('CollectionDate') || '';
+    };
+</script>
+
+</body>
+</html>
