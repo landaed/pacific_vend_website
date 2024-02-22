@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['original_name']) && is
 
         // Attempt to execute the prepared statement
         if($stmt->execute()){
-            header("Location: ".$_SERVER['PHP_SELF']);
+            header("Location: add_location_success.html");
         } else{
             echo json_encode(array('message' => 'Error updating location: ' . $db->error));
         }
