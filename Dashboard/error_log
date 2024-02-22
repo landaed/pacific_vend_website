@@ -1,0 +1,17 @@
+[20-Feb-2024 13:41:30 America/Chicago] PHP Warning:  require_once(db_connect.php): failed to open stream: No such file or directory in /home3/pvd001/public_html/pacific_vend/Dashboard/add_location.php on line 3
+[20-Feb-2024 13:41:30 America/Chicago] PHP Fatal error:  require_once(): Failed opening required 'db_connect.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home3/pvd001/public_html/pacific_vend/Dashboard/add_location.php on line 3
+[20-Feb-2024 13:43:27 America/Chicago] PHP Warning:  require_once(db_connect.php): failed to open stream: No such file or directory in /home3/pvd001/public_html/pacific_vend/Dashboard/add_location.php on line 3
+[20-Feb-2024 13:43:27 America/Chicago] PHP Fatal error:  require_once(): Failed opening required 'db_connect.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home3/pvd001/public_html/pacific_vend/Dashboard/add_location.php on line 3
+[20-Feb-2024 13:48:37 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function close() on bool in /home3/pvd001/public_html/pacific_vend/Dashboard/add_location.php:35
+Stack trace:
+#0 {main}
+  thrown in /home3/pvd001/public_html/pacific_vend/Dashboard/add_location.php on line 35
+[20-Feb-2024 13:52:38 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function close() on bool in /home3/pvd001/public_html/pacific_vend/Dashboard/add_location.php:35
+Stack trace:
+#0 {main}
+  thrown in /home3/pvd001/public_html/pacific_vend/Dashboard/add_location.php on line 35
+[20-Feb-2024 14:57:03 America/Chicago] PHP Parse error:  syntax error, unexpected '$param_type' (T_VARIABLE), expecting ')' in /home3/pvd001/public_html/pacific_vend/Dashboard/add_location.php on line 13
+[20-Feb-2024 14:57:17 America/Chicago] PHP Parse error:  syntax error, unexpected '$param_type' (T_VARIABLE), expecting ')' in /home3/pvd001/public_html/pacific_vend/Dashboard/add_location.php on line 13
+[20-Feb-2024 14:59:14 America/Chicago] PHP Parse error:  syntax error, unexpected '$param_type' (T_VARIABLE), expecting ')' in /home3/pvd001/public_html/pacific_vend/Dashboard/add_location.php on line 13
+[20-Feb-2024 14:59:24 America/Chicago] PHP Parse error:  syntax error, unexpected '$param_type' (T_VARIABLE), expecting ')' in /home3/pvd001/public_html/pacific_vend/Dashboard/add_location.php on line 13
+[20-Feb-2024 15:01:12 America/Chicago] PHP Parse error:  syntax error, unexpected '$param_type' (T_VARIABLE), expecting ')' in /home3/pvd001/public_html/pacific_vend/Dashboard/add_location.php on line 13
