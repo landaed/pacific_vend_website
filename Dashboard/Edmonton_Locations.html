@@ -55,8 +55,11 @@
                       <div id="locationsContainer"></div>
 
                       <script>
-                        function fetchLocations() {
-                            fetch('get_locations_AB.php')  // Replace with the actual path to your PHP script
+                      function fetchLocations(territory) {
+                          // Encode the territory for use in a URL
+                          const territoryParam = encodeURIComponent(territory);
+
+                          fetch(`get_location_territory.php?territory=${territoryParam}`) // Replace with the actual path to your PHP script
                                 .then(response => response.json())
                                 .then(data => {
                                     const locationsContainer = document.getElementById('locationsContainer');
@@ -122,7 +125,7 @@
                         }
 
                         // Call the function when the page loads
-                        window.onload = fetchLocations;
+                        window.onload = () => fetchLocations('Edmonton');
 
                       </script>
 
