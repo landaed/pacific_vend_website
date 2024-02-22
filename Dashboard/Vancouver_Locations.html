@@ -52,9 +52,20 @@
 
                     <!-- Content Row -->
                     <div class="row">
+                      <div id="editModalContainer"></div>
                       <div id="locationsContainer"></div>
 
                       <script>
+                      function openEditModal(location) {
+                        // Populate the modal fields with the location data
+                        document.getElementById('editInputName').value = location.Name;
+                        document.getElementById('editInputAddress').value = location.Address;
+                        // ... set values for all fields ...
+
+                        // Show the modal
+                        $('#editLocationModal').modal('show');
+                      }
+
                       function fetchLocations(territory) {
                           // Encode the territory for use in a URL
                           const territoryParam = encodeURIComponent(territory);
@@ -116,6 +127,13 @@
                                                 </div>
                                             </div>
                                         `;
+                                        // Add Edit button to each location
+                                        const editButton = document.createElement('button');
+                                        editButton.textContent = 'Edit';
+                                        editButton.className = 'btn btn-warning btn-edit';
+                                        editButton.onclick = function() { openEditModal(location); };
+                                        locationDiv.appendChild(editButton);
+
                                         locationsContainer.appendChild(locationDiv);
                                     });
                                 })
@@ -193,6 +211,40 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <script>
+      window.onload = function() {
+      fetchLocations();
+      fetch('edit-modal.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('editModalContainer').innerHTML = html;
+        });
+      };
+      document.getElementById('editLocationForm').onsubmit = function(event) {
+        event.preventDefault();
+
+        // Collect form data
+        const formData = new FormData(event.target);
+
+        // Send the form data to the server
+        fetch('update_location.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if(data.success) {
+            // Refresh the page to show updated list
+            window.location.reload();
+          } else {
+            // Handle error
+            console.error('Failed to update location:', data.error);
+          }
+        })
+        .catch(error => console.error('Error:', error));
+      };
+
+    </script>
 
 </body>
 
