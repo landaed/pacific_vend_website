@@ -58,8 +58,11 @@
                       <script>
                       function openEditModal(location) {
                         // Populate the modal fields with the location data
+                        document.getElementById('originalName').value = location.Name;
+                        document.getElementById('originalAddress').value = location.Address;
                         document.getElementById('editInputName').value = location.Name;
                         document.getElementById('editInputAddress').value = location.Address;
+
                         document.getElementById('editInputCity').value = location.City;
                         document.getElementById('editInputZip').value = location.ZipCode;
                         document.getElementById('editExampleProvince').value = location.Province;

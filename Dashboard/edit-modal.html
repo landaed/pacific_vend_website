@@ -9,8 +9,9 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="editLocationForm">
-          <input type="hidden" id="editLocationID" name="id">
+        <form class="user" id="editLocationForm" action="update_location.php" method="post">
+          <input type="hidden" id="originalName" name="original_name">
+          <input type="hidden" id="originalAddress" name="original_address">
           <div class="form-group">
             <input type="text" class="form-control form-control-user" id="editInputName" name="name" placeholder="Name" required>
           </div>
@@ -66,28 +67,3 @@
     </div>
   </div>
 </div>
-<script>
-  document.getElementById('editLocationForm').onsubmit = function(event) {
-    event.preventDefault();
-
-    // Collect form data
-    const formData = new FormData(event.target);
-
-    // Send the form data to the server
-    fetch('update_location.php', {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-      if(data.success) {
-        // Refresh the page to show updated list
-        window.location.reload();
-      } else {
-        // Handle error
-        console.error('Failed to update location:', data.error);
-      }
-    })
-    .catch(error => console.error('Error:', error));
-  };
-  </script>
