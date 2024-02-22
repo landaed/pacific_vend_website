@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POS
 
     if($stmt = $db->prepare($sql)){
         // Bind variables to the prepared statement as parameters
-        $stmt->bind_param("ssssssssss", $_POST['name'], $_POST['address'], $_POST['city'], $_POST['ZipCode'], $_POST['Province'], $_POST['Territory'], $_POST['type'], $_POST['email'], $_POST['phone_number'], $_POST['original_name'], $_POST['original_address']);
+        $stmt->bind_param("ssssssssss", $_POST['name'], $_POST['address'], $_POST['city'], $_POST['ZipCode'], $_POST['Province'], $_POST['Territory'], $_POST['type'], $_POST['email'], $_POST['phone_number'], $_POST['name'], $_POST['address']);
 
         // Attempt to execute the prepared statement
         if($stmt->execute()){
