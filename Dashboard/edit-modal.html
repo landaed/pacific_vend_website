@@ -66,3 +66,28 @@
     </div>
   </div>
 </div>
+<script>
+  document.getElementById('editLocationForm').onsubmit = function(event) {
+    event.preventDefault();
+
+    // Collect form data
+    const formData = new FormData(event.target);
+
+    // Send the form data to the server
+    fetch('update_location.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      if(data.success) {
+        // Refresh the page to show updated list
+        window.location.reload();
+      } else {
+        // Handle error
+        console.error('Failed to update location:', data.error);
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  };
+  </script>

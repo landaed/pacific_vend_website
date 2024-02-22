@@ -60,6 +60,13 @@
                         // Populate the modal fields with the location data
                         document.getElementById('editInputName').value = location.Name;
                         document.getElementById('editInputAddress').value = location.Address;
+                        document.getElementById('editInputCity').value = location.City;
+                        document.getElementById('editInputZip').value = location.ZipCode;
+                        document.getElementById('editExampleProvince').value = location.Province;
+                        document.getElementById('editExampleTerritory').value = location.Territory;
+                        document.getElementById('editExampleType').value = location.Type;
+                        document.getElementById('editInputEmail').value = location.Email;
+                        document.getElementById('editInputPhoneNumber').value = location.PhoneNumber;
                         // ... set values for all fields ...
 
                         // Show the modal
@@ -220,30 +227,6 @@
           document.getElementById('editModalContainer').innerHTML = html;
         });
       };
-      document.getElementById('editLocationForm').onsubmit = function(event) {
-        event.preventDefault();
-
-        // Collect form data
-        const formData = new FormData(event.target);
-
-        // Send the form data to the server
-        fetch('update_location.php', {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-          if(data.success) {
-            // Refresh the page to show updated list
-            window.location.reload();
-          } else {
-            // Handle error
-            console.error('Failed to update location:', data.error);
-          }
-        })
-        .catch(error => console.error('Error:', error));
-      };
-
     </script>
 
 </body>
