@@ -52,14 +52,35 @@
 
                     <!-- Content Row -->
                     <div class="row">
+                      <div id="editModalContainer"></div>
                       <div id="locationsContainer"></div>
 
                       <script>
+                      function openEditModal(location) {
+                        // Populate the modal fields with the location data
+                        document.getElementById('originalName').value = location.Name;
+                        document.getElementById('originalAddress').value = location.Address;
+                        document.getElementById('editInputName').value = location.Name;
+                        document.getElementById('editInputAddress').value = location.Address;
+
+                        document.getElementById('editInputCity').value = location.City;
+                        document.getElementById('editInputZip').value = location.ZipCode;
+                        document.getElementById('editExampleProvince').value = location.Province;
+                        document.getElementById('editExampleTerritory').value = location.Territory;
+                        document.getElementById('editExampleType').value = location.Type;
+                        document.getElementById('editInputEmail').value = location.Email;
+                        document.getElementById('editInputPhoneNumber').value = location.PhoneNumber;
+                        // ... set values for all fields ...
+
+                        // Show the modal
+                        $('#editLocationModal').modal('show');
+                      }
+
                       function fetchLocations(territory) {
                           // Encode the territory for use in a URL
                           const territoryParam = encodeURIComponent(territory);
 
-                          fetch(`get_location_territory.php?territory=${territoryParam}`) // Replace with the actual path to your PHP script
+                          fetch(`get_location_territory.php?territory=Calgary`) // Replace with the actual path to your PHP script
                                 .then(response => response.json())
                                 .then(data => {
                                     const locationsContainer = document.getElementById('locationsContainer');
@@ -116,6 +137,13 @@
                                                 </div>
                                             </div>
                                         `;
+                                        // Add Edit button to each location
+                                        const editButton = document.createElement('button');
+                                        editButton.textContent = 'Edit';
+                                        editButton.className = 'btn btn-warning btn-edit';
+                                        editButton.onclick = function() { openEditModal(location); };
+                                        locationDiv.appendChild(editButton);
+
                                         locationsContainer.appendChild(locationDiv);
                                     });
                                 })
@@ -193,6 +221,16 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <script>
+      window.onload = function() {
+      fetchLocations();
+      fetch('edit-modal.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('editModalContainer').innerHTML = html;
+        });
+      };
+    </script>
 
 </body>
 
