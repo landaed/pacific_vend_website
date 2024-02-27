@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+      <div id="sidebarContainer"></div>
+      <script src="sidebar.js"></script>
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+              <div id="topbarContainer"></div>
+              <script src="topbar.js"></script>
+
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+                      <div id="editModalContainer"></div>
+                      <div id="machinesContainer"></div>
+
+                      <script>
+                      function openEditModal(machine) {
+                        // Populate the modal fields with the machine data
+                        document.getElementById('originalName').value = machine.Name;
+                        document.getElementById('originalAddress').value = machine.Address;
+                        document.getElementById('editInputName').value = machine.Name;
+                        document.getElementById('editInputAddress').value = machine.Address;
+
+                        document.getElementById('editInputCity').value = machine.City;
+                        document.getElementById('editInputZip').value = machine.ZipCode;
+                        document.getElementById('editExampleProvince').value = machine.Province;
+                        document.getElementById('editExampleTerritory').value = machine.Territory;
+                        document.getElementById('editExampleType').value = machine.Type;
+                        document.getElementById('editInputEmail').value = machine.Email;
+                        document.getElementById('editInputPhoneNumber').value = machine.PhoneNumber;
+                        // ... set values for all fields ...
+
+                        // Show the modal
+                        $('#editmachineModal').modal('show');
+                      }
+
+                      function fetchmachines(filter) {
+
+                          fetch(`get_machines.php`) // Replace with the actual path to your PHP script
+                                .then(response => response.json())
+                                .then(data => {
+                                    const machinesContainer = document.getElementById('machinesContainer');
+                                    data.forEach(machine => {
+                                        // Check if 'type' is defined, if not, use a default value like 'unknown'
+                                        const machineGenre = machine.Genre ? machine.Genre.toLowerCase() : 'unknown';
+
+                                        const machineDiv = document.createElement('div');
+                                        machineDiv.className = `card border-left-${machineGenre} shadow py-2`;
+
+                                        machineDiv.innerHTML = `
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto1 mr-2">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            Door #</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">${machine.MachineID}</div>
+                                                    </div>
+                                                    <div class="col-auto1">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            LegacyID</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">${machine.LegacyID}</div>
+                                                    </div>
+                                                    <div class="col-auto1">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            CID #</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">${machine.CIDNumber}</div>
+                                                    </div>
+                                                    <div class="col-auto1">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            Serial #</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">${machine.SerialNumber}</div>
+                                                    </div>
+                                                    <div class="col-auto1">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            Name</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">${machine.Name}</div>
+                                                    </div>
+                                                    <div class="col-auto1">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            Genre</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">${machine.Genre}</div>
+                                                    </div>
+                                                    <div class="col-auto1">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            Description</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">${machine.Description}</div>
+                                                    </div>
+                                                    <div class="col-auto1">
+                                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                            Dimensions</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">${machine.Dimensions}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        // Add Edit button to each machine
+                                        const editButton = document.createElement('button');
+                                        editButton.textContent = 'Edit';
+                                        editButton.className = 'btn btn-warning btn-edit';
+                                        editButton.onclick = function() { openEditModal(machine); };
+                                        machineDiv.appendChild(editButton);
+
+                                        machinesContainer.appendChild(machineDiv);
+                                    });
+                                })
+                                .catch(error => {
+                                    console.error('Error fetching machines:', error);
+                                });
+                        }
+
+                        // Call the function when the page loads
+                        window.onload = () => fetchmachines('Edmonton');
+
+                      </script>
+
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Landa Investments Ltd.</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+    <script>
+      window.onload = function() {
+      fetchmachines();
+      fetch('edit-modal.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('editModalContainer').innerHTML = html;
+        });
+      };
+    </script>
+
+</body>
+
+</html>

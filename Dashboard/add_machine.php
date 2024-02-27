@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Attempt to execute the prepared statement
         if($stmt->execute()){
             // Redirect to a confirmation page if the query was successful
-            header("Location: add_location_success.html");
+            header("Location: add_machine_success.html");
             exit(); // Ensure no further execution of the script after redirect
         } else{
             echo "ERROR: Could not execute query: $sql. " . $db->error;
