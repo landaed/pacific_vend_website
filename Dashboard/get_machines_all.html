@@ -166,21 +166,31 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Edit or Remove:</div>
-                                                <a class="dropdown-item" href="#" data-machine-id="${machine.MachineID}" onclick="editMachineClicked(this)">Edit</a>
-                                                a class="dropdown-item" href="#" onclick="openEditModal('machine')">Edit</a>
-                                                <a class="dropdown-item" href="#">Set/Change Location</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Create Maintenance Report</a>
+                                            <div class="dropdown no-arrow">
+                                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                     aria-labelledby="dropdownMenuLink">
+                                                    <div class="dropdown-header">Edit or Remove:</div>
+                                                    <a class="dropdown-item" href="#" onclick="openEditModal('machine')">Edit</a>
+                                                    <a class="dropdown-item" href="#">Set/Change Location</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Create Maintenance Report</a>
+                                                </div>
                                             </div>
+
                                         `;
                                         function editMachineClicked(element) {
                                             const machineId = element.getAttribute('data-machine-id');
-                                            openEditModal(machine);
+                                            if(machineID){
+                                              openEditModal(machine);
+                                            }
+
                                         }
 
-                                        // old way of adding an edit button
+                                        // old way of adding an edit vb
                                         const editButton = document.createElement('button');
                                         editButton.textContent = 'Edit';
                                         editButton.className = 'btn btn-warning btn-edit';
