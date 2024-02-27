@@ -175,12 +175,8 @@
                                                 <a class="dropdown-item" href="#">Create Maintenance Report</a>
                                             </div>
                                         `;
-                                        function editMachineClicked(element) {
-                                            const machineId = element.getAttribute('data-machine-id');
-                                            // Find the machine object by ID or fetch it from the server
-                                            const machine = /* your logic to find the machine object by ID */;
-                                            openEditModal(machine);
-                                        }
+                                        const machineId = element.getAttribute('data-machine-id');
+                                        machineID.onclick = function() { openEditModal(machine); };
                                         // old way of adding an edit button
                                         const editButton = document.createElement('button');
                                         editButton.textContent = 'Edit';
