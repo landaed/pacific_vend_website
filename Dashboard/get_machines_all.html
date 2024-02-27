@@ -57,6 +57,7 @@
 
                       <script>
                       function openEditModal(machine) {
+                        console.log("opening modal")
                         // Populate the modal fields with the machine data
                         document.getElementById('originalName').value = machine.LegacyID;
                         document.getElementById('originalAddress').value = machine.Address;
@@ -71,9 +72,10 @@
                         document.getElementById('editInputEmail').value = machine.Name;
                         document.getElementById('editInputPhoneNumber').value = machine.Name;
                         // ... set values for all fields ...
-
+                        console.log("almost done")
                         // Show the modal
                         $('#editmachineModal').modal('show');
+                        console.log("showing modal")
                       }
 
 
