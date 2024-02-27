@@ -57,17 +57,23 @@
 
                       <script>
                       function openEditModal(machine) {
-                        console.log("opening modal")
                         // Populate the modal fields with the machine data
-                        document.getElementById('originalName').value = machine.LegacyID;
-                        document.getElementById('originalAddress').value = machine.Address;
-                        document.getElementById('editInputName').value = machine.CIDNumber;
-                        document.getElementById('editInputAddress').value = machine.SerialNumber;
-                        // ... set values for all fields ...
-                        console.log("almost done")
+                        document.getElementById('legacy_id').value = machine.LegacyID;
+                        document.getElementById('cid_number').value = machine.CIDNumber;
+                        document.getElementById('serial_number').value = machine.SerialNumber;
+
+                        document.getElementById('name').value = machine.Name;
+                        document.getElementById('genre').value = machine.Genre;
+                        document.getElementById('description').value = machine.description;
+                        document.getElementById('dimensions').value = machine.dimensions;
+                        document.getElementById('supplier').value = machine.supplier;
+                        document.getElementById('purchase_price').value = machine.purchase_price;
+                        document.getElementById('purchase_date').value = machine.purchase_date;
+                        document.getElementById('sale_price').value = machine.sale_price;
+                        document.getElementById('sale_date').value = machine.sale_date;
+                        document.getElementById('sold_to').value = machine.sold_to;
                         // Show the modal
-                        $('#editLocationModal').modal('show');
-                        console.log("showing modal")
+                        $('#editMachineModal').modal('show');
                       }
 
 
