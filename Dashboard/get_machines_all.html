@@ -181,6 +181,15 @@
                                                 </div>
                                             </div>
                                         `;
+
+                                        // Add Edit button to each machine
+                                        const editButton = document.createElement('button');
+                                        editButton.textContent = 'Edit';
+                                        editButton.className = 'btn btn-warning btn-edit';
+                                        editButton.onclick = function() { openEditModal(machine); };
+                                      //  machineDiv.appendChild(editButton);
+
+                                        machinesContainer.appendChild(machineDiv);
                                     });
                                 })
                                 .catch(error => {
