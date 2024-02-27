@@ -58,18 +58,18 @@
                       <script>
                       function openEditModal(machine) {
                         // Populate the modal fields with the machine data
-                        document.getElementById('originalName').value = machine.Name;
+                        document.getElementById('originalName').value = machine.LegacyID;
                         document.getElementById('originalAddress').value = machine.Address;
-                        document.getElementById('editInputName').value = machine.Name;
-                        document.getElementById('editInputAddress').value = machine.Address;
+                        document.getElementById('editInputName').value = machine.CIDNumber;
+                        document.getElementById('editInputAddress').value = machine.SerialNumber;
 
-                        document.getElementById('editInputCity').value = machine.City;
-                        document.getElementById('editInputZip').value = machine.ZipCode;
-                        document.getElementById('editExampleProvince').value = machine.Province;
-                        document.getElementById('editExampleTerritory').value = machine.Territory;
-                        document.getElementById('editExampleType').value = machine.Type;
-                        document.getElementById('editInputEmail').value = machine.Email;
-                        document.getElementById('editInputPhoneNumber').value = machine.PhoneNumber;
+                        document.getElementById('editInputCity').value = machine.Name;
+                        document.getElementById('editInputZip').value = machine.Genre;
+                        document.getElementById('editExampleProvince').value = machine.Name;
+                        document.getElementById('editExampleTerritory').value = machine.Name;
+                        document.getElementById('editExampleType').value = machine.Name;
+                        document.getElementById('editInputEmail').value = machine.Name;
+                        document.getElementById('editInputPhoneNumber').value = machine.Name;
                         // ... set values for all fields ...
 
                         // Show the modal
@@ -168,18 +168,19 @@
                                             </div>
                                             <div class="dropdown no-arrow">
                                                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                    aria-labelledby="dropdownMenuLink">
+                                                     aria-labelledby="dropdownMenuLink">
                                                     <div class="dropdown-header">Edit or Remove:</div>
-                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                    <a class="dropdown-item" href="#" onclick="openEditModal('machine')">Edit</a>
                                                     <a class="dropdown-item" href="#">Set/Change Location</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="#">Create Maintenance Report</a>
                                                 </div>
                                             </div>
+
                                         `;
 
                                         // Add Edit button to each machine
