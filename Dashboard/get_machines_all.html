@@ -168,7 +168,7 @@
                                             </div>
                                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                                 <div class="dropdown-header">Edit or Remove:</div>
-                                                <a class="dropdown-item" href="#" data-machine-id="${machine}" onclick="editMachineClicked(this)">Edit</a>
+                                                <a class="dropdown-item" href="#" data-machine-id="${machine.MachineID}" onclick="editMachineClicked(this)">Edit</a>
                                                 a class="dropdown-item" href="#" onclick="openEditModal('machine')">Edit</a>
                                                 <a class="dropdown-item" href="#">Set/Change Location</a>
                                                 <div class="dropdown-divider"></div>
@@ -177,7 +177,7 @@
                                         `;
                                         function editMachineClicked(element) {
                                             const machineId = element.getAttribute('data-machine-id');
-                                            openEditModal(machineId);
+                                            openEditModal(machine);
                                         }
 
                                         // old way of adding an edit button
