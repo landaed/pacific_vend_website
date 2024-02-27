@@ -174,7 +174,7 @@
                                                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                                      aria-labelledby="dropdownMenuLink">
                                                     <div class="dropdown-header">Edit or Remove:</div>
-                                                    <a class="dropdown-item" href="#" onclick="openEditModal('machine')">Edit</a>
+                                                    <a class="dropdown-item" href="#" onclick="openEditModal(${machine.SoldTo})">Edit</a>
                                                     <a class="dropdown-item" href="#">Set/Change Location</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="#">Create Maintenance Report</a>
@@ -183,8 +183,8 @@
 
                                         `;
 
-                                        // Add Edit button to each machine
-                                        const editButton = document.createElement('button');
+                                        // old way of adding an edit button
+                                        const editButton = document.createElement('dropdown no-arrow');
                                         editButton.textContent = 'Edit';
                                         editButton.className = 'btn btn-warning btn-edit';
                                         editButton.onclick = function() { openEditModal(machine); };
