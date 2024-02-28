@@ -3,71 +3,15 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="machineHistoryModalLabel">Edit Machine</h5>
+        <h5 class="modal-title" id="machineHistoryModalLabel">Machine History</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form class="user" id="editMachineForm" action="update_machine.php" method="post">
-          <input type="hidden" id="machine_id" name="machine_id">
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Game Name (Required)" required>
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="serial_number" name="serial_number" placeholder="Serial_Number  (Required)" required>
-          </div>
-
-          <div class="form-group">
-              <select class="form-control form-control-user-dropdown" id="genre" name="genre" required>
-                  <option value="">Genre (Required)</option>
-                  <option value="Shooter">Shooter</option>
-                  <option value="Ticket">Ticket</option>
-                  <option value="Prize">Prize</option>
-                  <option value="Racing">Racing</option>
-                  <option value="Fighting">Fighting</option>
-              </select>
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="legacy_id" name="legacy_id" placeholder="Legacy_ID">
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="cid_number" name="cid_number" placeholder="CID_Number">
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="purchase_price" name="purchase_price" placeholder="Purchase Price">
-          </div>
-
-          <div class="form-group">
-              <b>Purchase Date:</b>
-              <input type="date" class="form-control form-control-user" id="purchase_date" name="purchase_date" placeholder="Purchase Date">
-          </div>
-
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="sale_price" name="sale_price" placeholder="Sale Price">
-          </div>
-          <div class="form-group">
-            <b>Sale Date:</b>
-            <input type="date" class="form-control form-control-user" id="sale_date" name="sale_date" placeholder="Sale Date">
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="sold_to" name="sold_to" placeholder="Sold To">
-          </div>
-
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="description" name="description" placeholder="Notes">
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="dimensions" name="dimensions" placeholder="Dimensions">
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="supplier" name="supplier" placeholder="Supplier">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-          </div>
-        </form>
+        <h1 id="name"> name:</h1>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
