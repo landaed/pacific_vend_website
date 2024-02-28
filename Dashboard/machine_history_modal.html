@@ -15,11 +15,14 @@
         <div id="history_container"></div>
         <script>
         function fetchCurrLocation(filter) {
+            console.log("fetching current location")
             fetch(`get_curr_location.php`) // Adjust this to your PHP endpoint
                 .then(response => response.json())
                 .then(data => {
+                    console.log("got into api end point")
                     const locationContainer = document.getElementById('location_container');
                     data.forEach(location => {
+                        console.log("got a location!")
                         // Existing code to create locationDiv
                         const locationDiv = document.createElement('div');
                         locationDiv.innerHTML = `
