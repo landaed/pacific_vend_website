@@ -312,7 +312,13 @@
       function fetchCurrLocation(machine) {
       document.getElementById('machine_id').value = machine.MachineID;
       console.log("fetching current location");
-      fetch(`get_curr_location.php`) // Adjust this to your PHP endpoint
+      fetch(`get_curr_location.php`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'machine_id=' + machine.MachineID
+    }) // Adjust this to your PHP endpoint
           .then(response => response.json())
           .then(data => {
               console.log("Response data:", data); // Debugging: log the response
