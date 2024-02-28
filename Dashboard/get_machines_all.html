@@ -188,7 +188,7 @@
                                                      aria-labelledby="dropdownMenuLink">
                                                     <div class="dropdown-header">Edit or Remove:</div>
                                                     <a class="dropdown-item" href="#" data-machine-id="${machine.MachineID}">Edit</a>
-                                                    <a class="dropdown-item" href="#" location-machine-id="${machine.MachineID}">Set/Change Location</a>
+                                                    <a class="dropdown-item" onclick="fetchCurrLocation(3);" href="#" location-machine-id="${machine.MachineID}">Set/Change Location</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="#">Create Maintenance Report</a>
                                                 </div>
@@ -387,12 +387,6 @@
 
     </script>
 
-    <script>
-      window.onload = function() {
-        console.log("window is open")
-        fetchCurrLocation(3);
-      };
-    </script>
 
 </body>
 
