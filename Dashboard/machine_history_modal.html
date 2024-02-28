@@ -14,7 +14,7 @@
         <div id="location_container"></div>
         <div id="history_container"></div>
         <script>
-        function fetchCurrLocation(filter) {
+        function fetchCurrLocation() {
             console.log("fetching current location")
             fetch(`get_curr_location.php`) // Adjust this to your PHP endpoint
                 .then(response => response.json())
@@ -66,6 +66,7 @@
         }
 
         window.onload = function() {
+          console.log("window is open")
           fetchCurrLocation();
         };
         </script>
