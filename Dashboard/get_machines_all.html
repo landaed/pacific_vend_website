@@ -78,6 +78,14 @@
                         $('#editMachineModal').modal('show');
                       }
 
+                      function openMachineHistoryModal(machine) {
+                        // Populate the modal fields with the machine data
+                        document.getElementById('machine_id').value = machine.MachineID;
+                        document.getElementById('name').value = machine.Name;
+                        // Show the modal
+                        $('#machineHistoryModal').modal('show');
+                      }
+
 
 
                         function fetchmachines(filter) {
@@ -179,7 +187,7 @@
                                                      aria-labelledby="dropdownMenuLink">
                                                     <div class="dropdown-header">Edit or Remove:</div>
                                                     <a class="dropdown-item" href="#" data-machine-id="${machine.MachineID}">Edit</a>
-                                                    <a class="dropdown-item" href="#">Set/Change Location</a>
+                                                    <a class="dropdown-item" href="#" location-machine-id="${machine.MachineID}">Set/Change Location</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="#">Create Maintenance Report</a>
                                                 </div>
@@ -202,6 +210,18 @@
                                                     }
                                                 });
                                             }
+
+                                            const editButton = document.querySelector(`[location-machine-id="${machine.MachineID}"]`);
+                                            if (editButton) {
+                                                editButton.addEventListener('click', function(event) {
+                                                    event.preventDefault();
+                                                    const machineId = this.getAttribute('location-machine-id');
+                                                    const selectedMachine = data.find(m => m.MachineID === machineId);
+                                                    if (selectedMachine) {
+                                                        openMachineHistoryModal(selectedMachine);
+                                                    }
+                                                });
+                                            }
                                         });
                                     })
                                     .catch(error => {
@@ -209,13 +229,7 @@
                                     });
                             }
 
-                            function editMachineClicked(element, machinesData) {
-                                const machineId = element.getAttribute('data-machine-id');
-                                const machine = machinesData.find(m => m.MachineID === machineId);
-                                if (machine) {
-                                    openEditModal(machine);
-                                }
-                            }
+                            
 
                             // Call the function when the page loads
                             window.onload = () => fetchmachines('Edmonton');

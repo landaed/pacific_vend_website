@@ -1,0 +1,37 @@
+<!-- Location Management Modal -->
+<div class="modal fade" id="locationManagementModal" tabindex="-1" aria-labelledby="locationManagementModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="locationManagementModalLabel">Manage Location</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6 id="gameNameHeader">Game Name: <span id="gameName"></span></h6>
+        <h6>Current Location: <span id="currentLocation"></span></h6>
+
+        <!-- Add Location Section -->
+        <div id="addLocationSection">
+          <button type="button" class="btn btn-primary" onclick="showAddLocationForm()">Add Location</button>
+          <div id="addLocationForm" style="display: none;">
+            <input type="text" class="form-control" id="locationInput" placeholder="Enter Location" oninput="searchLocation()">
+            <div id="locationSuggestions" style="position: absolute; z-index: 1000;"></div>
+            <input type="date" class="form-control" id="startDateInput" placeholder="Start Date">
+            <input type="date" class="form-control" id="endDateInput" placeholder="End Date">
+            <button type="button" class="btn btn-success" onclick="addLocation()">Submit Location</button>
+          </div>
+        </div>
+
+        <!-- View Location History Section -->
+        <button type="button" class="btn btn-secondary" onclick="viewLocationHistory()">View Location History</button>
+        <div id="locationHistory"></div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
