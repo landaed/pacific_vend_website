@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
     // Close statement
     $stmt->close();
 } else {
-    echo json_encode(array("error" => "Invalid request"));
+    echo json_encode(array("error" => "Invalid request: machine id -> " . $_POST['machine_id']));
 }
 
 // Close connection
