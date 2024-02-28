@@ -188,7 +188,7 @@
                                                      aria-labelledby="dropdownMenuLink">
                                                     <div class="dropdown-header">Edit or Remove:</div>
                                                     <a class="dropdown-item" href="#" data-machine-id="${machine.MachineID}">Edit</a>
-                                                    <a class="dropdown-item" onclick="fetchCurrLocation(3);" href="#" location-machine-id="${machine.MachineID}">Set/Change Location</a>
+                                                    <a class="dropdown-item" href="#" location-machine-id="${machine.MachineID}">Set/Change Location</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="#">Create Maintenance Report</a>
                                                 </div>
@@ -220,6 +220,7 @@
                                                     const selectedMachine = data.find(m => m.MachineID === machineId);
                                                     if (selectedMachine) {
                                                         openMachineHistoryModal(selectedMachine);
+                                                        fetchCurrLocation(selectedMachine);
                                                     }
                                                 });
                                             }
@@ -228,21 +229,6 @@
                                     .catch(error => {
                                         console.error('Error fetching machines:', error);
                                     });
-                            }
-
-                            function editMachineClicked(element, machinesData) {
-                                const machineId = element.getAttribute('data-machine-id');
-                                const machine = machinesData.find(m => m.MachineID === machineId);
-                                if (machine) {
-                                    openEditModal(machine);
-                                }
-                            }
-                            function machineHistoryClicked(element, machinesData) {
-                                const machineId = element.getAttribute('location-machine-id');
-                                const machine = machinesData.find(m => m.MachineID === machineId);
-                                if (machine) {
-                                    openMachineHistoryModal(machine);
-                                }
                             }
 
                             // Call the function when the page loads
@@ -323,9 +309,10 @@
     </script>
 
     <script>
-      function fetchCurrLocation(mid) {
+      function fetchCurrLocation(machine) {
+      document.getElementById('machine_id').value = machine.MachineID;
       console.log("fetching current location");
-      fetch(`get_curr_location.php?MachineID=${mid}`) // Adjust this to your PHP endpoint
+      fetch(`get_curr_location.php`) // Adjust this to your PHP endpoint
           .then(response => response.json())
           .then(data => {
               console.log("Response data:", data); // Debugging: log the response
