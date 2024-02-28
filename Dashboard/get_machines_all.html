@@ -82,7 +82,7 @@
                       function openMachineHistoryModal(machine) {
                         // Populate the modal fields with the machine data
                         document.getElementById('machine_id').value = machine.MachineID;
-                        document.getElementById('name').value = machine.Name;
+                        document.getElementById('name').textContent = "Name: " + machine.Name;
                         // Show the modal
                         $('#machineHistoryModal').modal('show');
                       }
