@@ -229,7 +229,7 @@
                                     });
                             }
 
-                            
+
 
                             // Call the function when the page loads
                             window.onload = () => fetchmachines('Edmonton');
@@ -306,6 +306,11 @@
         .then(response => response.text())
         .then(html => {
           document.getElementById('editModalContainer').innerHTML = html;
+        });
+      fetch('machine_history_modal.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('machineHistoryModal').innerHTML = html;
         });
       };
     </script>
