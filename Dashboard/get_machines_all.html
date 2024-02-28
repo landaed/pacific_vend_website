@@ -323,9 +323,9 @@
     </script>
 
     <script>
-    function fetchCurrLocation() {
+    function fetchCurrLocation(mid) {
         console.log("fetching current location")
-        fetch(`get_curr_location.php`) // Adjust this to your PHP endpoint
+        fetch(`get_curr_location.php?MachineID=${mid}`) // Adjust this to your PHP endpoint
             .then(response => response.json())
             .then(data => {
                 console.log("got into api end point")
@@ -380,7 +380,7 @@
     <script>
       window.onload = function() {
         console.log("window is open")
-        fetchCurrLocation();
+        fetchCurrLocation(3);
       };
     </script>
 
