@@ -1,4 +1,4 @@
-<!-- Edit Machine Modal -->
+<!-- Machine History Modal -->
 <div class="modal fade" id="machineHistoryModal" tabindex="-1" aria-labelledby="machineHistoryModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -9,7 +9,9 @@
         </button>
       </div>
       <div class="modal-body">
-        <h1 id="name"></h1>
+        <input type="hidden" id="machine_id">
+        <h1 id="name">Name:</h1>
+        <!-- Additional content here -->
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save changes</button>
       </div>
