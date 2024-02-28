@@ -211,9 +211,9 @@
                                                 });
                                             }
 
-                                            const editButton = document.querySelector(`[location-machine-id="${machine.MachineID}"]`);
-                                            if (editButton) {
-                                                editButton.addEventListener('click', function(event) {
+                                            const machineHistoryButton = document.querySelector(`[location-machine-id="${machine.MachineID}"]`);
+                                            if (machineHistoryButton) {
+                                                machineHistoryButton.addEventListener('click', function(event) {
                                                     event.preventDefault();
                                                     const machineId = this.getAttribute('location-machine-id');
                                                     const selectedMachine = data.find(m => m.MachineID === machineId);
