@@ -13,60 +13,7 @@
         <h1 id="machine_name"></h1>
         <div id="location_container"></div>
         <div id="history_container"></div>
-        <script>
-        function fetchCurrLocation() {
-            console.log("fetching current location")
-            fetch(`get_curr_location.php`) // Adjust this to your PHP endpoint
-                .then(response => response.json())
-                .then(data => {
-                    console.log("got into api end point")
-                    const locationContainer = document.getElementById('location_container');
-                    data.forEach(location => {
-                        console.log("got a location!")
-                        // Existing code to create locationDiv
-                        const locationDiv = document.createElement('div');
-                        locationDiv.innerHTML = `
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Current Location</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">${location.LocationID}</div>
-                        <button onclick="fetchMachineHistory(${location.machineId})">View History</button>
-                        `;
-                        locationContainer.appendChild(locationDiv);
-                    });
-                });
-        }
 
-        function fetchMachineHistory(machineId) {
-            fetch('get_machine_history.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'machine_id=' + machineId
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Handle the machine history data
-                // For example, update the DOM to show the machine's history
-                const historyContainer = document.getElementById('history_container');
-                historyContainer.innerHTML = ''; // Clear previous content
-                data.forEach(historyEntry => {
-                    const entryDiv = document.createElement('div');
-                    entryDiv.innerHTML = `
-                    <div>Location: ${historyEntry.locationName}</div>
-                    <div>Start Date: ${historyEntry.startDate}</div>
-                    <div>End Date: ${historyEntry.endDate || 'Present'}</div>
-                    `;
-                    historyContainer.appendChild(entryDiv);
-                });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-
-
-        </script>
 
         <!-- Additional content here -->
         <button type="button" class="btn btn-primary">Update Location</button>
@@ -75,9 +22,3 @@
     </div>
   </div>
 </div>
-<script>
-  window.onload = function() {
-    console.log("window is open")
-    fetchCurrLocation();
-  };
-</script>
