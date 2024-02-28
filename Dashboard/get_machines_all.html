@@ -229,7 +229,20 @@
                                     });
                             }
 
-
+                            function editMachineClicked(element, machinesData) {
+                                const machineId = element.getAttribute('data-machine-id');
+                                const machine = machinesData.find(m => m.MachineID === machineId);
+                                if (machine) {
+                                    openEditModal(machine);
+                                }
+                            }
+                            function machineHistoryClicked(element, machinesData) {
+                                const machineId = element.getAttribute('location-machine-id');
+                                const machine = machinesData.find(m => m.MachineID === machineId);
+                                if (machine) {
+                                    openMachineHistoryModal(machine);
+                                }
+                            }
 
                             // Call the function when the page loads
                             window.onload = () => fetchmachines('Edmonton');
@@ -307,11 +320,11 @@
         .then(html => {
           document.getElementById('editModalContainer').innerHTML = html;
         });
-      fetch('machine_history_modal.html')
-        .then(response => response.text())
-        .then(html => {
-          document.getElementById('machineHistoryModal').innerHTML = html;
-        });
+        fetch('machine_history_modal.html')
+          .then(response => response.text())
+          .then(html => {
+            document.getElementById('machineHistoryModal').innerHTML = html;
+          });
       };
     </script>
 
