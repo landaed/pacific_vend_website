@@ -13,21 +13,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
             ORDER BY mh.StartDate DESC
             LIMIT 1";
 
-    if($stmt = $db->prepare($sql)){
+    if ($stmt = $db->prepare($sql)) {
         // Bind machine ID to the prepared statement as a parameter
         $stmt->bind_param("i", $param_machine_id);
         $param_machine_id = $_POST['machine_id'];
 
         // Execute the prepared statement and get the result
-        if($stmt->execute()){
+        if ($stmt->execute()) {
             $result = $stmt->get_result();
-            $currentLocation = $result->fetch_assoc();
+            $locations = [];
+            while ($row = $result->fetch_assoc()) {
+                array_push($locations, $row);
+            }
 
-            echo json_encode($currentLocation); // Return the current location as JSON
-        } else{
+            echo json_encode($locations); // Return an array of locations (even if it's just one)
+        } else {
             echo json_encode(array("error" => "Could not execute query: " . $db->error));
         }
-    } else{
+    } else {
         echo json_encode(array("error" => "Could not prepare query: " . $db->error));
     }
 
