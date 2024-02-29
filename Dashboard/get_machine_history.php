@@ -6,9 +6,7 @@ header('Content-Type: application/json'); // Set appropriate response header
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
     // Prepare a select statement with JOIN to fetch location details
-    $sql = "SELECT mh.MachineID, mh.StartDate, mh.EndDate, mh.HistoryID,
-                   loc.Name AS LocationName, loc.Address AS LocationAddress,
-                   loc.Type, loc.Email, loc.PhoneNumber, loc.ZipCode, loc.City, loc.Province, loc.Territory
+    $sql = "SELECT loc.Name AS LocationName, loc.Address AS LocationAddress
             FROM MachineHistory mh
             JOIN Locations loc ON mh.LocationID = loc.LocationID
             WHERE mh.MachineID=?
@@ -26,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
             while ($row = $result->fetch_assoc()) {
                 array_push($history, $row);
             }
-            print_r($locations);
             echo json_encode($history); // Return the data as JSON
         } else {
             echo json_encode(array("error" => "Could not execute query: " . $db->error));
