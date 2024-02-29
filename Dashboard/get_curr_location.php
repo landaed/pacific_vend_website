@@ -6,7 +6,7 @@ header('Content-Type: application/json'); // Set appropriate response header
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
     // Prepare a SQL query to fetch the current location
-    $sql = "SELECT mh.*, loc.Name AS LocationName
+    $sql = "SELECT mh.*, loc.Name AS LocationName, loc.Address AS LocationAddress
             FROM MachineHistory mh
             JOIN Locations loc ON mh.LocationID = loc.LocationID
             WHERE mh.MachineID=? AND mh.EndDate IS NULL
