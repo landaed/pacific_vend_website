@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
             while ($row = $result->fetch_assoc()) {
                 array_push($history, $row);
             }
-
+            print_r($locations);
             echo json_encode($history); // Return the data as JSON
         } else {
             echo json_encode(array("error" => "Could not execute query: " . $db->error));
