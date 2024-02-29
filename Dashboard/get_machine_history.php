@@ -9,8 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
     $sql = "SELECT loc.Name AS LocationName, loc.Address AS LocationAddress
             FROM MachineHistory mh
             JOIN Locations loc ON mh.LocationID = loc.LocationID
-            WHERE mh.MachineID=?
-            ORDER BY mh.StartDate DESC";
+            WHERE mh.MachineID= 3
+            ORDER BY mh.StartDate DESC;
+            ";
 
     if ($stmt = $db->prepare($sql)) {
         // Bind variables to the prepared statement as parameters
