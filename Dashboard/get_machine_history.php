@@ -5,28 +5,33 @@ require_once 'db_connect.php';
 header('Content-Type: application/json'); // Set appropriate response header
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
-    // Prepare a select statement
-    $sql = "SELECT * FROM MachineHistory WHERE MachineID=?";
+    // Prepare a select statement with JOIN to fetch location details
+    $sql = "SELECT mh.MachineID, mh.StartDate, mh.EndDate, mh.HistoryID,
+                   loc.Name AS LocationName, loc.Address AS LocationAddress,
+                   loc.Type, loc.Email, loc.PhoneNumber, loc.ZipCode, loc.City, loc.Province, loc.Territory
+            FROM MachineHistory mh
+            JOIN Locations loc ON mh.LocationID = loc.LocationID
+            WHERE mh.MachineID=?
+            ORDER BY mh.StartDate DESC";
 
-    if($stmt = $db->prepare($sql)){
+    if ($stmt = $db->prepare($sql)) {
         // Bind variables to the prepared statement as parameters
         $stmt->bind_param("i", $param_machine_id);
         $param_machine_id = $_POST['machine_id'];
 
-        // Execute the prepared statement
-        if($stmt->execute()){
+        // Execute the prepared statement and get the result
+        if ($stmt->execute()) {
             $result = $stmt->get_result();
-
             $history = array();
-            while($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
                 array_push($history, $row);
             }
 
             echo json_encode($history); // Return the data as JSON
-        } else{
+        } else {
             echo json_encode(array("error" => "Could not execute query: " . $db->error));
         }
-    } else{
+    } else {
         echo json_encode(array("error" => "Could not prepare query: " . $db->error));
     }
 
