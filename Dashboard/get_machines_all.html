@@ -54,6 +54,7 @@
                     <div class="row">
                       <div id="editModalContainer"></div>
                       <div id="machineHistoryModalContainer"></div>
+                      <div id="addMachineHistoryModalContainer"></div>
                       <div id="machinesContainer"></div>
 
                       <script>
@@ -85,6 +86,14 @@
                         document.getElementById('machine_name').textContent = machine.Name;
                         // Show the modal
                         $('#machineHistoryModal').modal('show');
+                      }
+
+                      function openAddMachineHistoryModal(machine) {
+                        // Populate the modal fields with the machine data
+                        document.getElementById('machine_id').value = machine.MachineID;
+                        document.getElementById('machine_name').textContent = machine.Name;
+                        // Show the modal
+                        $('#addMachineHistoryModal').modal('show');
                       }
 
 
@@ -224,6 +233,19 @@
                                                     }
                                                 });
                                             }
+
+                                            const addMachineHistoryButton = document.querySelector(`[add-machine-history-id="${machine.MachineID}"]`);
+                                            if (addMachineHistoryButton) {
+                                                addMachineHistoryButton.addEventListener('click', function(event) {
+                                                    event.preventDefault();
+                                                    const machineId = this.getAttribute('add-machine-history-id');
+                                                    const selectedMachine = data.find(m => m.MachineID === machineId);
+                                                    if (selectedMachine) {
+                                                        openAddMachineHistoryModal(selectedMachine);
+                                                        //fetchCurrLocation(selectedMachine);
+                                                    }
+                                                });
+                                            }
                                         });
                                     })
                                     .catch(error => {
@@ -305,6 +327,11 @@
           .then(html => {
             document.getElementById('machineHistoryModalContainer').innerHTML = html;
           });
+          fetch('add_machine_history_modal.html')
+            .then(response => response.text())
+            .then(html => {
+              document.getElementById('addMachineHistoryModalContainer').innerHTML = html;
+            });
       };
     </script>
 

@@ -6,7 +6,7 @@ header('Content-Type: application/json'); // Set appropriate response header
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
     // Prepare a select statement with JOIN to fetch location details
-    $sql = "SELECT loc.Address AS LocationAddress
+    $sql = "SELECT loc.Address AS LocationAddress, loc.Name AS LocationName
             FROM MachineHistory mh
             JOIN Locations loc ON mh.LocationID = loc.LocationID
             WHERE mh.MachineID= 3

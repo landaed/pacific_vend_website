@@ -1,0 +1,40 @@
+<!-- Edit Machine Modal -->
+<div class="modal fade" id="addMachineHistoryModal" tabindex="-1" aria-labelledby="addMachineHistoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addMachineHistoryModalLabel">Update Location</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="user" id="addMachineHistoryForm" action="add_machine_history.php" method="post">
+          <input type="hidden" id="machine_id" name="machine_id">
+          <div class="form-group">
+              <select class="form-control form-control-user-dropdown" id="genre" name="genre" required>
+                  <option value="">Location (Required)</option>
+                  <option value="Shooter">Shooter</option>
+                  <option value="Ticket">Ticket</option>
+                  <option value="Prize">Prize</option>
+                  <option value="Racing">Racing</option>
+                  <option value="Fighting">Fighting</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <b>Start Date (Required):</b>
+              <input type="date" class="form-control form-control-user" id="start_date" name="start_date" placeholder="Start Date">
+          </div>
+          <div class="form-group">
+            <b>End Date (Required):</b>
+            <input type="date" class="form-control form-control-user" id="end_date" name="end_date" placeholder="End Date">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
