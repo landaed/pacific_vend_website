@@ -112,49 +112,52 @@
                         $('#addMachineHistoryModal').modal('show');
 
 
-                       console.log("setting up event listener for suggestions");
-                       var locationInput = document.getElementById('locationInput');
-                       var suggestionsBox = document.getElementById('locationSuggestions');
-                       if (document.getElementById('locationIDInput')) {
-                         console.log("found locationIDInput");
-                       }
-                       else{
-                         console.log("ERROR: LOCATION ID INPUT NOT FOUND");
-                       }
+                        $('#addMachineHistoryModal').on('shown.bs.modal', function () {
+     // Now the modal is fully shown, and its elements should be accessible
+     var locationInput = document.getElementById('locationInput');
+     var suggestionsBox = document.getElementById('locationSuggestions');
+     var locationIDInput = document.getElementById('locationIDInput');
+     var machineIDInput = document.getElementById('machineIDInput');
 
-                       document.getElementById('machineIDInput').value = machine.MachineID;
+     if (locationIDInput) {
+         console.log("found locationIDInput");
+     } else {
+         console.log("ERROR: LOCATION ID INPUT NOT FOUND");
+     }
 
-                       if (locationInput) {
-                           locationInput.addEventListener('input', function() {
-                               var searchTerm = this.value;
-                               console.log("value: " + this.value)
-                               if (searchTerm.length > 1) {
-                                   console.log("value>1");
-                                   fetch(`location_suggestions.php?search=${searchTerm}`)
-                                       .then(response => response.json())
-                                       .then(data => {
-                                           suggestionsBox.innerHTML = '';
-                                           data.forEach(location => {
-                                               var suggestion = document.createElement('div');
-                                               suggestion.textContent = location.Name;
-                                               suggestion.classList.add('suggestion');
-                                               suggestion.value = location.LocationID;
-                                               suggestion.addEventListener('click', function() {
-                                                   locationInput.value = this.textContent;
-                                                   suggestionsBox.innerHTML = '';
-                                                   locationIDInput.value = this.value;
+     // Assuming machine is a global variable or passed somehow to this function
+     machineIDInput.value = machine.MachineID;
 
-                                               });
-                                               suggestionsBox.appendChild(suggestion);
-                                           });
-                                       })
-                                       .catch(error => {
-                                           console.error('Error:', error);
-                                       });
-                               } else {
-                                   suggestionsBox.innerHTML = '';
-                               }
-                           });
+     if (locationInput) {
+         locationInput.addEventListener('input', function() {
+             var searchTerm = this.value;
+             if (searchTerm.length > 1) {
+                 fetch(`location_suggestions.php?search=${searchTerm}`)
+                     .then(response => response.json())
+                     .then(data => {
+                         suggestionsBox.innerHTML = '';
+                         data.forEach(location => {
+                             var suggestion = document.createElement('div');
+                             suggestion.textContent = location.Name;
+                             suggestion.classList.add('suggestion');
+                             suggestion.addEventListener('click', function() {
+                                 locationInput.value = this.textContent;
+                                 suggestionsBox.innerHTML = '';
+                                 locationIDInput.value = location.LocationID;
+                             });
+                             suggestionsBox.appendChild(suggestion);
+                         });
+                     })
+                     .catch(error => {
+                         console.error('Error:', error);
+                     });
+             } else {
+                 suggestionsBox.innerHTML = '';
+             }
+         });
+     }
+ });
+
                        }
 
 
