@@ -42,6 +42,7 @@
                                         <h1 class="h4 text-gray-900 mb-4">Add a Machine</h1>
                                     </div>
                                     <form class="user" action="add_machine.php" method="post">
+                                        <input type="hidden" id="location_id" name="location_id">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Game Name (Required)" required>
                                         </div>
@@ -151,6 +152,7 @@
     <script>
     var locationInput = document.getElementById('locationInput');
     var suggestionsBox = document.getElementById('locationSuggestions');
+    var locationID = document.getElementById('location_id');
     if (locationInput) {
         locationInput.addEventListener('input', function() {
             var searchTerm = this.value;
@@ -166,7 +168,7 @@
                             suggestion.addEventListener('click', function() {
                                 locationInput.value = this.textContent;
                                 suggestionsBox.innerHTML = '';
-                    
+                                locationID.value = this.value;
                             });
                             suggestionsBox.appendChild(suggestion);
                         });
