@@ -136,10 +136,12 @@
                                                    suggestionsBox.innerHTML = '';
                                                    var locationIDInput = document.getElementById('locationIDInput');
                                                    if (locationIDInput) {
+                                                     console.log("posting with locID" +this.value)
                                                      locationIDInput.value = this.value;
                                                    }
                                                    var machineIDInput = document.getElementById('machineIDInput');
                                                    if (machineIDInput) {
+                                                     console.log("posting with machID" + machine.MachineID)
                                                      machineIDInput.value = machine.MachineID;
                                                    }
                                                });
