@@ -188,6 +188,73 @@ function fetchmachines(filter) {
     }
 
 
+    function fetchCurrLocation(machine) {
+    document.getElementById('machine_id').value = machine.MachineID;
+    console.log("fetching current location");
+    fetch(`get_curr_location.php`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: 'machine_id=' + machine.MachineID
+    }) // Adjust this to your PHP endpoint
+        .then(response => response.json())
+        .then(data => {
+            console.log("Response data:", data); // Debugging: log the response
+
+            // Ensure data is in array format
+            if (!Array.isArray(data)) {
+                data = [data]; // Convert to an array if it's not
+            }
+
+            const locationContainer = document.getElementById('location_container');
+            data.forEach(location => {
+                console.log("got a location!");
+                // Existing code to create locationDiv
+                const locationDiv = document.createElement('div');
+                locationDiv.innerHTML = `
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                    Current Location</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">${location.LocationName}, ${location.LocationAddress}</div>
+                `;
+                locationContainer.appendChild(locationDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+
+    function fetchMachineHistory(machineId) {
+      fetch('get_machine_history.php', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: 'machine_id=' + machineId
+      })
+      .then(response => response.json())
+      .then(data => {
+          // Handle the machine history data
+          // For example, update the DOM to show the machine's history
+          const historyContainer = document.getElementById('history_container');
+          historyContainer.innerHTML = ''; // Clear previous content
+          data.forEach(historyEntry => {
+              const entryDiv = document.createElement('div');
+              entryDiv.innerHTML = `
+              <div>Location: ${historyEntry.locationName}</div>
+              <div>Start Date: ${historyEntry.startDate}</div>
+              <div>End Date: ${historyEntry.endDate || 'Present'}</div>
+              `;
+              historyContainer.appendChild(entryDiv);
+          });
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      });
+    }
+
 // open modals
     window.onload = function() {
     fetch('machines-edit-modal.html')
