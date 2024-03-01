@@ -85,6 +85,7 @@
                         document.getElementById('machine_id').value = machine.MachineID;
                         document.getElementById('machine_name').textContent = machine.Name;
                         // Show the modal
+                        console.log("attempting to set up update location modal");
                         const addMachineHistoryButton = document.querySelector(`[add-machine-history-id="${machine.MachineID}"]`);
                         if (addMachineHistoryButton) {
                             console.log("adding click listener for update location btn")
@@ -97,6 +98,9 @@
                                     //fetchCurrLocation(selectedMachine);
                                 }
                             });
+                        }
+                        else{
+                          console.log("ERROR: could not find the button");
                         }
                         $('#machineHistoryModal').modal('show');
                       }
