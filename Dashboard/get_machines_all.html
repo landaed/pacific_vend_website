@@ -93,6 +93,8 @@
                         document.getElementById('machine_id').value = machine.MachineID;
                         document.getElementById('machine_name').textContent = machine.Name;
                         // Show the modal
+                        console.log("opening add history modal");
+                        $('#machineHistoryModal').modal('hidden');
                         $('#addMachineHistoryModal').modal('show');
                       }
 
@@ -322,16 +324,16 @@
         .then(html => {
           document.getElementById('editModalContainer').innerHTML = html;
         });
-        fetch('machine_history_modal.html')
-          .then(response => response.text())
-          .then(html => {
-            document.getElementById('machineHistoryModalContainer').innerHTML = html;
-          });
-          fetch('add_machine_history_modal.html')
-            .then(response => response.text())
-            .then(html => {
-              document.getElementById('addMachineHistoryModalContainer').innerHTML = html;
-            });
+      fetch('machine_history_modal.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('machineHistoryModalContainer').innerHTML = html;
+        });
+      fetch('add_machine_history_modal.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('addMachineHistoryModalContainer').innerHTML = html;
+        });
       };
     </script>
 
