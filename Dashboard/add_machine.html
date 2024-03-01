@@ -122,6 +122,17 @@
                                             <input type="text" class="form-control form-control-user" id="supplier" name="supplier" placeholder="Supplier">
                                         </div>
 
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" id="locationInput" placeholder="Current Location (Required)" required>
+                                            <div id="locationSuggestions" class="suggestions-box"></div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <b>Start Date (Required):</b>
+                                            <input type="date" class="form-control form-control-user" id="start_date" name="start_date" placeholder="Start Date">
+                                        </div>
+
 
                                         <input type="submit" class="btn btn-primary btn-user btn-block" value="Submit">
                                     </form>
@@ -136,6 +147,39 @@
         </div>
 
     </div>
+
+    <script>
+    var locationInput = document.getElementById('locationInput');
+    var suggestionsBox = document.getElementById('locationSuggestions');
+    if (locationInput) {
+        locationInput.addEventListener('input', function() {
+            var searchTerm = this.value;
+            if (searchTerm.length > 1) {
+                fetch(`location_suggestions.php?search=${searchTerm}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        suggestionsBox.innerHTML = '';
+                        data.forEach(location => {
+                            var suggestion = document.createElement('div');
+                            suggestion.textContent = location.Name;
+                            suggestion.classList.add('suggestion');
+                            suggestion.addEventListener('click', function() {
+                                locationInput.value = this.textContent;
+                                suggestionsBox.innerHTML = '';
+                    
+                            });
+                            suggestionsBox.appendChild(suggestion);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                suggestionsBox.innerHTML = '';
+            }
+        });
+    }
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
