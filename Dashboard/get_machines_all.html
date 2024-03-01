@@ -134,7 +134,14 @@
                                                suggestion.addEventListener('click', function() {
                                                    locationInput.value = this.textContent;
                                                    suggestionsBox.innerHTML = '';
-                                                   locationInput.value = this.value;
+                                                   var locationIDInput = document.getElementById('locationIDInput');
+                                                   if (locationIDInput) {
+                                                     locationIDInput.value = this.value;
+                                                   }
+                                                   var machineIDInput = document.getElementById('machineIDInput');
+                                                   if (machineIDInput) {
+                                                     machineIDInput.value = machine.MachineID;
+                                                   }
                                                });
                                                suggestionsBox.appendChild(suggestion);
                                            });
