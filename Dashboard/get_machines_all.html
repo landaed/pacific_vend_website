@@ -93,11 +93,7 @@
                             addMachineHistoryButton.addEventListener('click', function(event) {
                                 event.preventDefault();
                                 const machineId = this.getAttribute('add-machine-history-id');
-                                const selectedMachine = data.find(m => m.MachineID === machineId);
-                                if (selectedMachine) {
-                                    openAddMachineHistoryModal(selectedMachine);
-                                    //fetchCurrLocation(selectedMachine);
-                                }
+                                openAddMachineHistoryModal(machine);
                             });
                         }
                         else{
