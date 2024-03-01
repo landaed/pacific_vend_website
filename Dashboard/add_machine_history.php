@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("iiss", $param_machine_id, $param_location_id, $param_start_date, $param_end_date);
 
         // Set parameters
-        $param_machine_id = $_POST['machine_id'];
-        $param_location_id = $_POST['location_id'];
+        $param_machine_id = $_POST['machineIDInput'];
+        $param_location_id = $_POST['machineIDInput'];
         $param_start_date = $_POST['start_date'];
         $param_end_date = isset($_POST['end_date']) ? $_POST['end_date'] : NULL;
 
