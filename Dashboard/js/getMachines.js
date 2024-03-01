@@ -253,15 +253,19 @@ function fetchmachines(filter) {
       });
     }
 
+    document.addEventListener('DOMContentLoaded', function() {
+        $('#machineHistoryModal').on('hidden.bs.modal', function() {
+            // Clear the content of location_container when the modal is closed
+            document.getElementById('location_container').innerHTML = '';
+        });
+    });
+
 // open modals
     window.onload = function() {
     fetch('machines-edit-modal.html')
       .then(response => response.text())
       .then(html => {
         document.getElementById('editModalContainer').innerHTML = html;
-        if(!document.getElementById('editModalContainer')){
-          console.log("ERROR: cant open edit modal");
-        }
       });
 
     fetch('machine_history_modal.html')
