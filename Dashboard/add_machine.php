@@ -75,6 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // An exception has occurred, which means something went wrong
         $db->rollback();
         echo "ERROR: Could not execute query (add location failed): " . $e->getMessage();
+        echo "location id:" . $param_location_id
     }
 } else {
     echo "ERROR: Invalid request";
