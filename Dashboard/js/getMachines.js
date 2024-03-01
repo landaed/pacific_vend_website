@@ -255,6 +255,7 @@ function fetchmachines(filter) {
 
     document.addEventListener('DOMContentLoaded', function() {
         $('#machineHistoryModal').on('hidden.bs.modal', function() {
+            console.log("machine history modal closed");
             // Clear the content of location_container when the modal is closed
             document.getElementById('location_container').innerHTML = '';
         });
