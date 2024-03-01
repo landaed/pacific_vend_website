@@ -103,6 +103,7 @@
                       }
 
                       function openAddMachineHistoryModal(machine) {
+                        setTimeout(function() {
                         // Populate the modal fields with the machine data
                         document.getElementById('machine_id').value = machine.MachineID;
                         document.getElementById('machine_name').textContent = machine.Name;
@@ -154,6 +155,7 @@
                                     }
                                 });
                             }
+                             }, 500);
                         });
 
                       }
