@@ -87,7 +87,7 @@
                         // Show the modal
                         console.log("attempting to set up update location modal");
                         $('#machineHistoryModal').modal('show');
-                        const addMachineHistoryButton = document.querySelector(`[add-machine-history-id="${machine.MachineID}"]`);
+                        const addMachineHistoryButton = document.querySelector(`[id="add-machine-history-btn"]`);
                         if (addMachineHistoryButton) {
                             console.log("adding click listener for update location btn")
                             addMachineHistoryButton.addEventListener('click', function(event) {
