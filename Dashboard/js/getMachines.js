@@ -144,3 +144,4 @@ function fetchmachines(filter) {
 
     // Call the function when the page loads
     window.onload = () => fetchmachines('Edmonton');
+    <script src="js/openEditMachinesModal.js"></script>
