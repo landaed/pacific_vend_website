@@ -46,12 +46,22 @@
                                             <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Game Name (Required)" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="serial_number" name="serial_number" placeholder="Serial_Number  (Required)" required>
+                                            <select class="form-control form-control-user-dropdown" id="model" name="model">
+                                                <option value="">Model</option>
+                                                <option value="Jukebox">Jukebox</option>
+                                                <option value="Pinball">Pinball</option>
+                                                <option value="Twin">Twin</option>
+                                                <option value="Deluxe">Deluxe</option>
+                                                <option value="Redemption">Redemption</option>
+                                                <option value="Cocktail">Cocktail</option>
+                                                <option value="Shooting">Shooting</option>
+                                                <option value="Pool">Pool</option>
+                                                <option value="Air Hockey">Air Hockey</option>
+                                            </select>
                                         </div>
-
                                         <div class="form-group">
-                                            <select class="form-control form-control-user-dropdown" id="genre" name="genre" required>
-                                                <option value="">Genre (Required)</option>
+                                            <select class="form-control form-control-user-dropdown" id="genre" name="genre">
+                                                <option value="">Genre</option>
                                                 <option value="Shooter">Shooter</option>
                                                 <option value="Ticket">Ticket</option>
                                                 <option value="Prize">Prize</option>
@@ -60,8 +70,31 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
+                                            <select class="form-control form-control-user-dropdown" id="manufactur" name="manufactur">
+                                                <option value="">Manufactur</option>
+                                                <option value="Raw Thrills">Raw Thrills</option>
+                                                <option value="Sega">Sega</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <select class="form-control form-control-user-dropdown" id="manufacture" name="manufacture">
+                                                <option value="">Manufacture</option>
+                                                <option value="Raw Thrills">Raw Thrills</option>
+                                                <option value="Sega">Sega</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" id="serial_number" name="serial_number" placeholder="Serial_Number">
+                                        </div>
+                                        <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="legacy_id" name="legacy_id" placeholder="Legacy_ID">
                                         </div>
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" id="description" name="description" placeholder="Notes">
+                                        </div>
+
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="cid_number" name="cid_number" placeholder="CID_Number">
                                         </div>
@@ -85,9 +118,7 @@
                                             <input type="text" class="form-control form-control-user" id="sold_to" name="sold_to" placeholder="Sold To">
                                         </div>
 
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="description" name="description" placeholder="Notes">
-                                        </div>
+
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="dimensions" name="dimensions" placeholder="Dimensions">
                                         </div>

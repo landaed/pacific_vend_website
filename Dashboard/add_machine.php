@@ -6,13 +6,15 @@ require_once 'db_connect.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepare an insert statement
-    $sql = "INSERT INTO Machines (LegacyID, CIDNumber, SerialNumber, Name, Genre, Description, Dimensions, Supplier, PurchasePrice, PurchaseDate, SalePrice, SaleDate, SoldTo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO Machines (Manufacture, Model, LegacyID, CIDNumber, SerialNumber, Name, Genre, Description, Dimensions, Supplier, PurchasePrice, PurchaseDate, SalePrice, SaleDate, SoldTo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     if($stmt = $db->prepare($sql)){
         // Bind variables to the prepared statement as parameters
-        $stmt->bind_param("sssssssssssss", $param_legacy_id, $param_cid_number, $param_serial_number, $param_name, $param_genre, $param_description, $param_dimensions, $param_supplier, $param_purchase_price, $param_purchase_date, $param_sale_price, $param_sale_date, $param_sold_to);
+        $stmt->bind_param("sssssssssssssss", $param_manufacture, $param_model, $param_legacy_id, $param_cid_number, $param_serial_number, $param_name, $param_genre, $param_description, $param_dimensions, $param_supplier, $param_purchase_price, $param_purchase_date, $param_sale_price, $param_sale_date, $param_sold_to);
 
         // Set parameters
+        $param_manufacture = $_POST['manufacture'];
+        $param_model = $_POST['model'];
         $param_legacy_id = $_POST['legacy_id'];
         $param_cid_number = $_POST['cid_number'];
         $param_serial_number = $_POST['serial_number'];
