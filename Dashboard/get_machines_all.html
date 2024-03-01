@@ -85,6 +85,18 @@
                         document.getElementById('machine_id').value = machine.MachineID;
                         document.getElementById('machine_name').textContent = machine.Name;
                         // Show the modal
+                        const addMachineHistoryButton = document.querySelector(`[add-machine-history-id="${machine.MachineID}"]`);
+                        if (addMachineHistoryButton) {
+                            addMachineHistoryButton.addEventListener('click', function(event) {
+                                event.preventDefault();
+                                const machineId = this.getAttribute('add-machine-history-id');
+                                const selectedMachine = data.find(m => m.MachineID === machineId);
+                                if (selectedMachine) {
+                                    openAddMachineHistoryModal(selectedMachine);
+                                    //fetchCurrLocation(selectedMachine);
+                                }
+                            });
+                        }
                         $('#machineHistoryModal').modal('show');
                       }
 
@@ -236,18 +248,7 @@
                                                 });
                                             }
 
-                                            const addMachineHistoryButton = document.querySelector(`[add-machine-history-id="${machine.MachineID}"]`);
-                                            if (addMachineHistoryButton) {
-                                                addMachineHistoryButton.addEventListener('click', function(event) {
-                                                    event.preventDefault();
-                                                    const machineId = this.getAttribute('add-machine-history-id');
-                                                    const selectedMachine = data.find(m => m.MachineID === machineId);
-                                                    if (selectedMachine) {
-                                                        openAddMachineHistoryModal(selectedMachine);
-                                                        //fetchCurrLocation(selectedMachine);
-                                                    }
-                                                });
-                                            }
+
                                         });
                                     })
                                     .catch(error => {
