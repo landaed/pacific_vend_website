@@ -110,6 +110,45 @@
                         console.log("opening add history modal");
                         $('#machineHistoryModal').modal('hide');
                         $('#addMachineHistoryModal').modal('show');
+
+
+                       console.log("setting up event listener for suggestions");
+                       var locationInput = document.getElementById('locationInput');
+                       var suggestionsBox = document.getElementById('locationSuggestions');
+
+                       if (locationInput) {
+                           locationInput.addEventListener('input', function() {
+                               var searchTerm = this.value;
+                               console.log("value: " + value)
+                               if (searchTerm.length > 1) {
+                                   console.log("value>1");
+                                   fetch(`location_suggestions.php?search=${searchTerm}`)
+                                       .then(response => response.json())
+                                       .then(data => {
+                                           suggestionsBox.innerHTML = '';
+                                           data.forEach(location => {
+                                               var suggestion = document.createElement('div');
+                                               suggestion.textContent = location.Name;
+                                               suggestion.classList.add('suggestion');
+                                               suggestion.addEventListener('click', function() {
+                                                   locationInput.value = this.textContent;
+                                                   suggestionsBox.innerHTML = '';
+                                               });
+                                               suggestionsBox.appendChild(suggestion);
+                                           });
+                                       })
+                                       .catch(error => {
+                                           console.error('Error:', error);
+                                       });
+                               } else {
+                                   suggestionsBox.innerHTML = '';
+                               }
+                           });
+                       }
+
+
+
+                       </script>
                       }
 
 
@@ -410,45 +449,7 @@
 
 
     </script>
-    <script>
-       $('#addMachineHistoryModal').on('shown.bs.modal', function() {
-           console.log("setting up event listener for suggestions");
-           var locationInput = document.getElementById('locationInput');
-           var suggestionsBox = document.getElementById('locationSuggestions');
 
-           if (locationInput) {
-               locationInput.addEventListener('input', function() {
-                   var searchTerm = this.value;
-                   console.log("value: " + value)
-                   if (searchTerm.length > 1) {
-                       console.log("value>1");
-                       fetch(`location_suggestions.php?search=${searchTerm}`)
-                           .then(response => response.json())
-                           .then(data => {
-                               suggestionsBox.innerHTML = '';
-                               data.forEach(location => {
-                                   var suggestion = document.createElement('div');
-                                   suggestion.textContent = location.Name;
-                                   suggestion.classList.add('suggestion');
-                                   suggestion.addEventListener('click', function() {
-                                       locationInput.value = this.textContent;
-                                       suggestionsBox.innerHTML = '';
-                                   });
-                                   suggestionsBox.appendChild(suggestion);
-                               });
-                           })
-                           .catch(error => {
-                               console.error('Error:', error);
-                           });
-                   } else {
-                       suggestionsBox.innerHTML = '';
-                   }
-               });
-           }
-       });
-
-
-   </script>
 
 
 </body>
