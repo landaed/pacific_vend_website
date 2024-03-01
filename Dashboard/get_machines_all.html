@@ -115,16 +115,15 @@
                        console.log("setting up event listener for suggestions");
                        var locationInput = document.getElementById('locationInput');
                        var suggestionsBox = document.getElementById('locationSuggestions');
-                       var locationIDInput = document.getElementById('locationIDInput');
-                       if (locationIDInput) {
+                       if (document.getElementById('locationIDInput')) {
                          console.log("found locationIDInput");
                        }
-                       var machineIDInput = document.getElementById('machineIDInput');
-                       if (machineIDInput) {
-                         console.log("found machineIDInput");
-                         console.log("posting with machID" + machine.MachineID)
-                         machineIDInput.value = machine.MachineID;
+                       else{
+                         console.log("ERROR: LOCATION ID INPUT NOT FOUND");
                        }
+
+                       document.getElementById('machineIDInput').value = machine.MachineID;
+
                        if (locationInput) {
                            locationInput.addEventListener('input', function() {
                                var searchTerm = this.value;
