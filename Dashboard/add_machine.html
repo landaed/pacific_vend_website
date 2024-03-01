@@ -164,11 +164,12 @@
                         data.forEach(location => {
                             var suggestion = document.createElement('div');
                             suggestion.textContent = location.Name;
+                            suggestion.name = location.Name;
                             suggestion.classList.add('suggestion');
                             suggestion.addEventListener('click', function() {
                                 locationInput.value = this.textContent;
                                 suggestionsBox.innerHTML = '';
-                                locationID.value = 5;
+                                locationID.value = this.name;
                             });
                             suggestionsBox.appendChild(suggestion);
                         });
