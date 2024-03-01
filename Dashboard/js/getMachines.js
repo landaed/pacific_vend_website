@@ -206,6 +206,7 @@ function fetchmachines(filter) {
             }
 
             const locationContainer = document.getElementById('location_container');
+            locationContainer.innerHTML = '';
             data.forEach(location => {
                 console.log("got a location!");
                 // Existing code to create locationDiv
@@ -252,14 +253,6 @@ function fetchmachines(filter) {
           console.error('Error:', error);
       });
     }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        $('#machineHistoryModal').on('hidden.bs.modal', function() {
-            console.log("machine history modal closed");
-            // Clear the content of location_container when the modal is closed
-            document.getElementById('location_container').innerHTML = '';
-        });
-    });
 
 // open modals
     window.onload = function() {
