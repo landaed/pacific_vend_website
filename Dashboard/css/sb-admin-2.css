@@ -2469,6 +2469,23 @@ fieldset:disabled a.btn {
   background-color: #1cc88a;
   border-color: #1cc88a;
 }
+.suggestions-box {
+    border: 1px solid #ddd;
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+}
+
+.suggestion {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestion:hover {
+    background-color: #f0f0f0;
+}
+
 
 .btn-success:not(:disabled):not(.disabled):active, .btn-success:not(:disabled):not(.disabled).active,
 .show > .btn-success.dropdown-toggle {
