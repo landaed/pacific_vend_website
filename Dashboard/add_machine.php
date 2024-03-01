@@ -39,7 +39,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Get the last inserted id
         $last_inserted_machine_id = $db->insert_id;
-
+        // Commit the transaction
+        $db->commit();
+    }
+    catch (Exception $e) {
+        // An exception has occurred, which means something went wrong
+        $db->rollback();
+        echo "ERROR: Could not execute query (add machine failed): " . $e->getMessage();
+    }
+    $db->begin_transaction();
+    try{
         // Now insert into MachineHistory table
         $sql_history = "INSERT INTO MachineHistory (MachineID, LocationID, StartDate, EndDate) VALUES (?, ?, ?, ?)";
         $stmt_history = $db->prepare($sql_history);
@@ -65,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (Exception $e) {
         // An exception has occurred, which means something went wrong
         $db->rollback();
-        echo "ERROR: Could not execute query: " . $e->getMessage();
+        echo "ERROR: Could not execute query (add location failed): " . $e->getMessage();
     }
 } else {
     echo "ERROR: Invalid request";
