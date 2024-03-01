@@ -115,6 +115,7 @@ function fetchmachines(filter) {
                             event.preventDefault();
                             const machineId = this.getAttribute('data-machine-id');
                             const selectedMachine = data.find(m => m.MachineID === machineId);
+                            console.log("machineid: " + machineId)
                             if (selectedMachine) {
                                 openEditModal(selectedMachine);
                             }
@@ -142,8 +143,6 @@ function fetchmachines(filter) {
             });
     }
 
-    // Call the function when the page loads
-    window.onload = () => fetchmachines('Edmonton');
     function openEditModal(machine) {
       console.log("machine info: " + machine)
       // Populate the modal fields with the machine data
