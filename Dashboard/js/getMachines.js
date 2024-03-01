@@ -115,7 +115,7 @@ function fetchmachines(filter) {
                             event.preventDefault();
                             const machineId = this.getAttribute('data-machine-id');
                             const selectedMachine = data.find(m => m.MachineID === machineId);
-                            console.log("machineid: " + machineId)
+                            console.log("machineid: " + selectedMachine)
                             if (selectedMachine) {
                                 openEditModal(selectedMachine);
                             }
@@ -144,7 +144,6 @@ function fetchmachines(filter) {
     }
 
     function openEditModal(machine) {
-      console.log("machine info: " + machine)
       // Populate the modal fields with the machine data
       document.getElementById('machine_id').value = machine.MachineID;
       document.getElementById('legacy_id').value = machine.LegacyID;
@@ -260,6 +259,9 @@ function fetchmachines(filter) {
       .then(response => response.text())
       .then(html => {
         document.getElementById('editModalContainer').innerHTML = html;
+        if(!document.getElementById('editModalContainer')){
+          console.log("ERROR: cant open edit modal");
+        }
       });
 
     fetch('machine_history_modal.html')
@@ -273,4 +275,6 @@ function fetchmachines(filter) {
       .then(html => {
         document.getElementById('addMachineHistoryModalContainer').innerHTML = html;
       });
+
+      fetchmachines('Edmonton');
     }
