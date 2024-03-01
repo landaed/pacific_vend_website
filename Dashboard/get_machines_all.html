@@ -115,7 +115,16 @@
                        console.log("setting up event listener for suggestions");
                        var locationInput = document.getElementById('locationInput');
                        var suggestionsBox = document.getElementById('locationSuggestions');
-
+                       var locationIDInput = document.getElementById('locationIDInput');
+                       if (locationIDInput) {
+                         console.log("found locationIDInput");
+                       }
+                       var machineIDInput = document.getElementById('machineIDInput');
+                       if (machineIDInput) {
+                         console.log("found machineIDInput");
+                         console.log("posting with machID" + machine.MachineID)
+                         machineIDInput.value = machine.MachineID;
+                       }
                        if (locationInput) {
                            locationInput.addEventListener('input', function() {
                                var searchTerm = this.value;
@@ -134,16 +143,8 @@
                                                suggestion.addEventListener('click', function() {
                                                    locationInput.value = this.textContent;
                                                    suggestionsBox.innerHTML = '';
-                                                   var locationIDInput = document.getElementById('locationIDInput');
-                                                   if (locationIDInput) {
-                                                     console.log("posting with locID" +this.value)
-                                                     locationIDInput.value = this.value;
-                                                   }
-                                                   var machineIDInput = document.getElementById('machineIDInput');
-                                                   if (machineIDInput) {
-                                                     console.log("posting with machID" + machine.MachineID)
-                                                     machineIDInput.value = machine.MachineID;
-                                                   }
+                                                   locationIDInput.value = this.value;
+
                                                });
                                                suggestionsBox.appendChild(suggestion);
                                            });
