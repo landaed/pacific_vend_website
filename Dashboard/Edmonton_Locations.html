@@ -159,7 +159,7 @@
                                             editButton.addEventListener('click', function(event) {
                                                 event.preventDefault();
                                                 const locationId = this.getAttribute('data-location-id');
-                                                const selectedMachine = data.find(m => m.LocationID === locationId);
+                                                const selectedLocation = data.find(m => m.LocationID === locationId);
                                                 console.log("locationID: " + selectedLocation)
                                                 if (selectedLocation) {
                                                     openEditModal(selectedLocation);
