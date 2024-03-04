@@ -150,9 +150,10 @@
                                                 </div>
                                             </div>
                                         `;
+                                        locationsContainer.appendChild(locationDiv);
                                         const editButton = document.querySelector(`[data-location-id="${location.LocationID}"]`);
                                         editButton.onclick= function() { openEditModal(location); };
-                                        locationsContainer.appendChild(locationDiv);
+
                                     });
 
                                     /*data.forEach(location => {
