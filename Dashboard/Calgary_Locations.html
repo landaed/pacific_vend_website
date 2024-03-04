@@ -136,15 +136,24 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        `;
-                                        // Add Edit button to each location
-                                        const editButton = document.createElement('button');
-                                        editButton.textContent = 'Edit';
-                                        editButton.className = 'btn btn-warning btn-edit';
-                                        editButton.onclick = function() { openEditModal(location); };
-                                        locationDiv.appendChild(editButton);
+                                            <div class="dropdown no-arrow">
+                                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                     aria-labelledby="dropdownMenuLink">
+                                                    <div class="dropdown-header">Edit</div>
+                                                    <a class="dropdown-item" href="#" data-location-id="${location.LocationID}">Edit</a>
 
+                                                    <div class="dropdown-divider"></div>
+                                                </div>
+                                            </div>
+                                        `;
                                         locationsContainer.appendChild(locationDiv);
+                                        const editButton = document.querySelector(`[data-location-id="${location.LocationID}"]`);
+                                        editButton.onclick= function() { openEditModal(location); };
+
                                     });
                                 })
                                 .catch(error => {

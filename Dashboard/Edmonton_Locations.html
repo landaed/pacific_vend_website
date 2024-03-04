@@ -154,22 +154,7 @@
                                         const editButton = document.querySelector(`[data-location-id="${location.LocationID}"]`);
                                         editButton.onclick= function() { openEditModal(location); };
 
-                                    });
-
-                                    /*data.forEach(location => {
-                                        const editButton = document.querySelector(`[data-location-id="${location.LocationID}"]`);
-                                        if (editButton) {
-                                            editButton.addEventListener('click', function(event) {
-                                                event.preventDefault();
-                                                const locationId = this.getAttribute('data-location-id');
-                                                const selectedLocation = data.find(m => m.LocationID === locationId);
-                                                console.log("location: " + location)
-                                                if (selectedLocation) {
-                                                    openEditModal(location);
-                                                }
-                                            });
-                                        }
-                                    });*/
+                                    });  
                                 })
                                 .catch(error => {
                                     console.error('Error fetching locations:', error);
