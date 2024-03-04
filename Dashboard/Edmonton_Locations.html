@@ -143,27 +143,26 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                                      aria-labelledby="dropdownMenuLink">
-                                                    <div class="dropdown-header">Edit or Remove:</div>
+                                                    <div class="dropdown-header">Edit</div>
                                                     <a class="dropdown-item" href="#" data-location-id="${location.LocationID}">Edit</a>
-                                                    <a class="dropdown-item" href="#" location-machine-id="${machine.MachineID}">Set/Change Location</a>
+
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Create Maintenance Report</a>
                                                 </div>
                                             </div>
                                         `;
                                         locationsContainer.appendChild(locationDiv);
                                     });
 
-                                    data.forEach(machine => {
-                                        const editButton = document.querySelector(`[data-location-id="${machine.MachineID}"]`);
+                                    data.forEach(location => {
+                                        const editButton = document.querySelector(`[data-location-id="${location.LocationID}"]`);
                                         if (editButton) {
                                             editButton.addEventListener('click', function(event) {
                                                 event.preventDefault();
-                                                const machineId = this.getAttribute('data-location-id');
-                                                const selectedMachine = data.find(m => m.MachineID === machineId);
-                                                console.log("machineid: " + selectedMachine)
-                                                if (selectedMachine) {
-                                                    openEditModal(selectedMachine);
+                                                const locationId = this.getAttribute('data-location-id');
+                                                const selectedMachine = data.find(m => m.LocationID === locationId);
+                                                console.log("locationID: " + selectedLocation)
+                                                if (selectedLocation) {
+                                                    openEditModal(selectedLocation);
                                                 }
                                             });
                                         }
