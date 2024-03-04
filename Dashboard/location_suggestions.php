@@ -10,7 +10,7 @@ $locations = array();
 
 if ($searchTerm) {
     // Prepare the SQL statement to prevent SQL injection
-    $stmt = $db->prepare("SELECT LocationID, Name FROM Locations WHERE Name LIKE CONCAT('%', ?, '%')");
+    $stmt = $db->prepare("SELECT LocationID, Name, Address FROM Locations WHERE Name LIKE CONCAT('%', ?, '%')");
     $stmt->bind_param("s", $searchTerm);
     $stmt->execute();
     $result = $stmt->get_result();
