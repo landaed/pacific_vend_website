@@ -247,12 +247,12 @@ else{
 
 var searchButton = document.getElementById('searchButton');
 var locationIDInput = document.getElementById('location_id'); // or use 'locationInput' if that's what stores the location ID
-
+var locationName = document.getElementById('locationInput');
 searchButton.addEventListener('click', function() {
     var locationID = locationIDInput.value;
     if (locationID) {
         // Construct the URL with LocationID as a query parameter
-        var url = 'get_machines_at_location.html?locationID=' + locationID;
+        var url = 'get_machines_at_location.html?locationID=' + locationID + '&Name=' + locationInput;
         window.location.href = url; // Redirect to the URL
     } else {
         alert('Please enter a location ID'); // Or handle the empty input as needed

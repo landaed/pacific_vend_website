@@ -6,6 +6,7 @@ function fetchmachines(locationID) {
             .then(response => response.json())
             .then(data => {
                 const machinesContainer = document.getElementById('machinesContainer');
+                const locationName = document.getElementById('location_name');
                 data.forEach(machine => {
                     // ... existing code to create machineDiv ...
                     // Check if 'type' is defined, if not, use a default value like 'unknown'
@@ -270,6 +271,8 @@ function fetchmachines(locationID) {
       });
       const params = new URLSearchParams(window.location.search);
       const paramValue = params.get('locationID');
+      const locName = params.get('Name');
+      locationName.innerHTML=`${locName}`;
 
       fetchmachines(paramValue);
     }
