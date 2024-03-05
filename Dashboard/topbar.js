@@ -17,7 +17,7 @@ document.getElementById('topbarContainer').innerHTML = `
                 aria-label="Search" aria-describedby="basic-addon2">
             <div id="locationSuggestions" class="suggestions-box" style="top: 50px;"></div>
             <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
+                <button class="btn btn-primary" type="button" id="searchButton">
                     <i class="fas fa-search fa-sm"></i>
                 </button>
             </div>
