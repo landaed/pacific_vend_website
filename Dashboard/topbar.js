@@ -206,18 +206,17 @@ document.getElementById('topbarContainer').innerHTML = `
 </nav>
 `;
 
-document.addEventListener('DOMContentLoaded', function() {
-    var searchButton = document.getElementById('searchButton');
-    var locationInput = document.getElementById('location_id'); // or use 'locationInput' if that's what stores the location ID
 
-    searchButton.addEventListener('click', function() {
-        var locationID = locationInput.value;
-        if (locationID) {
-            // Construct the URL with LocationID as a query parameter
-            var url = 'get_machines_at_location.html?locationID=' + locationID;
-            window.location.href = url; // Redirect to the URL
-        } else {
-            alert('Please enter a location ID'); // Or handle the empty input as needed
-        }
-    });
+var searchButton = document.getElementById('searchButton');
+var locationInput = document.getElementById('location_id'); // or use 'locationInput' if that's what stores the location ID
+
+searchButton.addEventListener('click', function() {
+    var locationID = locationInput.value;
+    if (locationID) {
+        // Construct the URL with LocationID as a query parameter
+        var url = 'get_machines_at_location.html?locationID=' + locationID;
+        window.location.href = url; // Redirect to the URL
+    } else {
+        alert('Please enter a location ID'); // Or handle the empty input as needed
+    }
 });
