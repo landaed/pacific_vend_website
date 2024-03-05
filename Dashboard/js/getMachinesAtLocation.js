@@ -147,6 +147,7 @@ function fetchmachines(locationID) {
     }
 
     function openEditModal(machine) {
+      console.log("openingEdit Modal");
       // Populate the modal fields with the machine data
       document.getElementById('machine_id').value = machine.MachineID;
       document.getElementById('legacy_id').value = machine.LegacyID;
