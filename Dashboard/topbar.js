@@ -208,10 +208,10 @@ document.getElementById('topbarContainer').innerHTML = `
 
 
 var searchButton = document.getElementById('searchButton');
-var locationInput = document.getElementById('location_id'); // or use 'locationInput' if that's what stores the location ID
+var locationIDInput = document.getElementById('locationInput'); // or use 'locationInput' if that's what stores the location ID
 
 searchButton.addEventListener('click', function() {
-    var locationID = locationInput.value;
+    var locationID = locationIDInput.value;
     if (locationID) {
         // Construct the URL with LocationID as a query parameter
         var url = 'get_machines_at_location.html?locationID=' + locationID;
