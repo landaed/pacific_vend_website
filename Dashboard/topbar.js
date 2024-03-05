@@ -12,6 +12,7 @@ document.getElementById('topbarContainer').innerHTML = `
     <form
         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
+            <input type="hidden" id="location_id" name="location_id">
             <input type="text" id="locationInput" class="form-control bg-light border-0 small" placeholder="Search for..."
                 aria-label="Search" aria-describedby="basic-addon2">
             <div id="locationSuggestions" class="suggestions-box" style="top: 50px;"></div>
@@ -204,3 +205,19 @@ document.getElementById('topbarContainer').innerHTML = `
 
 </nav>
 `;
+
+document.addEventListener('DOMContentLoaded', function() {
+    var searchButton = document.getElementById('searchButton');
+    var locationInput = document.getElementById('location_id'); // or use 'locationInput' if that's what stores the location ID
+
+    searchButton.addEventListener('click', function() {
+        var locationID = locationInput.value;
+        if (locationID) {
+            // Construct the URL with LocationID as a query parameter
+            var url = 'get_machines_at_location.html?locationID=' + locationID;
+            window.location.href = url; // Redirect to the URL
+        } else {
+            alert('Please enter a location ID'); // Or handle the empty input as needed
+        }
+    });
+});
