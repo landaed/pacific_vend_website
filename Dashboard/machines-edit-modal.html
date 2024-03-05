@@ -9,64 +9,106 @@
         </button>
       </div>
       <div class="modal-body">
+
         <form class="user" id="editMachineForm" action="update_machine.php" method="post">
-          <input type="hidden" id="machine_id" name="machine_id">
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Game Name (Required)" required>
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="serial_number" name="serial_number" placeholder="Serial_Number  (Required)" required>
-          </div>
+            <input type="hidden" id="location_id" name="location_id">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Game Name (Required)" required>
+            </div>
+            <div class="form-group">
+                <select class="form-control form-control-user-dropdown" id="model" name="model">
+                    <option value="">Model</option>
+                    <option value="Jukebox">Jukebox</option>
+                    <option value="Pinball">Pinball</option>
+                    <option value="Twin">Twin</option>
+                    <option value="Deluxe">Deluxe</option>
+                    <option value="Redemption">Redemption</option>
+                    <option value="Cocktail">Cocktail</option>
+                    <option value="Shooting">Shooting</option>
+                    <option value="Pool">Pool</option>
+                    <option value="Air Hockey">Air Hockey</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control form-control-user-dropdown" id="genre" name="genre">
+                    <option value="">Genre</option>
+                    <option value="Shooter">Shooter</option>
+                    <option value="Racing">Racing</option>
+                    <option value="Fighter">Fighter</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Moving">Moving</option>
+                    <option value="VR">VR</option>
+                    <option value="Arcade">Arcade</option>
+                    <option value="Rhythm">Rhythm</option>
+                    <option value="NA">NA</option>
+                    <option value="7 Ft">7 Ft</option>
+                    <option value="8 Ft">8 Ft</option>
+                </select>
+            </div>
 
-          <div class="form-group">
-              <select class="form-control form-control-user-dropdown" id="genre" name="genre" required>
-                  <option value="">Genre (Required)</option>
-                  <option value="Shooter">Shooter</option>
-                  <option value="Ticket">Ticket</option>
-                  <option value="Prize">Prize</option>
-                  <option value="Racing">Racing</option>
-                  <option value="Fighting">Fighting</option>
-              </select>
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="legacy_id" name="legacy_id" placeholder="Legacy_ID">
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="cid_number" name="cid_number" placeholder="CID_Number">
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="purchase_price" name="purchase_price" placeholder="Purchase Price">
-          </div>
+            <div class="form-group">
+                <select class="form-control form-control-user-dropdown" id="manufacture" name="manufacture">
+                    <option value="">Manufacture</option>
+                    <option value="Raw Thrills">Raw Thrills</option>
+                    <option value="Sega">Sega</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="serial_number" name="serial_number" placeholder="Serial_Number">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="legacy_id" name="legacy_id" placeholder="Legacy_ID (Required)" required>
+            </div>
 
-          <div class="form-group">
-              <b>Purchase Date:</b>
-              <input type="date" class="form-control form-control-user" id="purchase_date" name="purchase_date" placeholder="Purchase Date">
-          </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="description" name="description" placeholder="Notes">
+            </div>
 
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="sale_price" name="sale_price" placeholder="Sale Price">
-          </div>
-          <div class="form-group">
-            <b>Sale Date:</b>
-            <input type="date" class="form-control form-control-user" id="sale_date" name="sale_date" placeholder="Sale Date">
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="sold_to" name="sold_to" placeholder="Sold To">
-          </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="cid_number" name="cid_number" placeholder="CID_Number">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="purchase_price" name="purchase_price" placeholder="Purchase Price">
+            </div>
 
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="description" name="description" placeholder="Notes">
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="dimensions" name="dimensions" placeholder="Dimensions">
-          </div>
-          <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="supplier" name="supplier" placeholder="Supplier">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-          </div>
+            <div class="form-group">
+                <b>Purchase Date:</b>
+                <input type="date" class="form-control form-control-user" id="purchase_date" name="purchase_date" placeholder="Purchase Date">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="sale_price" name="sale_price" placeholder="Sale Price">
+            </div>
+            <div class="form-group">
+              <b>Sale Date:</b>
+              <input type="date" class="form-control form-control-user" id="sale_date" name="sale_date" placeholder="Sale Date">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="sold_to" name="sold_to" placeholder="Sold To">
+            </div>
+
+
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="dimensions" name="dimensions" placeholder="Dimensions">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="supplier" name="supplier" placeholder="Supplier">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="locationInput" placeholder="Current Location (Required)" required>
+                <div id="locationSuggestions" class="suggestions-box"></div>
+
+            </div>
+
+            <div class="form-group">
+                <b>Start Date</b>
+                <input type="date" class="form-control form-control-user" id="start_date" name="start_date" placeholder="Start Date">
+            </div>
+
+
+            <input type="submit" class="btn btn-primary btn-user btn-block" value="Submit">
+
         </form>
       </div>
     </div>
