@@ -106,24 +106,15 @@ function fetchmachines(locationID) {
                         </div>
                     </div>
                     `;
-
                     machinesContainer.appendChild(machineDiv);
+                    const editButton = document.querySelector(`[data-location-id="${location.LocationID}"]`);
+                    editButton.onclick= function() { openEditModal(location); };
+
                 });
 
                 // Bind click event to edit buttons after they are added to the DOM
                 data.forEach(machine => {
-                    const editButton = document.querySelector(`[data-machine-id="${machine.MachineID}"]`);
-                    if (editButton) {
-                        editButton.addEventListener('click', function(event) {
-                            event.preventDefault();
-                            const machineId = this.getAttribute('data-machine-id');
-                            const selectedMachine = data.find(m => m.MachineID === machineId);
-                            console.log("machineid: " + selectedMachine)
-                            if (selectedMachine) {
-                                openEditModal(selectedMachine);
-                            }
-                        });
-                    }
+
 
                     const machineHistoryButton = document.querySelector(`[location-machine-id="${machine.MachineID}"]`);
                     if (machineHistoryButton) {
