@@ -1,6 +1,7 @@
 var locationInput = document.getElementById('locationInput');
 var suggestionsBox = document.getElementById('locationSuggestions');
 var locationID = document.getElementById('location_id');
+console.log("loaded machine suggestions");
 if (locationInput) {
     locationInput.addEventListener('input', function() {
         console.log("recieved input!");
