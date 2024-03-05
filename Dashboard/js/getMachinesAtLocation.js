@@ -272,7 +272,8 @@ function fetchmachines(locationID) {
       const params = new URLSearchParams(window.location.search);
       const paramValue = params.get('locationID');
       const locName = params.get('Name');
-      locationName.innerHTML=`${locName}`;
+      locationName.innerHTML=`test`;
+      console.log("loc name: " + locName)
 
       fetchmachines(paramValue);
     }
