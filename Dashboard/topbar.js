@@ -1,6 +1,5 @@
 
 document.getElementById('topbarContainer').innerHTML = `
-<script src="./js/location_suggestions.js"></script>
 <!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
