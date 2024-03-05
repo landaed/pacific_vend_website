@@ -274,7 +274,7 @@ function fetchmachines(locationID) {
       const locName = params.get('Name');
       const locationNameDiv = document.getElementById('location_name');
       if(locationNameDiv){
-        locationNameDiv.innerHTML=`test`;
+        locationNameDiv.innerHTML=`<h1>${locName}</h1>`;
         console.log("loc name: " + locName);
       }
       else{
