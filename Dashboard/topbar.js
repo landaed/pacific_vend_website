@@ -247,7 +247,7 @@ else{
 
 var searchButton = document.getElementById('searchButton');
 var locationIDInput = document.getElementById('location_id'); // Input for location ID
-var locationNameInput = document.getElementById('location_name'); // Adjust ID as per your HTML
+var locationNameInput = document.getElementById('locationInput'); // Adjust ID as per your HTML
 var searchButton = document.getElementById('searchButton'); // Ensure you have this ID on your button
 
 searchButton.addEventListener('click', function() {
