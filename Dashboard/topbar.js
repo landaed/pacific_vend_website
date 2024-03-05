@@ -208,7 +208,7 @@ document.getElementById('topbarContainer').innerHTML = `
 
 
 var searchButton = document.getElementById('searchButton');
-var locationIDInput = document.getElementById('locationInput'); // or use 'locationInput' if that's what stores the location ID
+var locationIDInput = document.getElementById('location_id'); // or use 'locationInput' if that's what stores the location ID
 
 searchButton.addEventListener('click', function() {
     var locationID = locationIDInput.value;
