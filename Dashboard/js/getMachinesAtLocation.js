@@ -268,6 +268,8 @@ function fetchmachines(locationID) {
       .then(html => {
         document.getElementById('addMachineHistoryModalContainer').innerHTML = html;
       });
+      const params = new URLSearchParams(window.location.search);
+      const paramValue = params.get('locationID');
 
-      fetchmachines('5');
+      fetchmachines(paramValue);
     }
