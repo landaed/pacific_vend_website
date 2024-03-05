@@ -15,7 +15,6 @@ function fetchmachines(locationID) {
                     machineDiv.className = `card border-left-${machineGenre} shadow py-2`;
 
                     machineDiv.innerHTML = `
-                    <h1>location name:</h1>
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto1 mr-2">
