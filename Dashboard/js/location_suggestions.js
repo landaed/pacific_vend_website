@@ -3,6 +3,7 @@ var suggestionsBox = document.getElementById('locationSuggestions');
 var locationID = document.getElementById('location_id');
 if (locationInput) {
     locationInput.addEventListener('input', function() {
+        console.log("recieved input!");
         var searchTerm = this.value;
         if (searchTerm.length > 1) {
             fetch(`location_suggestions.php?search=${searchTerm}`)
@@ -29,6 +30,9 @@ if (locationInput) {
             suggestionsBox.innerHTML = '';
         }
     });
+}
+else{
+  console.log("ERROR: cant find location input!");
 }
 /*
 function openAddMachineHistoryModal(machine) {
