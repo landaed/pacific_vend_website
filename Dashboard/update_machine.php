@@ -31,11 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
         if($stmt->execute()){
             // Redirect to a confirmation page if the query was successful
             header("Location: update_machine_success.html");
-            exit(); // Ensure no further execution of the script after redirect
+            //exit(); // Ensure no further execution of the script after redirect
         } else{
+            echo json_encode(array('message' => 'Error updating location: ' . $db->error));
             echo "ERROR: Could not execute query: $sql. " . $db->error;
         }
     } else{
+        echo json_encode(array('message' => 'Error preparing query: ' . $db->error));
         echo "ERROR: Could not prepare query: $sql. " . $db->error;
     }
 
