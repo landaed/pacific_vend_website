@@ -107,7 +107,7 @@ function fetchmachines(locationID) {
                     </div>
                     `;
                     machinesContainer.appendChild(machineDiv);
-                    const editButton = document.querySelector(`[data-location-id="${machine.MachineID}"]`);
+                    const editButton = document.querySelector(`[data-machine-id="${machine.MachineID}"]`);
                     editButton.onclick= function() { openEditModal(location); };
 
                 });
