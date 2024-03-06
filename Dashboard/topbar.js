@@ -208,7 +208,7 @@ document.getElementById('topbarContainer').innerHTML = `
 var locationInput = document.getElementById('locationInput');
 var suggestionsBox = document.getElementById('locationSuggestions');
 var locationID = document.getElementById('location_id');
-var currentSuggestionIndex = -1; // Index of the currently highlighted suggestion
+var currentSuggestionIndex = 0; // Index of the currently highlighted suggestion
 
 if (locationInput) {
     locationInput.addEventListener('input', function() {
