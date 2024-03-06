@@ -14,7 +14,7 @@ document.getElementById('topbarContainer').innerHTML = `
         <div class="input-group">
             <input type="hidden" id="location_id" name="location_id">
             <input type="text" id="locationInput" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
+                aria-label="Search" aria-describedby="basic-addon2" autocomplete="off">
             <div id="locationSuggestions" class="suggestions-box" style="top: 50px;"></div>
             <div class="input-group-append">
                 <button class="btn btn-primary" type="button" id="searchButton">
