@@ -75,10 +75,70 @@
                         // Show the modal
                         $('#editLocationModal').modal('show');
                       }
-
                       function fetchLocations(territory) {
-                          // Encode the territory for use in a URL
+                        fetch(`get_location_territory.php?territory=${territory}`) // Replace with the actual path to your PHP script
+                              .then(response => response.json())
+                              .then(data => {
+                                  const locationsContainer = document.getElementById('locationsContainer');
+                                  locationsContainer.innerHTML = ''; // Clear existing content
 
+                                  data.forEach(location => {
+                                      // Check if 'type' is defined, if not, use a default value like 'unknown'
+                                      const locationType = location.Type ? location.Type.toLowerCase() : 'unknown';
+                                      const locationDiv = document.createElement('div');
+                                      locationDiv.className = `card border-left-${locationType} shadow py-2`;
+                                      locationDiv.id = `location_${location.LocationID}`;
+
+                                      const visibleContent = `
+                                          <div class="card-body py-3 d-flex flex-row align-items-center justify-content-between" id="visible_${machine.MachineID}">
+                                              <h6 class="m-0 font-weight-bold text-primary">${location.Name} - ${location.Address} - ${location.City}</h6>
+                                              <div class="dropdown no-arrow">
+                                                  <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                                  </a>
+                                                  <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                       aria-labelledby="dropdownMenuLink">
+                                                      <div class="dropdown-header">Edit</div>
+                                                      <a class="dropdown-item" href="#" data-location-id="${location.LocationID}">Edit</a>
+                                                      <a class="dropdown-item" href="#">Delete (not working yet)</a>
+                                                      <div class="dropdown-divider"></div>
+                                                      <a class="dropdown-item" href="#" g-list-location-id="${location.LocationID}">Games List</a>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      `;
+
+
+
+                                      const hiddenContent = `
+                                          <div class="card-body d-none" id="hidden_${location.LocationID}">
+                                              <p><strong>Postal Code:</strong> ${location.ZipCode}</p>
+                                              <p><strong>Province:</strong> ${location.Province}</p>
+                                              <p><strong>Email:</strong> ${location.Email}</p>
+                                              <p><strong>Phone:</strong> ${location.PhoneNumber}</p>
+                                              <p><strong>Territory:</strong> ${location.Territory}</p>
+
+                                          </div>
+                                      `;
+
+                                      machineDiv.innerHTML = visibleContent + hiddenContent;
+                                      machinesContainer.appendChild(machineDiv);
+                                      const editButton = document.querySelector(`[data-machine-id="${machine.MachineID}"]`);
+                                      editButton.onclick= function() { openEditModal(machine); };
+
+                                      document.getElementById(`visible_${machine.MachineID}`).addEventListener('click', function() {
+                                          const hiddenDiv = document.getElementById(`hidden_${machine.MachineID}`);
+                                          hiddenDiv.classList.toggle('d-none');
+                                      });
+                                  });
+                              })
+                              .catch(error => {
+                                  console.error('Error fetching machines:', error);
+                              });
+                      }
+                    /*  function fetchLocations(territory) {
+                          // Encode the territory for use in a URL
 
                           fetch(`get_location_territory.php?territory=${territory}`) // Replace with the actual path to your PHP script
                                 .then(response => response.json())
@@ -179,7 +239,7 @@
                                 .catch(error => {
                                     console.error('Error fetching locations:', error);
                                 });
-                        }
+                        }*/
 
 
 
