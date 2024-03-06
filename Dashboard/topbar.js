@@ -245,6 +245,21 @@ if (locationInput) {
             suggestionsBox.innerHTML = '';
         }
     });
+    locationInput.addEventListener('keydown', function(event) {
+            var suggestions = suggestionsBox.getElementsByClassName('suggestion');
+            if (event.key === 'ArrowDown') {
+                currentSuggestionIndex = (currentSuggestionIndex + 1) % suggestions.length;
+                highlightSuggestion(suggestions, currentSuggestionIndex);
+            } else if (event.key === 'ArrowUp') {
+                currentSuggestionIndex = (currentSuggestionIndex - 1 + suggestions.length) % suggestions.length;
+                highlightSuggestion(suggestions, currentSuggestionIndex);
+            } else if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent form submission
+                if (currentSuggestionIndex >= 0 && suggestions[currentSuggestionIndex]) {
+                    suggestions[currentSuggestionIndex].click();
+                }
+            }
+        }); 
 }
 else{
   console.log("ERROR: cant find location input!");
@@ -270,24 +285,6 @@ searchButton.addEventListener('click', function() {
     }
 });
 
-locationInput.addEventListener('keydown', function(event) {
-        var suggestions = suggestionsBox.getElementsByClassName('suggestion');
-        if (event.key === 'ArrowDown') {
-            currentSuggestionIndex = (currentSuggestionIndex + 1) % suggestions.length;
-            highlightSuggestion(suggestions, currentSuggestionIndex);
-        } else if (event.key === 'ArrowUp') {
-            currentSuggestionIndex = (currentSuggestionIndex - 1 + suggestions.length) % suggestions.length;
-            highlightSuggestion(suggestions, currentSuggestionIndex);
-        } else if (event.key === 'Enter') {
-            event.preventDefault(); // Prevent form submission
-            if (currentSuggestionIndex >= 0 && suggestions[currentSuggestionIndex]) {
-                suggestions[currentSuggestionIndex].click();
-            }
-        }
-    });
-} else {
-    console.log("ERROR: Can't find location input!");
-}
 
 function highlightSuggestion(suggestions, index) {
     Array.from(suggestions).forEach((suggestion, i) => {
