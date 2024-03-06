@@ -59,8 +59,10 @@ function fetchmachines(locationID) {
                 editButton.onclick= function() { openEditModal(machine); };
 
                 document.getElementById(`visible_${machine.MachineID}`).addEventListener('click', function() {
-                    const hiddenDiv = document.getElementById(`hidden_${machine.MachineID}`);
-                    hiddenDiv.classList.toggle('d-none');
+                    if (!event.target.matches('#dropdownMenuLink, #dropdownMenuLink *')) {
+                      const hiddenDiv = document.getElementById(`hidden_${machine.MachineID}`);
+                      hiddenDiv.classList.toggle('d-none');
+                    }
                 });
             });
         })
