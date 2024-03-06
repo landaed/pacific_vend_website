@@ -157,7 +157,9 @@
 
                                         const gameListButton = document.getElementById('gameListBtn');
                                         gameListButton.onclick= function() { openEditModal(location); };
-                                        var fullName = location.LocationID +  ", " + location.Address;
+                                        var fullName = location.Name +  ", " + location.Address;
+                                        console.log("fullName: " + fullName);
+                                        console.log("ID: " + location.LocationID);
 
                                         var url = `get_machines_at_location.html?locationID=${encodeURIComponent(location.LocationID)}&Name=${encodeURIComponent(fullName)}`;
                                         gameListButton.addEventListener('click', function() {
