@@ -124,7 +124,7 @@
 
                                       locationDiv.innerHTML = visibleContent + hiddenContent;
                                       locationsContainer.appendChild(locationDiv);
-                                      const editButton = document.querySelector(`[ddata-location-id="${location.LocationID}"]`);
+                                      const editButton = document.querySelector(`[data-location-id="${location.LocationID}"]`);
                                       editButton.onclick= function() { openEditModal(machine); };
 
                                       const gameListButton = document.querySelector(`[g-list-location-id="${location.LocationID}"]`);
