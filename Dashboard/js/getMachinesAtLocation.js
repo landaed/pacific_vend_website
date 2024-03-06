@@ -1,5 +1,59 @@
 
 function fetchmachines(locationID) {
+    const url = `get_machines_at_location.php?locationID=${locationID}`;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const machinesContainer = document.getElementById('machinesContainer');
+            machinesContainer.innerHTML = ''; // Clear existing content
+
+            data.forEach(machine => {
+                const machineGenre = machine.Genre ? machine.Genre.toLowerCase() : 'unknown';
+                const machineDiv = document.createElement('div');
+                machineDiv.className = `card border-left-${machineGenre} shadow mb-4`;
+                machineDiv.id = `machine_${machine.MachineID}`;
+
+                const visibleContent = `
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" id="visible_${machine.MachineID}">
+                        <h6 class="m-0 font-weight-bold text-primary">Door #${machine.MachineID} - ${machine.Name}</h6>
+                        <div>
+                            <i class="fas fa-angle-down"></i>
+                        </div>
+                    </div>
+                `;
+
+                const hiddenContent = `
+                    <div class="card-body d-none" id="hidden_${machine.MachineID}">
+                        <p><strong>Legacy ID:</strong> ${machine.LegacyID}</p>
+                        <p><strong>CID Number:</strong> ${machine.CIDNumber}</p>
+                        <p><strong>Serial Number:</strong> ${machine.SerialNumber}</p>
+                        <p><strong>Genre:</strong> ${machine.Genre}</p>
+                        <p><strong>Description:</strong> ${machine.Description}</p>
+                        <p><strong>Dimensions:</strong> ${machine.Dimensions}</p>
+                        <p><strong>Supplier:</strong> ${machine.Supplier}</p>
+                        <p><strong>Purchase Date:</strong> ${machine.PurchaseDate}</p>
+                        <p><strong>Purchase Price:</strong> ${machine.PurchasePrice}</p>
+                        <p><strong>Sale Date:</strong> ${machine.SaleDate}</p>
+                        <p><strong>Sale Price:</strong> ${machine.SalePrice}</p>
+                        <p><strong>Sold To:</strong> ${machine.SoldTo}</p>
+                    </div>
+                `;
+
+                machineDiv.innerHTML = visibleContent + hiddenContent;
+                machinesContainer.appendChild(machineDiv);
+
+                document.getElementById(`visible_${machine.MachineID}`).addEventListener('click', function() {
+                    const hiddenDiv = document.getElementById(`hidden_${machine.MachineID}`);
+                    hiddenDiv.classList.toggle('d-none');
+                });
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching machines:', error);
+        });
+}
+/*
+function fetchmachines(locationID) {
     // Append the locationID as a query parameter
     const url = `get_machines_at_location.php?locationID=${locationID}`;
         fetch(url)
@@ -111,6 +165,8 @@ function fetchmachines(locationID) {
                     const editButton = document.querySelector(`[data-machine-id="${machine.MachineID}"]`);
                     editButton.onclick= function() { openEditModal(machine); };
 
+
+
                 });
 
                 // Bind click event to edit buttons after they are added to the DOM
@@ -136,7 +192,7 @@ function fetchmachines(locationID) {
             .catch(error => {
                 console.error('Error fetching machines:', error);
             });
-    }
+    }*/
 
     function openEditModal(machine) {
       console.log("openingEdit Modal");
