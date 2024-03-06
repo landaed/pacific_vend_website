@@ -272,3 +272,17 @@ function highlightSuggestion(suggestions, index) {
         }
     });
 }
+var searchButton = document.getElementById('searchButton'); // Ensure you have this ID on your button
+
+searchButton.addEventListener('click', function() {
+    var locationID = locationIDInput.value;
+    var locationName = locationNameInput.value; // Assuming you have an input for location name
+
+    if (locationID) {
+        // Construct the URL with LocationID and Name as query parameters
+        var url = `get_machines_at_location.html?locationID=${encodeURIComponent(locationID)}&Name=${encodeURIComponent(locationName)}`;
+        window.location.href = url; // Redirect to the URL
+    } else {
+        alert('Please enter a location ID'); // Handle the empty input
+    }
+});
