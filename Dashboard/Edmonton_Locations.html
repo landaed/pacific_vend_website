@@ -157,7 +157,7 @@
 
                                         const gameListButton = document.getElementById('gameListBtn');
                                         gameListButton.onclick= function() { openEditModal(location); };
-                                        var fullName = location.LocationID ", " location.Address;
+                                        var fullName = location.LocationID +  ", " + location.Address;
 
                                         var url = `get_machines_at_location.html?locationID=${encodeURIComponent(location.LocationID)}&Name=${encodeURIComponent(fullName)}`;
                                         window.location.href = url; // Redirect to the URL
