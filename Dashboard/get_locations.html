@@ -145,8 +145,11 @@
                                           }
                                       });
                                       document.getElementById(`visible_${location.LocationID}`).addEventListener('click', function() {
-                                          const hiddenDiv = document.getElementById(`hidden_${location.LocationID}`);
-                                          hiddenDiv.classList.toggle('d-none');
+                                        if (!event.target.matches('#dropdownMenuLink, #dropdownMenuLink *')) {
+                                            const hiddenDiv = document.getElementById(`hidden_${location.LocationID}`);
+                                            hiddenDiv.classList.toggle('d-none');
+                                        }
+                                          
                                       });
                                   });
                               })
