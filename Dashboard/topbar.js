@@ -205,23 +205,23 @@ document.getElementById('topbarContainer').innerHTML = `
 
 </nav>
 `;
-
 var locationInput = document.getElementById('locationInput');
 var suggestionsBox = document.getElementById('locationSuggestions');
 var locationID = document.getElementById('location_id');
-console.log("loaded machine suggestions");
+var currentSuggestionIndex = -1; // Index of the currently highlighted suggestion
+
 if (locationInput) {
     locationInput.addEventListener('input', function() {
-        console.log("recieved input!");
         var searchTerm = this.value;
         if (searchTerm.length > 1) {
             fetch(`location_suggestions.php?search=${searchTerm}`)
                 .then(response => response.json())
                 .then(data => {
                     suggestionsBox.innerHTML = '';
+                    currentSuggestionIndex = -1; // Reset the index when new suggestions are fetched
                     data.forEach(location => {
                         var suggestion = document.createElement('div');
-                        suggestion.textContent = location.Name + ",  " + location.Address;
+                        suggestion.textContent = location.Name + ", " + location.Address;
                         suggestion.name = location.LocationID;
                         suggestion.classList.add('suggestion');
                         suggestion.addEventListener('click', function() {
@@ -239,26 +239,32 @@ if (locationInput) {
             suggestionsBox.innerHTML = '';
         }
     });
+
+    locationInput.addEventListener('keydown', function(event) {
+        var suggestions = suggestionsBox.getElementsByClassName('suggestion');
+        if (event.key === 'ArrowDown') {
+            currentSuggestionIndex = (currentSuggestionIndex + 1) % suggestions.length;
+            highlightSuggestion(suggestions, currentSuggestionIndex);
+        } else if (event.key === 'ArrowUp') {
+            currentSuggestionIndex = (currentSuggestionIndex - 1 + suggestions.length) % suggestions.length;
+            highlightSuggestion(suggestions, currentSuggestionIndex);
+        } else if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent form submission
+            if (currentSuggestionIndex >= 0 && suggestions[currentSuggestionIndex]) {
+                suggestions[currentSuggestionIndex].click();
+            }
+        }
+    });
+} else {
+    console.log("ERROR: Can't find location input!");
 }
-else{
-  console.log("ERROR: cant find location input!");
+
+function highlightSuggestion(suggestions, index) {
+    Array.from(suggestions).forEach((suggestion, i) => {
+        if (i === index) {
+            suggestion.classList.add('highlighted');
+        } else {
+            suggestion.classList.remove('highlighted');
+        }
+    });
 }
-
-
-var searchButton = document.getElementById('searchButton');
-var locationIDInput = document.getElementById('location_id'); // Input for location ID
-var locationNameInput = document.getElementById('locationInput'); // Adjust ID as per your HTML
-var searchButton = document.getElementById('searchButton'); // Ensure you have this ID on your button
-
-searchButton.addEventListener('click', function() {
-    var locationID = locationIDInput.value;
-    var locationName = locationNameInput.value; // Assuming you have an input for location name
-
-    if (locationID) {
-        // Construct the URL with LocationID and Name as query parameters
-        var url = `get_machines_at_location.html?locationID=${encodeURIComponent(locationID)}&Name=${encodeURIComponent(locationName)}`;
-        window.location.href = url; // Redirect to the URL
-    } else {
-        alert('Please enter a location ID'); // Handle the empty input
-    }
-});
