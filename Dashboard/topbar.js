@@ -273,6 +273,8 @@ function highlightSuggestion(suggestions, index) {
     });
 }
 var searchButton = document.getElementById('searchButton'); // Ensure you have this ID on your button
+var locationIDInput = document.getElementById('location_id'); // Input for location ID
+var locationNameInput = document.getElementById('location_name'); // Adjust ID as per your HTML
 
 searchButton.addEventListener('click', function() {
     var locationID = locationIDInput.value;
