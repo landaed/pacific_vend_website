@@ -78,9 +78,9 @@
 
                       function fetchLocations(territory) {
                           // Encode the territory for use in a URL
-                          const territoryParam = encodeURIComponent(territory);
 
-                          fetch(`get_location_territory.php?territory=Edmonton`) // Replace with the actual path to your PHP script
+
+                          fetch(`get_location_territory.php?territory=${territory}`) // Replace with the actual path to your PHP script
                                 .then(response => response.json())
                                 .then(data => {
                                     const locationsContainer = document.getElementById('locationsContainer');
@@ -181,8 +181,7 @@
                                 });
                         }
 
-                        // Call the function when the page loads
-                        window.onload = () => fetchLocations('Edmonton');
+
 
                       </script>
 
@@ -248,7 +247,9 @@
 
     <script>
       window.onload = function() {
-      fetchLocations();
+      const params = new URLSearchParams(window.location.search);
+      const paramValue = params.get('territory');
+      fetchLocations(paramValue);
       fetch('edit-modal.html')
         .then(response => response.text())
         .then(html => {

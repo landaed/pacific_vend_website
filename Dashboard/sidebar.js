@@ -37,7 +37,7 @@ document.getElementById('sidebarContainer').innerHTML = `<!-- Sidebar -->
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Territories</h6>
                 <a class="collapse-item" href="Vancouver_Locations.html">Vancouver</a>
-                <a class="collapse-item" href="Edmonton_Locations.html">Edmonton</a>
+                <a class="collapse-item" href="Edmonton_Locations.html?territory=Edmonton">Edmonton</a>
                 <a class="collapse-item" href="Calgary_Locations.html">Calgary</a>
                 <a class="collapse-item" href="add_location.html">New</a>
             </div>
