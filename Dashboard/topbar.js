@@ -209,10 +209,12 @@ document.getElementById('topbarContainer').innerHTML = `
 var locationInput = document.getElementById('locationInput');
 var suggestionsBox = document.getElementById('locationSuggestions');
 var locationID = document.getElementById('location_id');
-console.log("loaded machine suggestions");
+
+var currentSuggestionIndex = -1;
+
+
 if (locationInput) {
     locationInput.addEventListener('input', function() {
-        console.log("recieved input!");
         var searchTerm = this.value;
         if (searchTerm.length > 1) {
             fetch(`location_suggestions.php?search=${searchTerm}`)
@@ -231,6 +233,10 @@ if (locationInput) {
                         });
                         suggestionsBox.appendChild(suggestion);
                     });
+                    if (data.length > 0) {
+                        currentSuggestionIndex = 0;
+                        highlightSuggestion(suggestionsBox.getElementsByClassName('suggestion'), currentSuggestionIndex);
+                    }
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -243,6 +249,7 @@ if (locationInput) {
 else{
   console.log("ERROR: cant find location input!");
 }
+
 
 
 var searchButton = document.getElementById('searchButton');
@@ -262,3 +269,32 @@ searchButton.addEventListener('click', function() {
         alert('Please enter a location ID'); // Handle the empty input
     }
 });
+
+locationInput.addEventListener('keydown', function(event) {
+        var suggestions = suggestionsBox.getElementsByClassName('suggestion');
+        if (event.key === 'ArrowDown') {
+            currentSuggestionIndex = (currentSuggestionIndex + 1) % suggestions.length;
+            highlightSuggestion(suggestions, currentSuggestionIndex);
+        } else if (event.key === 'ArrowUp') {
+            currentSuggestionIndex = (currentSuggestionIndex - 1 + suggestions.length) % suggestions.length;
+            highlightSuggestion(suggestions, currentSuggestionIndex);
+        } else if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent form submission
+            if (currentSuggestionIndex >= 0 && suggestions[currentSuggestionIndex]) {
+                suggestions[currentSuggestionIndex].click();
+            }
+        }
+    });
+} else {
+    console.log("ERROR: Can't find location input!");
+}
+
+function highlightSuggestion(suggestions, index) {
+    Array.from(suggestions).forEach((suggestion, i) => {
+        if (i === index) {
+            suggestion.classList.add('highlighted');
+        } else {
+            suggestion.classList.remove('highlighted');
+        }
+    });
+}
