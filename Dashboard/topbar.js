@@ -255,7 +255,11 @@ if (locationInput) {
         } else if (event.key === 'Enter') {
             event.preventDefault(); // Prevent form submission
             if (currentSuggestionIndex >= 0 && suggestions[currentSuggestionIndex]) {
+                locationInput.value = suggestions[currentSuggestionIndex].textContent;
+                suggestionsBox.innerHTML = '';
+                locationID.value = suggestions[currentSuggestionIndex].name;
                 suggestions[currentSuggestionIndex].click();
+
             }
         }
     });
@@ -272,19 +276,3 @@ function highlightSuggestion(suggestions, index) {
         }
     });
 }
-var searchButton = document.getElementById('searchButton'); // Ensure you have this ID on your button
-var locationIDInput = document.getElementById('location_id'); // Input for location ID
-var locationNameInput = document.getElementById('location_name'); // Adjust ID as per your HTML
-
-searchButton.addEventListener('click', function() {
-    var locationID = locationIDInput.value;
-    var locationName = locationNameInput.value; // Assuming you have an input for location name
-
-    if (locationID) {
-        // Construct the URL with LocationID and Name as query parameters
-        var url = `get_machines_at_location.html?locationID=${encodeURIComponent(locationID)}&Name=${encodeURIComponent(locationName)}`;
-        window.location.href = url; // Redirect to the URL
-    } else {
-        alert('Please enter a location ID'); // Handle the empty input
-    }
-});
