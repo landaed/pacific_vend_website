@@ -14,13 +14,30 @@ function fetchmachines(locationID) {
                 machineDiv.id = `machine_${machine.MachineID}`;
 
                 const visibleContent = `
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" id="visible_${machine.MachineID}">
+                    <div class="card-body py-3 d-flex flex-row align-items-center justify-content-between" id="visible_${machine.MachineID}">
                         <h6 class="m-0 font-weight-bold text-primary">Door #${machine.MachineID} - ${machine.Name}</h6>
                         <div>
                             <i class="fas fa-angle-down"></i>
                         </div>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                 aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Edit or Remove:</div>
+                                <a class="dropdown-item" href="#" data-machine-id="${machine.MachineID}">Edit</a>
+                                <a class="dropdown-item" href="#" location-machine-id="${machine.MachineID}">Set/Change Location</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Create Maintenance Report</a>
+                            </div>
+                        </div>
                     </div>
                 `;
+                machinesContainer.appendChild(machineDiv);
+                const editButton = document.querySelector(`[data-machine-id="${machine.MachineID}"]`);
+                editButton.onclick= function() { openEditModal(machine); };
 
                 const hiddenContent = `
                     <div class="card-body d-none" id="hidden_${machine.MachineID}">
