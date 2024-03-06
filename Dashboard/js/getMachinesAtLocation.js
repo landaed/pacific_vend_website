@@ -16,9 +16,6 @@ function fetchmachines(locationID) {
                 const visibleContent = `
                     <div class="card-body py-3 d-flex flex-row align-items-center justify-content-between" id="visible_${machine.MachineID}">
                         <h6 class="m-0 font-weight-bold text-primary">Door #${machine.MachineID} - ${machine.Name}</h6>
-                        <div>
-                            <i class="fas fa-angle-down"></i>
-                        </div>
                         <div class="dropdown no-arrow">
                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
