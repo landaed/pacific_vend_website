@@ -208,7 +208,7 @@ document.getElementById('topbarContainer').innerHTML = `
 var locationInput = document.getElementById('locationInput');
 var suggestionsBox = document.getElementById('locationSuggestions');
 var locationID = document.getElementById('location_id');
-var currentSuggestionIndex = 0; // Index of the currently highlighted suggestion
+var currentSuggestionIndex = -1; // Index of the currently highlighted suggestion
 
 if (locationInput) {
     locationInput.addEventListener('input', function() {
@@ -230,6 +230,10 @@ if (locationInput) {
                             locationID.value = this.name;
                         });
                         suggestionsBox.appendChild(suggestion);
+                        if (data.length > 0) {
+                          currentSuggestionIndex = 0;
+                          highlightSuggestion(suggestionsBox.getElementsByClassName('suggestion'), currentSuggestionIndex);
+                        }
                     });
                 })
                 .catch(error => {
