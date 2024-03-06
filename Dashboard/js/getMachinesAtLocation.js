@@ -35,9 +35,8 @@ function fetchmachines(locationID) {
                         </div>
                     </div>
                 `;
-                machinesContainer.appendChild(machineDiv);
-                const editButton = document.querySelector(`[data-machine-id="${machine.MachineID}"]`);
-                editButton.onclick= function() { openEditModal(machine); };
+
+
 
                 const hiddenContent = `
                     <div class="card-body d-none" id="hidden_${machine.MachineID}">
@@ -58,6 +57,8 @@ function fetchmachines(locationID) {
 
                 machineDiv.innerHTML = visibleContent + hiddenContent;
                 machinesContainer.appendChild(machineDiv);
+                const editButton = document.querySelector(`[data-machine-id="${machine.MachineID}"]`);
+                editButton.onclick= function() { openEditModal(machine); };
 
                 document.getElementById(`visible_${machine.MachineID}`).addEventListener('click', function() {
                     const hiddenDiv = document.getElementById(`hidden_${machine.MachineID}`);
