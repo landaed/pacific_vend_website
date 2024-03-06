@@ -54,6 +54,11 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.highlighted {
+    background-color: #f0f0f0; /* Example styling */
+}
+
+
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
