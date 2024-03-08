@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
         // Attempt to execute the prepared statement
         if($stmt->execute()){
             // Redirect to a confirmation page if the query was successful
-            header("Location: update_machine_success.html");
+            header("Location: update_machine_type_success.html");
             //exit(); // Ensure no further execution of the script after redirect
         } else{
             echo json_encode(array('message' => 'Error updating location: ' . $db->error));
