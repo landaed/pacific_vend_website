@@ -26,6 +26,7 @@ if (machineTypeInput) {
                             machineTypeInput.value = this.textContent;
                             MachineTypeSuggestionBox.innerHTML = '';
                             machineTypeID.value = this.name;
+                            console.log("machineTypeID selected is " + machineTypeID);
                         });
                         MachineTypeSuggestionBox.appendChild(suggestion);
                     });
