@@ -1,7 +1,7 @@
 var locationInput = document.getElementById('locationInput');
 var suggestionsBox = document.getElementById('locationSuggestions');
 var locationID = document.getElementById('location_id');
-console.log("loaded machine suggestions");
+console.log("loaded location suggestions");
 if (locationInput) {
     locationInput.addEventListener('input', function() {
         console.log("recieved input!");
@@ -15,7 +15,7 @@ if (locationInput) {
                         var suggestion = document.createElement('div');
                         suggestion.textContent = location.Name + ",  " + location.Address;
                         suggestion.name = location.LocationID;
-                        suggestion.classList.add('suggestion1');
+                        suggestion.classList.add('suggestion');
                         suggestion.addEventListener('click', function() {
                             locationInput.value = this.textContent;
                             suggestionsBox.innerHTML = '';
