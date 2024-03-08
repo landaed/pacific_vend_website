@@ -53,8 +53,18 @@ function fetchmachines(locationID) {
                         <p><strong>Sale Date:</strong> ${machine.SaleDate}</p>
                         <p><strong>Sale Price:</strong> ${machine.SalePrice}</p>
                         <p><strong>Sold To:</strong> ${machine.SoldTo}</p>
-                    </div>
+                        <div><strong>Prizes:</strong></div>
+                        <ul>
                 `;
+                if (machine.Prizes && machine.Prizes.length > 0) {
+                    machine.Prizes.forEach(prize => {
+                        hiddenContent += `<li>${prize.Name} (Tier: ${prize.Tier}, Capacity: ${prize.Capacity}, Current: ${prize.CurrentAmount})</li>`;
+                    });
+                } else {
+                    hiddenContent += '<li>No prizes associated</li>';
+                }
+
+                hiddenContent += `</ul></div>`;
 
                 machineDiv.innerHTML = visibleContent + hiddenContent;
                 machinesContainer.appendChild(machineDiv);

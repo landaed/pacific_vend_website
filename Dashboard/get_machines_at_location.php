@@ -27,6 +27,19 @@ if ($locationID) {
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            // Fetch prizes for each machine
+            $sql_prizes = "SELECT * FROM Prizes WHERE MachineID = ?";
+            $stmt_prizes = $db->prepare($sql_prizes);
+            $stmt_prizes->bind_param("i", $row['MachineID']);
+            $stmt_prizes->execute();
+            $result_prizes = $stmt_prizes->get_result();
+
+            $prizes = array();
+            while($prize_row = $result_prizes->fetch_assoc()) {
+                array_push($prizes, $prize_row);
+            }
+            $row['Prizes'] = $prizes; // Add prizes to machine array
+
             $machines[] = $row;
         }
         echo json_encode($machines);
