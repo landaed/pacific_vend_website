@@ -95,9 +95,47 @@
                                             <input type="date" class="form-control form-control-user" id="start_date" name="start_date" placeholder="Start Date">
                                         </div>
 
-
+                                        <div id="prizesSection">
+                                            <h4>Prizes</h4>
+                                            <button type="button" id="addPrizeButton" class="btn btn-primary mb-2">Add Prize</button>
+                                            <div id="prizesContainer"></div>
+                                        </div>
                                         <input type="submit" class="btn btn-primary btn-user btn-block" value="Submit">
                                     </form>
+                                    <script>
+                                    document.getElementById('addPrizeButton').addEventListener('click', function() {
+                                        const prizeContainer = document.getElementById('prizesContainer');
+                                        const prizeNumber = prizeContainer.children.length + 1;
+
+                                        const prizeDiv = document.createElement('div');
+                                        prizeDiv.innerHTML = `
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="prize_name_${prizeNumber}" placeholder="Prize Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="form-control" name="prize_tier_${prizeNumber}">
+                                                    <option value="">Tier (0-8)</option>
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="number" class="form-control" name="prize_capacity_${prizeNumber}" placeholder="Capacity">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="number" class="form-control" name="prize_current_amount_${prizeNumber}" placeholder="Current Amount">
+                                            </div>
+                                        `;
+                                        prizeContainer.appendChild(prizeDiv);
+                                    });
+                                </script>
                                 </div>
                             </div>
                         </div>
