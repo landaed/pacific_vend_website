@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
 
     if($stmt = $db->prepare($sql)){
         // Bind variables to the prepared statement as parameters
-        $stmt->bind_param("sssssssssssssssi", $param_manufacture, $param_model, $param_name, $param_genre, $param_dimensions, $param_machine_id);
+        $stmt->bind_param("sssssi", $param_manufacture, $param_model, $param_name, $param_genre, $param_dimensions, $param_machine_id);
 
         // Set parameters
         $param_machine_id = $_POST['machine_id'];
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
         $param_genre = $_POST['genre'];
 
         $param_dimensions = $_POST['dimensions'];
-        
+
         // Attempt to execute the prepared statement
         if($stmt->execute()){
             // Redirect to a confirmation page if the query was successful
