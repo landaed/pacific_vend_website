@@ -36,7 +36,7 @@ function fetchmachines(locationID) {
 
 
 
-                const hiddenContent = `
+                let hiddenContent = `
                     <div class="card-body d-none" id="hidden_${machine.MachineID}">
                         <p><strong>Model:</strong> ${machine.MachineTypeModel}</p>
                         <p><strong>Genre:</strong> ${machine.MachineTypeGenre}</p>
