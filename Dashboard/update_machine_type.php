@@ -5,7 +5,7 @@ require_once 'db_connect.php';
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
     // Prepare an update statement
-    $sql = "UPDATE MachineType SET Manufacture=?, Model=?, Name=?, Genre=?, Dimensions=?, WHERE MachineTypeID=?";
+    $sql = "UPDATE MachineType SET Manufacture=?, Model=?, Name=?, Genre=?, Dimensions=? WHERE MachineTypeID=?";
 
     if($stmt = $db->prepare($sql)){
         // Bind variables to the prepared statement as parameters
