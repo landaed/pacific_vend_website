@@ -1,5 +1,8 @@
 var locationInput = document.getElementById('locationInput');
 var suggestionsBox = document.getElementById('locationSuggestions');
+if(suggestionsBox){
+  console.log("successfully got location suggestion box, "+ suggestionsBox.id);
+}
 var locationID = document.getElementById('location_id');
 console.log("loaded location suggestions");
 if (locationInput) {
