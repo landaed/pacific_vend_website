@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $prize_capacity = $_POST["prize_capacity_$i"];
         $prize_current_amount = $_POST["prize_current_amount_$i"];
 
-        $stmt_prize->bind_param("isi", $last_inserted_machine_id, $prize_name, $prize_tier, $prize_capacity, $prize_current_amount);
+        $stmt_prize->bind_param("isiii", $last_inserted_machine_id, $prize_name, $prize_tier, $prize_capacity, $prize_current_amount);
         $stmt_prize->execute();
         $stmt_prize->close();
         $db->commit();
