@@ -44,45 +44,8 @@
                                     <form class="user" action="add_machine.php" method="post">
                                         <input type="hidden" id="location_id" name="location_id">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Game Name (Required)" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control form-control-user-dropdown" id="model" name="model">
-                                                <option value="">Model</option>
-                                                <option value="Jukebox">Jukebox</option>
-                                                <option value="Pinball">Pinball</option>
-                                                <option value="Twin">Twin</option>
-                                                <option value="Deluxe">Deluxe</option>
-                                                <option value="Redemption">Redemption</option>
-                                                <option value="Cocktail">Cocktail</option>
-                                                <option value="Shooting">Shooting</option>
-                                                <option value="Pool">Pool</option>
-                                                <option value="Air Hockey">Air Hockey</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control form-control-user-dropdown" id="genre" name="genre">
-                                                <option value="">Genre</option>
-                                                <option value="Shooter">Shooter</option>
-                                                <option value="Racing">Racing</option>
-                                                <option value="Fighter">Fighter</option>
-                                                <option value="Sports">Sports</option>
-                                                <option value="Moving">Moving</option>
-                                                <option value="VR">VR</option>
-                                                <option value="Arcade">Arcade</option>
-                                                <option value="Rhythm">Rhythm</option>
-                                                <option value="NA">NA</option>
-                                                <option value="7 Ft">7 Ft</option>
-                                                <option value="8 Ft">8 Ft</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <select class="form-control form-control-user-dropdown" id="manufacture" name="manufacture">
-                                                <option value="">Manufacture</option>
-                                                <option value="Raw Thrills">Raw Thrills</option>
-                                                <option value="Sega">Sega</option>
-                                            </select>
+                                            <input type="text" class="form-control form-control-user" id="machineTypeInput" placeholder="Machine Type (Required)" autocomplete="off" required>
+                                            <div id="machineTypeSuggestions" class="suggestions-box"></div>
                                         </div>
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="serial_number" name="serial_number" placeholder="Serial_Number">
@@ -117,11 +80,6 @@
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="sold_to" name="sold_to" placeholder="Sold To">
                                         </div>
-
-
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="dimensions" name="dimensions" placeholder="Dimensions">
-                                        </div>
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="supplier" name="supplier" placeholder="Supplier">
                                         </div>
@@ -129,7 +87,6 @@
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="locationInput" placeholder="Current Location (Required)" autocomplete="off" required>
                                             <div id="locationSuggestions" class="suggestions-box"></div>
-
                                         </div>
 
                                         <div class="form-group">
@@ -153,6 +110,7 @@
     </div>
 
     <script src="./js/location_suggestions.js"></script>
+    <script src="./js/machine_type_suggestions.js"></script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
