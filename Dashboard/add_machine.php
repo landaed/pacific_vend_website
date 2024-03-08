@@ -35,6 +35,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Get the last inserted id
         $last_inserted_machine_id = $db->insert_id;
+
+        for ($i = 1; isset($_POST["prize_name_$i"]); $i++) {
+            $sql_prize = "INSERT INTO Prizes (MachineID, Name, Tier, Capacity, CurrentAmount) VALUES (?, ?, ?, ?, ?)";
+            $stmt_prize = $db->prepare($sql_prize);
+
+            $prize_name = $_POST["prize_name_$i"];
+            $prize_tier = $_POST["prize_tier_$i"];
+            $prize_capacity = $_POST["prize_capacity_$i"];
+            $prize_current_amount = $_POST["prize_current_amount_$i"];
+
+            $stmt_prize->bind_param("isi", $last_inserted_machine_id, $prize_name, $prize_tier, $prize_capacity, $prize_current_amount);
+            $stmt_prize->execute();
+            $stmt_prize->close();
+        }
+
         // Commit the transaction
         $db->commit();
     }
