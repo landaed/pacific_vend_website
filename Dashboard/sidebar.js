@@ -57,7 +57,8 @@ document.getElementById('sidebarContainer').innerHTML = `<!-- Sidebar -->
                 <h6 class="collapse-header">Sorting</h6>
                 <a class="collapse-item" href="get_machines_all.html">Machines</a>
                 <a class="collapse-item" href="get_machines_types.html">Machine Types</a>
-                <a class="collapse-item" href="add_machine.html">New</a>
+                <a class="collapse-item" href="add_machines_type.html">New Machine Type</a>
+                <a class="collapse-item" href="add_machine.html">New Machine</a>
             </div>
         </div>
     </li>
