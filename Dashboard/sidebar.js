@@ -55,7 +55,8 @@ document.getElementById('sidebarContainer').innerHTML = `<!-- Sidebar -->
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Sorting</h6>
-                <a class="collapse-item" href="get_machines_all.html">List</a>
+                <a class="collapse-item" href="get_machines_all.html">Machines</a>
+                <a class="collapse-item" href="get_machines_types.html">Machine Types</a>
                 <a class="collapse-item" href="add_machine.html">New</a>
             </div>
         </div>
