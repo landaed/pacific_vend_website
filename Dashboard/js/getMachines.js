@@ -1,8 +1,97 @@
-function fetchmachines(filter) {
-        fetch(`get_machines.php`) // Replace with the actual path to your PHP script
+
+function fetchmachines(locationID) {
+    const url = `get_machines.php`;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const machinesContainer = document.getElementById('machinesContainer');
+            machinesContainer.innerHTML = ''; // Clear existing content
+
+            data.forEach(machine => {
+                const machineGenre = machine.Genre ? machine.Genre.toLowerCase() : 'unknown';
+                const machineDiv = document.createElement('div');
+                machineDiv.className = `card border-left-${machineGenre} shadow mb-4`;
+                machineDiv.id = `machine_${machine.MachineID}`;
+
+                const visibleContent = `
+                    <div class="card-body py-3 d-flex flex-row align-items-center justify-content-between" id="visible_${machine.MachineID}">
+                        <h6 class="m-0 font-weight-bold text-primary">Door #${machine.MachineID} - ${machine.MachineTypeName}</h6>
+
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                 aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Edit or Remove:</div>
+                                <a class="dropdown-item" href="#" data-machine-id="${machine.MachineID}">Edit</a>
+                                <a class="dropdown-item" href="#" location-machine-id="${machine.MachineID}">Set/Change Location</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Create Maintenance Report</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+
+
+                let hiddenContent = `
+                    <div class="card-body d-none" id="hidden_${machine.MachineID}">
+                        <p><strong>Model:</strong> ${machine.MachineTypeModel}</p>
+                        <p><strong>Genre:</strong> ${machine.MachineTypeGenre}</p>
+                        <p><strong>Dimensions:</strong> ${machine.MachineTypeDimensions}</p>
+                        <p><strong>Manufacture:</strong> ${machine.MachineTypeManufacture}</p>
+
+                        <p><strong>Legacy ID:</strong> ${machine.LegacyID}</p>
+                        <p><strong>CID Number:</strong> ${machine.CIDNumber}</p>
+                        <p><strong>Serial Number:</strong> ${machine.SerialNumber}</p>
+                        <p><strong>Description:</strong> ${machine.Description}</p>
+                        <p><strong>Supplier:</strong> ${machine.Supplier}</p>
+                        <p><strong>Purchase Date:</strong> ${machine.PurchaseDate}</p>
+                        <p><strong>Purchase Price:</strong> ${machine.PurchasePrice}</p>
+                        <p><strong>Sale Date:</strong> ${machine.SaleDate}</p>
+                        <p><strong>Sale Price:</strong> ${machine.SalePrice}</p>
+                        <p><strong>Sold To:</strong> ${machine.SoldTo}</p>
+                        <div><strong>Prizes:</strong></div>
+                        <ul>
+                `;
+                if (machine.Prizes && machine.Prizes.length > 0) {
+                    machine.Prizes.forEach(prize => {
+                        hiddenContent += `<li>${prize.Name} (Tier: ${prize.Tier}, Capacity: ${prize.Capacity}, Current: ${prize.CurrentAmount})</li>`;
+                    });
+                } else {
+                    hiddenContent += '<li>No prizes associated</li>';
+                }
+
+                hiddenContent += `</ul></div>`;
+
+                machineDiv.innerHTML = visibleContent + hiddenContent;
+                machinesContainer.appendChild(machineDiv);
+                const editButton = document.querySelector(`[data-machine-id="${machine.MachineID}"]`);
+                editButton.onclick= function() { openEditModal(machine); };
+
+                document.getElementById(`visible_${machine.MachineID}`).addEventListener('click', function() {
+                    if (!event.target.matches('#dropdownMenuLink, #dropdownMenuLink *')) {
+                      const hiddenDiv = document.getElementById(`hidden_${machine.MachineID}`);
+                      hiddenDiv.classList.toggle('d-none');
+                    }
+                });
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching machines:', error);
+        });
+}
+/*
+function fetchmachines(locationID) {
+    // Append the locationID as a query parameter
+    const url = `get_machines_at_location.php?locationID=${locationID}`;
+        fetch(url)
             .then(response => response.json())
             .then(data => {
                 const machinesContainer = document.getElementById('machinesContainer');
+
                 data.forEach(machine => {
                     // ... existing code to create machineDiv ...
                     // Check if 'type' is defined, if not, use a default value like 'unknown'
@@ -103,24 +192,17 @@ function fetchmachines(filter) {
                         </div>
                     </div>
                     `;
-
                     machinesContainer.appendChild(machineDiv);
+                    const editButton = document.querySelector(`[data-machine-id="${machine.MachineID}"]`);
+                    editButton.onclick= function() { openEditModal(machine); };
+
+
+
                 });
 
                 // Bind click event to edit buttons after they are added to the DOM
                 data.forEach(machine => {
-                    const editButton = document.querySelector(`[data-machine-id="${machine.MachineID}"]`);
-                    if (editButton) {
-                        editButton.addEventListener('click', function(event) {
-                            event.preventDefault();
-                            const machineId = this.getAttribute('data-machine-id');
-                            const selectedMachine = data.find(m => m.MachineID === machineId);
-                            console.log("machineid: " + selectedMachine)
-                            if (selectedMachine) {
-                                openEditModal(selectedMachine);
-                            }
-                        });
-                    }
+
 
                     const machineHistoryButton = document.querySelector(`[location-machine-id="${machine.MachineID}"]`);
                     if (machineHistoryButton) {
@@ -141,9 +223,10 @@ function fetchmachines(filter) {
             .catch(error => {
                 console.error('Error fetching machines:', error);
             });
-    }
+    }*/
 
     function openEditModal(machine) {
+      console.log("openingEdit Modal");
       // Populate the modal fields with the machine data
       document.getElementById('machine_id').value = machine.MachineID;
       document.getElementById('legacy_id').value = machine.LegacyID;
@@ -273,6 +356,19 @@ function fetchmachines(filter) {
       .then(html => {
         document.getElementById('addMachineHistoryModalContainer').innerHTML = html;
       });
+      const params = new URLSearchParams(window.location.search);
+      const paramValue = params.get('locationID');
+      const locName = params.get('Name');
+      const locationNameDiv = document.getElementById('location_name');
+      if(locationNameDiv){
+        locationNameDiv.innerHTML=`<h1>${locName}</h1>`;
+        console.log("loc name: " + locName);
+      }
+      else{
+        console.log("ERROR: no location nam div found");
+      }
 
-      fetchmachines('Edmonton');
+
+      fetchmachines(paramValue);
+
     }
