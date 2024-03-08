@@ -15,7 +15,7 @@ if (locationInput) {
                         var suggestion = document.createElement('div');
                         suggestion.textContent = location.Name + ",  " + location.Address;
                         suggestion.name = location.LocationID;
-                        suggestion.classList.add('suggestion');
+                        suggestion.classList.add('suggestion1');
                         suggestion.addEventListener('click', function() {
                             locationInput.value = this.textContent;
                             suggestionsBox.innerHTML = '';
