@@ -13,7 +13,13 @@ if (machineTypeInput) {
                     suggestionsBox.innerHTML = '';
                     data.forEach(machineType => {
                         var suggestion = document.createElement('div');
-                        suggestion.textContent = machineType.Name + ",  " + machineType.Model + ",  " + machineType.Manufacture;
+                        suggestion.textContent = machineType.Name;
+                        if(machineType.Model){
+                          suggestion.textContent+= ",  " + machineType.Model;
+                        }
+                        if(machineType.Manufacture){
+                          suggestion.textContent+= ",  " + machineType.Manufacture;
+                        }
                         suggestion.name = machineType.MachineTypeID;
                         suggestion.classList.add('suggestion');
                         suggestion.addEventListener('click', function() {
