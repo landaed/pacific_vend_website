@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $db->prepare($sql);
 
         // Bind variables to the prepared statement as parameters
-        $stmt->bind_param("sssssssssss", $param_machine_type, $param_legacy_id, $param_cid_number, $param_serial_number, $param_description, $param_supplier, $param_purchase_price, $param_purchase_date, $param_sale_price, $param_sale_date, $param_sold_to);
+        $stmt->bind_param("issssssssss", $param_machine_type, $param_legacy_id, $param_cid_number, $param_serial_number, $param_description, $param_supplier, $param_purchase_price, $param_purchase_date, $param_sale_price, $param_sale_date, $param_sold_to);
 
         // Set parameters
         $param_machine_type = $_POST['machine_type_id'];
