@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Login</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+
+                            <div class="col-lg-6-center">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Add a Machine Type</h1>
+                                    </div>
+                                    <form class="user" action="add_machine_type.php" method="post">
+                                        <input type="hidden" id="location_id" name="location_id">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Game Name (Required)" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control form-control-user-dropdown" id="model" name="model">
+                                                <option value="">Model</option>
+                                                <option value="Jukebox">Jukebox</option>
+                                                <option value="Pinball">Pinball</option>
+                                                <option value="Twin">Twin</option>
+                                                <option value="Deluxe">Deluxe</option>
+                                                <option value="Redemption">Redemption</option>
+                                                <option value="Cocktail">Cocktail</option>
+                                                <option value="Shooting">Shooting</option>
+                                                <option value="Pool">Pool</option>
+                                                <option value="Air Hockey">Air Hockey</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control form-control-user-dropdown" id="genre" name="genre">
+                                                <option value="">Genre</option>
+                                                <option value="Shooter">Shooter</option>
+                                                <option value="Racing">Racing</option>
+                                                <option value="Fighter">Fighter</option>
+                                                <option value="Sports">Sports</option>
+                                                <option value="Moving">Moving</option>
+                                                <option value="VR">VR</option>
+                                                <option value="Arcade">Arcade</option>
+                                                <option value="Rhythm">Rhythm</option>
+                                                <option value="NA">NA</option>
+                                                <option value="7 Ft">7 Ft</option>
+                                                <option value="8 Ft">8 Ft</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <select class="form-control form-control-user-dropdown" id="manufacture" name="manufacture">
+                                                <option value="">Manufacture</option>
+                                                <option value="Raw Thrills">Raw Thrills</option>
+                                                <option value="Sega">Sega</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" id="dimensions" name="dimensions" placeholder="Dimensions">
+                                        </div>
+                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="Submit">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="./js/location_suggestions.js"></script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+
+
+
+</body>
+
+</html>
