@@ -15,7 +15,7 @@ function fetchmachines(locationID) {
 
                 const visibleContent = `
                     <div class="card-body py-3 d-flex flex-row align-items-center justify-content-between" id="visible_${machine.MachineID}">
-                        <h6 class="m-0 font-weight-bold text-primary">Door #${machine.MachineID} - ${machine.Name}</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Door #${machine.MachineID} - ${machine.MachineTypeName}</h6>
 
                         <div class="dropdown no-arrow">
                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -38,12 +38,15 @@ function fetchmachines(locationID) {
 
                 const hiddenContent = `
                     <div class="card-body d-none" id="hidden_${machine.MachineID}">
+                        <p><strong>Model:</strong> ${machine.MachineTypeModel}</p>
+                        <p><strong>Genre:</strong> ${machine.MachineTypeGenre}</p>
+                        <p><strong>Dimensions:</strong> ${machine.MachineTypeDimensions}</p>
+                        <p><strong>Manufacture:</strong> ${machine.MachineTypeManufacture}</p>
+
                         <p><strong>Legacy ID:</strong> ${machine.LegacyID}</p>
                         <p><strong>CID Number:</strong> ${machine.CIDNumber}</p>
                         <p><strong>Serial Number:</strong> ${machine.SerialNumber}</p>
-                        <p><strong>Genre:</strong> ${machine.Genre}</p>
                         <p><strong>Description:</strong> ${machine.Description}</p>
-                        <p><strong>Dimensions:</strong> ${machine.Dimensions}</p>
                         <p><strong>Supplier:</strong> ${machine.Supplier}</p>
                         <p><strong>Purchase Date:</strong> ${machine.PurchaseDate}</p>
                         <p><strong>Purchase Price:</strong> ${machine.PurchasePrice}</p>
