@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         // Prepare an insert statement for Machines table
-        $sql = "INSERT INTO Machines (MachineType, LegacyID, CIDNumber, SerialNumber, Description, Supplier, PurchasePrice, PurchaseDate, SalePrice, SaleDate, SoldTo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO Machines (MachineTypeID, LegacyID, CIDNumber, SerialNumber, Description, Supplier, PurchasePrice, PurchaseDate, SalePrice, SaleDate, SoldTo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $db->prepare($sql);
 
         // Bind variables to the prepared statement as parameters
