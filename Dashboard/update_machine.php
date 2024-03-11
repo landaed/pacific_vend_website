@@ -27,11 +27,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
       $stmt->execute();
       $stmt->close();
       $db->commit();
+      header("Location: update_machine_success.html");
     }
     catch (Exception $e) {
         // An exception has occurred, which means something went wrong
         $db->rollback();
         echo "ERROR: Could not execute query (add machine failed): " . $e->getMessage();
+        header("Location: index.html");
     }
 }
 
