@@ -4,7 +4,6 @@ require_once 'db_connect.php';
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     // Start a transaction
     $db->begin_transaction();
 
