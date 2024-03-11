@@ -104,6 +104,10 @@ function fetchmachines(locationID) {
       document.getElementById('sold_to').value = machine.SoldTo;
       // Show the modal
       $('#editMachineModal').modal('show');
+
+      $('#editMachineModal').on('shown.bs.modal', function() {
+        initializeMachineTypeSuggestions();
+      });
     }
 
     function openMachineHistoryModal(machine) {
