@@ -88,6 +88,12 @@ function fetchmachines(locationID) {
       console.log("openingEdit Modal");
       // Populate the modal fields with the machine data
       document.getElementById('machine_id').value = machine.MachineID;
+      if(machine.MachineID){
+        console.log("machin id is " + machine.MachineID);
+      }
+      else{
+        console.log("ERROR: no machine id found!!!1");
+      }
       document.getElementById('legacy_id').value = machine.LegacyID;
       document.getElementById('cid_number').value = machine.CIDNumber;
       document.getElementById('serial_number').value = machine.SerialNumber;
