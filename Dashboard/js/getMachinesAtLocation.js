@@ -134,11 +134,23 @@ function fetchmachines(locationID) {
               const machineId = this.getAttribute('add-machine-history-id');
               // open add history modal
               $('#machineHistoryModal').modal('hide');
+
+              var locationInput = document.getElementById('locationInput');
+              var suggestionsBox = document.getElementById('locationSuggestions');
+              locationInput.id = "notInput";
+              suggestionsBox.id = "notSuggestions";
               $('#addMachineHistoryModal').modal('show');
 
               $('#addMachineHistoryModal').on('shown.bs.modal', function() {
                 console.log("add machine history modal has loaded");
                 initializeLocationSuggestions();
+              });
+
+
+              $('#addMachineHistoryModal').on('hidden.bs.modal', function() {
+                  console.log("Add machine history modal has closed");
+                  locationInput.id = "locationInput";
+                  suggestionsBox.id = "locationSuggestions";
               });
           });
       }
