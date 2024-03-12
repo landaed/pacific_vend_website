@@ -137,6 +137,7 @@ function fetchmachines(locationID) {
               $('#addMachineHistoryModal').modal('show');
 
               $('#addMachineHistoryModal').on('shown.bs.modal', function() {
+                console.log("add machine history modal has loaded");
                 initializeLocationSuggestions();
               });
           });
