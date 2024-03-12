@@ -132,7 +132,9 @@ function fetchmachines(locationID) {
           addMachineHistoryButton.addEventListener('click', function(event) {
               event.preventDefault();
               const machineId = this.getAttribute('add-machine-history-id');
-              openAddMachineHistoryModal(machine);
+              // open add history modal
+              $('#machineHistoryModal').modal('hidden');
+              $('#addMachineHistoryModal').modal('show');
           });
       }
       else{
