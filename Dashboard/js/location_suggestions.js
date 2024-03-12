@@ -1,6 +1,7 @@
 function initializeLocationSuggestions() {
     var locationInput = document.getElementById('locationInput');
     if (locationInput) {
+        console.log("Got location input");
         locationInput.addEventListener('input', locationInputHandler);
     } else {
         console.log("ERROR: cant find machine type input!");
@@ -13,11 +14,13 @@ function locationInputHandler() {
 
     var searchTerm = locationInput.value;
     if (searchTerm.length > 1) {
+        console.log("search term > 1")
         fetch(`location_suggestions.php?search=${searchTerm}`)
             .then(response => response.json())
             .then(data => {
                 suggestionsBox.innerHTML = '';
                 data.forEach(location => {
+                    console.log("listing location");
                     var suggestion = document.createElement('div');
                     suggestion.textContent = location.Name;
                     if(location.Model){
