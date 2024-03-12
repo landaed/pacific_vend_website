@@ -8,9 +8,17 @@ function initializeLocationSuggestions() {
     }
 }
 function locationInputHandler() {
+    console.log("inside input handler for location suggestions");
     var locationInput = document.getElementById('locationInput');
     var suggestionsBox = document.getElementById('locationSuggestions');
     var locationID = document.getElementById('location_id');
+
+    if(!suggestionsBox){
+      console.log("Error: no suggestionsBox found");
+    }
+    if(!locationID){
+      console.log("Error: no location id found");
+    }
 
     var searchTerm = locationInput.value;
     if (searchTerm.length > 1) {
