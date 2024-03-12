@@ -1,40 +1,46 @@
-var locationInput = document.getElementById('locationInput');
-var suggestionsBox = document.getElementById('locationSuggestions');
-if(suggestionsBox){
-  console.log("successfully got location suggestion box, "+ suggestionsBox.id);
+function initializeLocationSuggestions() {
+    var locationInput = document.getElementById('locationInput');
+    if (locationInput) {
+        locationInput.addEventListener('input', locationInputHandler);
+    } else {
+        console.log("ERROR: cant find machine type input!");
+    }
 }
-var locationID = document.getElementById('location_id');
-console.log("loaded location suggestions");
-if (locationInput) {
-    locationInput.addEventListener('input', function() {
-        console.log("recieved input!");
-        var searchTerm = this.value;
-        if (searchTerm.length > 1) {
-            fetch(`location_suggestions.php?search=${searchTerm}`)
-                .then(response => response.json())
-                .then(data => {
-                    suggestionsBox.innerHTML = '';
-                    data.forEach(location => {
-                        var suggestion = document.createElement('div');
-                        suggestion.textContent = location.Name + ",  " + location.Address;
-                        suggestion.name = location.LocationID;
-                        suggestion.classList.add('suggestion');
-                        suggestion.addEventListener('click', function() {
-                            locationInput.value = this.textContent;
-                            suggestionsBox.innerHTML = '';
-                            locationID.value = this.name;
-                        });
-                        suggestionsBox.appendChild(suggestion);
+function locationInputHandler() {
+    var locationInput = document.getElementById('locationInput');
+    var suggestionsBox = document.getElementById('locationSuggestions');
+    var locationID = document.getElementById('location_id');
+
+    var searchTerm = locationInput.value;
+    if (searchTerm.length > 1) {
+        fetch(`location_suggestions.php?search=${searchTerm}`)
+            .then(response => response.json())
+            .then(data => {
+                suggestionsBox.innerHTML = '';
+                data.forEach(location => {
+                    var suggestion = document.createElement('div');
+                    suggestion.textContent = location.Name;
+                    if(location.Model){
+                        suggestion.textContent += ", " + location.Address;
+                    }
+                    if(location.Manufacture){
+                        suggestion.textContent += ", " + location.Province;
+                    }
+                    suggestion.name = location.LocationID;
+                    suggestion.classList.add('suggestion');
+                    suggestion.addEventListener('click', function() {
+                        locationInput.value = this.textContent;
+                        suggestionsBox.innerHTML = '';
+                        locationID.value = this.name;
+                        console.log("locationID selected is " + locationID.value);
                     });
-                })
-                .catch(error => {
-                    console.error('Error:', error);
+                    suggestionsBox.appendChild(suggestion);
                 });
-        } else {
-            suggestionsBox.innerHTML = '';
-        }
-    });
-}
-else{
-  console.log("ERROR: cant find location input!");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    } else {
+        suggestionsBox.innerHTML = '';
+    }
 }
