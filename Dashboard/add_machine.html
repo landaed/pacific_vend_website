@@ -103,7 +103,7 @@
                                         <input type="submit" class="btn btn-primary btn-user btn-block" value="Submit">
                                     </form>
                                     <script>
-                                    initializeLocationSuggestions();
+
                                     document.getElementById('addPrizeButton').addEventListener('click', function() {
                                         const prizeContainer = document.getElementById('prizesContainer');
                                         const prizeNumber = prizeContainer.children.length + 1;
@@ -151,6 +151,7 @@
 
     <script src="./js/location_suggestions.js"></script>
     <script src="./js/machine_type_suggestions.js"></script>
+    <script>initializeLocationSuggestions();</script>
     <script>initializeMachineTypeSuggestions();</script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
