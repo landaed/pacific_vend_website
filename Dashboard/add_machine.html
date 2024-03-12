@@ -103,6 +103,7 @@
                                         <input type="submit" class="btn btn-primary btn-user btn-block" value="Submit">
                                     </form>
                                     <script>
+                                    initializeLocationSuggestions();
                                     document.getElementById('addPrizeButton').addEventListener('click', function() {
                                         const prizeContainer = document.getElementById('prizesContainer');
                                         const prizeNumber = prizeContainer.children.length + 1;
