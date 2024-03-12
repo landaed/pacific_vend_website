@@ -125,6 +125,7 @@ function fetchmachines(locationID) {
       document.getElementById('machine_name').textContent = machine.Name;
       // Show the modal
       $('#machineHistoryModal').modal('show');
+      fetchCurrLocation(machine);
       const addMachineHistoryButton = document.querySelector(`[id="add-machine-history-btn"]`);
       if (addMachineHistoryButton) {
           console.log("adding click listener for update location btn")
