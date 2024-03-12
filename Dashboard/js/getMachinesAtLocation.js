@@ -71,6 +71,9 @@ function fetchmachines(locationID) {
                 const editButton = document.querySelector(`[data-machine-id="${machine.MachineID}"]`);
                 editButton.onclick= function() { openEditModal(machine); };
 
+                const machineHistoryButton = document.querySelector(`[location-machine-id="${machine.MachineID}"]`);
+                machineHistoryButton.onclick= function() { openMachineHistoryModal(machine); };
+
                 document.getElementById(`visible_${machine.MachineID}`).addEventListener('click', function() {
                     if (!event.target.matches('#dropdownMenuLink, #dropdownMenuLink *')) {
                       const hiddenDiv = document.getElementById(`hidden_${machine.MachineID}`);
