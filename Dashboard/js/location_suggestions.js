@@ -1,6 +1,5 @@
 function initializeLocationSuggestions() {
     var locationInput = document.getElementById('locationInput');
-    locationInput.innerHTML = 'test';
     if (locationInput) {
         console.log("Got location input");
         locationInput.addEventListener('input', locationInputHandler);
