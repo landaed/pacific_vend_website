@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       // Commit the transaction
       $db->commit();
-      header("Location: add_machine_history_success.html");
+      header("Location: add_machine_success.html");
     }
     catch (Exception $e) {
         // An exception has occurred, which means something went wrong
