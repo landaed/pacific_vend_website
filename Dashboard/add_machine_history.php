@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // Set parameters
       $param_machine_id = $_POST['machineIDInput'];
 
-      $param_location_id = $_POST['locationInput'];
+      $param_location_id = $_POST['locationIDInput'];
       $param_start_date = $_POST['start_date'];
       $param_end_date = isset($_POST['end_date']) ? $_POST['end_date'] : NULL;
 
