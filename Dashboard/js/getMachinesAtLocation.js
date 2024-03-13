@@ -144,6 +144,8 @@ function fetchmachines(locationID) {
               $('#addMachineHistoryModal').on('shown.bs.modal', function() {
                 console.log("add machine history modal has loaded");
                 initializeLocationSuggestions();
+                document.getElementById('machineIDInput').value = machine.MachineID;
+                document.getElementById('locationIDInput').value = document.getElementById('locationInput').value;
               });
 
 
@@ -151,6 +153,7 @@ function fetchmachines(locationID) {
                   console.log("Add machine history modal has closed");
                   locationInput.id = "locationInput";
                   suggestionsBox.id = "locationSuggestions";
+
               });
           });
       }
