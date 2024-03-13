@@ -43,6 +43,10 @@ function locationInputHandler() {
                         locationInput.value = this.textContent;
                         suggestionsBox.innerHTML = '';
                         locationID.value = this.name;
+                        if(document.getElementById('locationIDInput')){
+                          console.log("setting location INPUT id");
+                          document.getElementById('locationIDInput').value = locationID.value;
+                        }
                         console.log("locationID selected is " + locationID.value);
                     });
                     suggestionsBox.appendChild(suggestion);
