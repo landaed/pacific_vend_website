@@ -145,7 +145,6 @@ function fetchmachines(locationID) {
                 console.log("add machine history modal has loaded");
                 initializeLocationSuggestions();
                 document.getElementById('machineIDInput').value = machine.MachineID;
-                document.getElementById('locationIDInput').value = document.getElementById('locationInput').value;
               });
 
 
