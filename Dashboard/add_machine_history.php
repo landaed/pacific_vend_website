@@ -15,18 +15,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       // Set parameters
       $param_machine_id = $_POST['machineIDInput'];
+
       $param_location_id = $_POST['locationInput'];
-      $param_start_date = $_POST['start_date'];
-      $param_end_date = isset($_POST['end_date']) ? $_POST['end_date'] : NULL;
+      if(!$param_location_id){
+        echo "ERROR: Could not execute query (add machine history failed, no location id): " . $e->getMessage();
+        $db->rollback();
+        exit();
+      }
+      else{
+        $param_start_date = $_POST['start_date'];
+        $param_end_date = isset($_POST['end_date']) ? $_POST['end_date'] : NULL;
 
-      // Execute the prepared statement
-      $stmt->execute();
-      $stmt->close();
+        // Execute the prepared statement
+        $stmt->execute();
+        $stmt->close();
 
 
-      // Commit the transaction
-      $db->commit();
-      header("Location: add_machine_success.html");
+        // Commit the transaction
+        $db->commit();
+        header("Location: add_machine_success.html");
+      }
+
     }
     catch (Exception $e) {
         // An exception has occurred, which means something went wrong
