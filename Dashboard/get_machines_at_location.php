@@ -16,7 +16,7 @@ if ($locationID) {
     mh.StartDate
 FROM 
     Machines m
-LEFT JOIN  // Changed to LEFT JOIN
+JOIN 
     MachineType mt ON m.MachineTypeID = mt.MachineTypeID
 JOIN 
     MachineHistory mh ON m.MachineID = mh.MachineID
