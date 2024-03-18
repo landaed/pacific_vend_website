@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
     $sql = "SELECT mh.*, loc.Name AS LocationName, loc.Address AS LocationAddress
             FROM MachineHistory mh
             JOIN Locations loc ON mh.LocationID = loc.LocationID
-            WHERE mh.MachineID=? AND mh.EndDate IS NULL
+            WHERE mh.MachineID=?
             ORDER BY mh.StartDate DESC
             LIMIT 1";
 
