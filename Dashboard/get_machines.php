@@ -12,8 +12,16 @@ $sql = "SELECT m.MachineID, m.LegacyID, m.CIDNumber, m.SerialNumber, m.Descripti
         mt.Dimensions AS MachineTypeDimensions
         FROM Machines m
         JOIN MachineType mt ON m.MachineTypeID = mt.MachineTypeID
-        JOIN MachineHistory mh ON m.MachineID = mh.MachineID
-        ORDER BY mh.StartDate DESC";
+        JOIN 
+            MachineHistory mh ON m.MachineID = mh.MachineID
+        JOIN
+            (SELECT MachineID, MAX(StartDate) as MaxStartDate
+            FROM MachineHistory
+            GROUP BY MachineID) mh2 ON mh.MachineID = mh2.MachineID AND mh.StartDate = mh2.MaxStartDate
+        WHERE 
+            mh.LocationID = ? 
+        ORDER BY 
+            mh.StartDate DESC";
 
 $stmt = $db->prepare($sql);
 $stmt->execute();
