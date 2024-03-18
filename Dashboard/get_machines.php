@@ -5,21 +5,26 @@ require_once 'db_connect.php';
 header('Content-Type: application/json');
 
 
-$sql = "SELECT m.MachineID, m.LegacyID, m.CIDNumber, m.SerialNumber, m.Description,
-        m.Supplier, m.PurchasePrice, m.PurchaseDate, m.SalePrice, m.SaleDate, m.SoldTo,
-        mt.Name AS MachineTypeName, mt.Model AS MachineTypeModel,
-        mt.Manufacture AS MachineTypeManufacture, mt.Genre AS MachineTypeGenre,
-        mt.Dimensions AS MachineTypeDimensions
-        FROM Machines m
-        JOIN MachineType mt ON m.MachineTypeID = mt.MachineTypeID
-        JOIN 
-            MachineHistory mh ON m.MachineID = mh.MachineID
-        JOIN
-            (SELECT MachineID, MAX(StartDate) as MaxStartDate
-            FROM MachineHistory
-            GROUP BY MachineID) mh2 ON mh.MachineID = mh2.MachineID AND mh.StartDate = mh2.MaxStartDate
-        ORDER BY 
-            mh.StartDate DESC";
+$sql = "SELECT 
+m.MachineID, m.LegacyID, m.CIDNumber, m.SerialNumber, m.Description,
+m.Supplier, m.PurchasePrice, m.PurchaseDate, m.SalePrice, m.SaleDate, m.SoldTo,
+mt.Name AS MachineTypeName, mt.Model AS MachineTypeModel,
+mt.Manufacture AS MachineTypeManufacture, mt.Genre AS MachineTypeGenre,
+mt.Dimensions AS MachineTypeDimensions,
+mh.StartDate
+FROM 
+Machines m
+LEFT JOIN
+MachineType mt ON m.MachineTypeID = mt.MachineTypeID
+JOIN 
+MachineHistory mh ON m.MachineID = mh.MachineID
+JOIN
+(SELECT MachineID, MAX(StartDate) as MaxStartDate
+ FROM MachineHistory
+ GROUP BY MachineID) mh2 ON mh.MachineID = mh2.MachineID AND mh.StartDate = mh2.MaxStartDate
+ORDER BY 
+mh.StartDate DESC;
+";
 
 $stmt = $db->prepare($sql);
 $stmt->execute();
