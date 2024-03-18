@@ -12,11 +12,18 @@ if ($locationID) {
             mt.Name AS MachineTypeName, mt.Model AS MachineTypeModel,
             mt.Manufacture AS MachineTypeManufacture, mt.Genre AS MachineTypeGenre,
             mt.Dimensions AS MachineTypeDimensions
-            FROM Machines m
-            JOIN MachineType mt ON m.MachineTypeID = mt.MachineTypeID
-            JOIN MachineHistory mh ON m.MachineID = mh.MachineID
-            WHERE mh.LocationID = ? AND mh.EndDate IS NULL
-            ORDER BY mh.StartDate DESC";
+        FROM Machines m
+        JOIN MachineType mt ON m.MachineTypeID = mt.MachineTypeID
+        JOIN MachineHistory mh ON m.MachineID = mh.MachineID
+        INNER JOIN (
+            SELECT MachineID, MAX(StartDate) AS MaxStartDate
+            FROM MachineHistory
+            WHERE LocationID = ? AND EndDate IS NULL
+            GROUP BY MachineID
+        ) AS LatestMH ON mh.MachineID = LatestMH.MachineID AND mh.StartDate = LatestMH.MaxStartDate
+        WHERE mh.LocationID = ?
+        ORDER BY mh.StartDate DESC";
+
 
     $stmt = $db->prepare($sql);
     $stmt->bind_param("i", $locationID);
