@@ -18,8 +18,6 @@ $sql = "SELECT m.MachineID, m.LegacyID, m.CIDNumber, m.SerialNumber, m.Descripti
             (SELECT MachineID, MAX(StartDate) as MaxStartDate
             FROM MachineHistory
             GROUP BY MachineID) mh2 ON mh.MachineID = mh2.MachineID AND mh.StartDate = mh2.MaxStartDate
-        WHERE 
-            mh.LocationID = ? 
         ORDER BY 
             mh.StartDate DESC";
 
