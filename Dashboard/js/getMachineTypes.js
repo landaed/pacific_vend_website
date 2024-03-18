@@ -87,7 +87,7 @@ function fetchmachines() {
       document.getElementById('name').value = machine.Name;
       document.getElementById('genre').value = machine.Genre;
       document.getElementById('dimensions').value = machine.Dimensions;
-      document.getElementById('manufacture').value = machine.Supplier;
+      document.getElementById('manufacture').value = machine.Manufacture;
 
       // Show the modal
       $('#editMachineModal').modal('show');
