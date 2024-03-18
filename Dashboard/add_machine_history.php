@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       $stmt = $db->prepare($sql);
       // Bind variables to the prepared statement as parameters
-      $stmt->bind_param("iis", $param_machine_id, $param_location_id, $param_start_date, $param_end_date);
+      $stmt->bind_param("iis", $param_machine_id, $param_location_id, $param_start_date);
 
       // Set parameters
       $param_machine_id = $_POST['machineIDInput'];
