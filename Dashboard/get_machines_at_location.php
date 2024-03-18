@@ -7,23 +7,28 @@ header('Content-Type: application/json');
 $locationID = isset($_GET['locationID']) ? $_GET['locationID'] : '';
 
 if ($locationID) {
-    $sql = "SELECT m.MachineID, m.LegacyID, m.CIDNumber, m.SerialNumber, m.Description,
-            m.Supplier, m.PurchasePrice, m.PurchaseDate, m.SalePrice, m.SaleDate, m.SoldTo,
-            mt.Name AS MachineTypeName, mt.Model AS MachineTypeModel,
-            mt.Manufacture AS MachineTypeManufacture, mt.Genre AS MachineTypeGenre,
-            mt.Dimensions AS MachineTypeDimensions
-        FROM Machines m
-        JOIN MachineType mt ON m.MachineTypeID = mt.MachineTypeID
-        JOIN MachineHistory mh ON m.MachineID = mh.MachineID
-        INNER JOIN (
-            SELECT MachineID, MAX(StartDate) AS MaxStartDate
-            FROM MachineHistory
-            WHERE LocationID = ? AND EndDate IS NULL
-            GROUP BY MachineID
-        ) AS LatestMH ON mh.MachineID = LatestMH.MachineID AND mh.StartDate = LatestMH.MaxStartDate
-        WHERE mh.LocationID = ?
-        ORDER BY mh.StartDate DESC";
-
+    $sql = "SELECT 
+    m.MachineID, m.LegacyID, m.CIDNumber, m.SerialNumber, m.Description,
+    m.Supplier, m.PurchasePrice, m.PurchaseDate, m.SalePrice, m.SaleDate, m.SoldTo,
+    mt.Name AS MachineTypeName, mt.Model AS MachineTypeModel,
+    mt.Manufacture AS MachineTypeManufacture, mt.Genre AS MachineTypeGenre,
+    mt.Dimensions AS MachineTypeDimensions,
+    mh.StartDate
+FROM 
+    Machines m
+JOIN 
+    MachineType mt ON m.MachineTypeID = mt.MachineTypeID
+JOIN 
+    MachineHistory mh ON m.MachineID = mh.MachineID
+JOIN
+    (SELECT MachineID, MAX(StartDate) as MaxStartDate
+     FROM MachineHistory
+     GROUP BY MachineID) mh2 ON mh.MachineID = mh2.MachineID AND mh.StartDate = mh2.MaxStartDate
+WHERE 
+    mh.LocationID = ? 
+ORDER BY 
+    mh.StartDate DESC;
+";
 
     $stmt = $db->prepare($sql);
     $stmt->bind_param("i", $locationID);
