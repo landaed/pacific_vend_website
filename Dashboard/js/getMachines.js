@@ -107,25 +107,48 @@ function fetchmachines() {
     }
 
     function openMachineHistoryModal(machine) {
-      // Populate the modal fields with the machine data
-      document.getElementById('machine_id').value = machine.MachineID;
-      document.getElementById('machine_name').textContent = machine.Name;
-      // Show the modal
-      $('#machineHistoryModal').modal('show');
-      const addMachineHistoryButton = document.querySelector(`[id="add-machine-history-btn"]`);
-      if (addMachineHistoryButton) {
-          console.log("adding click listener for update location btn")
-          addMachineHistoryButton.addEventListener('click', function(event) {
-              event.preventDefault();
-              const machineId = this.getAttribute('add-machine-history-id');
-              openAddMachineHistoryModal(machine);
-          });
+        // Populate the modal fields with the machine data
+        document.getElementById('machine_id').value = machine.MachineID;
+        document.getElementById('machine_name').textContent = machine.Name;
+        // Show the modal
+        $('#machineHistoryModal').modal('show');
+        fetchCurrLocation(machine);
+        const addMachineHistoryButton = document.querySelector(`[id="add-machine-history-btn"]`);
+        if (addMachineHistoryButton) {
+            console.log("adding click listener for update location btn")
+            addMachineHistoryButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                const machineId = this.getAttribute('add-machine-history-id');
+                // open add history modal
+                $('#machineHistoryModal').modal('hide');
+  
+                var locationInput = document.getElementById('locationInput');
+                var suggestionsBox = document.getElementById('locationSuggestions');
+                locationInput.id = "notInput";
+                suggestionsBox.id = "notSuggestions";
+                $('#addMachineHistoryModal').modal('show');
+  
+                $('#addMachineHistoryModal').on('shown.bs.modal', function() {
+                  console.log("add machine history modal has loaded");
+                  initializeLocationSuggestions();
+                  document.getElementById('machineIDInput').value = machine.MachineID;
+                  
+                });
+  
+  
+                $('#addMachineHistoryModal').on('hidden.bs.modal', function() {
+                    console.log("Add machine history modal has closed");
+                    locationInput.id = "locationInput";
+                    suggestionsBox.id = "locationSuggestions";
+  
+                });
+            });
+        }
+        else{
+          console.log("ERROR: could not find the button");
+        }
+  
       }
-      else{
-        console.log("ERROR: could not find the button");
-      }
-
-    }
 
 
     function fetchCurrLocation(machine) {
