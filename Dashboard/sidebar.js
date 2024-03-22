@@ -3,11 +3,11 @@ async function initializeSidebar() {
     if (sessionData && sessionData.status === 'loggedin') {
         let territoryLinks = '';
         if (sessionData.territory === 'Vancouver') {
-            territoryLinks = '<a class="collapse-item" href="get_locations.html?territory=Vancouver">Vancouver</a>';
+            territoryLinks = '<a class="collapse-item" href="get_locations_page.php?territory=Vancouver">Vancouver</a>';
         } else if (sessionData.territory === 'Edmonton') {
-            territoryLinks = '<a class="collapse-item" href="get_locations.html?territory=Edmonton">Edmonton</a>';
+            territoryLinks = '<a class="collapse-item" href="get_locations_page.php?territory=Edmonton">Edmonton</a>';
         } else if (sessionData.territory === 'Calgary') {
-            territoryLinks = '<a class="collapse-item" href="get_locations.html?territory=Calgary">Calgary</a>';
+            territoryLinks = '<a class="collapse-item" href="get_locations_page.php?territory=Calgary">Calgary</a>';
         }
 
         let createAccountLink = '';
