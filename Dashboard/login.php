@@ -50,10 +50,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $stmt->close();
                         
                         // Redirect user to welcome page
-                        header("Location: index.html?status=loginsuccess");
+                        header("Location: index.php?status=loginsuccess");
                     } else {
                         // Display an error message if password is not valid
-                        header("Location: login.html?status=loginfailure");
+                        header("Location: login.php?status=loginfailure");
                     }
                 }
             } else {
