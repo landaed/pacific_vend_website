@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         header("Location: index.html?status=loginsuccess");
                     } else {
                         // Display an error message if password is not valid
-                        header("Location: index.html?status=loginfailure");
+                        header("Location: login.html?status=loginfailure");
                     }
                 }
             } else {

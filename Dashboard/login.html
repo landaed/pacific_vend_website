@@ -85,6 +85,29 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <div id="notificationBanner"></div>
+    <script>
+        // Function to get URL parameter
+        function getQueryParam(param) {
+            let searchParams = new URLSearchParams(window.location.search);
+            return searchParams.get(param);
+        }
+
+        // Function to display notification banner
+        function showNotificationBanner(status) {
+            const banner = document.getElementById('notificationBanner');
+            if (status === 'loginfailure') {
+                banner.innerHTML = '<div class="notification-banner" style="background-color: red; color: white; text-align: center;">Login Failure: Username or password is wrong</div>';
+            }
+
+            if (status) {
+                setTimeout(() => banner.innerHTML = '', 10000); // Clear banner after 10 seconds
+            }
+        }
+
+        // Show banner based on URL parameter
+        showNotificationBanner(getQueryParam('status'));
+    </script>
 
 </body>
 
