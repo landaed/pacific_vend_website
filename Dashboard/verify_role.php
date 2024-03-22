@@ -1,5 +1,4 @@
 <?php
-echo "Hello, " . $_SESSION['username'];
 // Function to check access
 function checkAccess($requiredRole, $requiredTerritory = null) {
     if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
