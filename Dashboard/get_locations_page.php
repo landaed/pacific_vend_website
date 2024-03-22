@@ -315,6 +315,13 @@ require_once 'verify_session.php';
       window.onload = function() {
       const params = new URLSearchParams(window.location.search);
       const paramValue = params.get('territory');
+      if(sessionStorage.getItem('role') === 'admin' || sessionStorage.getItem('role') === 'manager' || sessionStorage.getItem('territory') === paramValue) {
+        fetchLocations(paramValue);
+      } else {
+        alert('You do not have access to this territory');
+        window.location.href = 'index.php';
+      }
+
       fetchLocations(paramValue);
       fetch('edit-modal.html')
         .then(response => response.text())
