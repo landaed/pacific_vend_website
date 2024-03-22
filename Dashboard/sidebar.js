@@ -62,6 +62,12 @@ document.getElementById('sidebarContainer').innerHTML = `<!-- Sidebar -->
             </div>
         </div>
     </li>
+    <li class="nav-item">
+            <a class="nav-link" href="create_account.html">
+                <i class="fas fa-fw fa-user-plus"></i>
+                <span>Create Account</span>
+            </a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
