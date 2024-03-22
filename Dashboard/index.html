@@ -270,6 +270,31 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <div id="notificationBanner"></div>
+    <script>
+        // Function to get URL parameter
+        function getQueryParam(param) {
+            let searchParams = new URLSearchParams(window.location.search);
+            return searchParams.get(param);
+        }
+
+        // Function to display notification banner
+        function showNotificationBanner(status) {
+            const banner = document.getElementById('notificationBanner');
+            if (status === 'success') {
+                banner.innerHTML = '<div style="background-color: green; color: white; text-align: center;">Account added successfully!</div>';
+            } else if (status === 'failure') {
+                banner.innerHTML = '<div style="background-color: red; color: white; text-align: center;">Account creation failed.</div>';
+            }
+
+            if (status) {
+                setTimeout(() => banner.innerHTML = '', 3000); // Clear banner after 3 seconds
+            }
+        }
+
+        // Show banner based on URL parameter
+        showNotificationBanner(getQueryParam('status'));
+    </script>
 
 </body>
 

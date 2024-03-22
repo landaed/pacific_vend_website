@@ -28,12 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Commit the transaction
         $db->commit();
-        header("Location: registration_success.html");
+        header("Location: index.html?status=success");
     }
     catch (Exception $e) {
         // An exception has occurred, which means something went wrong
         $db->rollback();
-        echo "ERROR: Could not execute query (add user failed): " . $e->getMessage();
+        header("Location: index.html?status=failure");
     }
 }
 

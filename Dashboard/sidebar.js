@@ -63,7 +63,7 @@ document.getElementById('sidebarContainer').innerHTML = `<!-- Sidebar -->
         </div>
     </li>
     <li class="nav-item">
-            <a class="nav-link" href="create_account.html">
+            <a class="nav-link" href="add_account.html">
                 <i class="fas fa-fw fa-user-plus"></i>
                 <span>Create Account</span>
             </a>
