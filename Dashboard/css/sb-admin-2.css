@@ -78,6 +78,17 @@ body {
   outline: 0 !important;
 }
 
+
+.notification-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 0;
+  z-index: 1000; /* Ensure it's above other content */
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.2); /* Optional: adds shadow for a "lifted" effect */
+}
+
 hr {
   box-sizing: content-box;
   height: 0;
