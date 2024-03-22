@@ -21,6 +21,13 @@ async function initializeSidebar() {
                         <span>Create Account</span>
                     </a>
                 </li>`;
+                createCollectionReportLink = `
+                <li class="nav-item">
+                    <a class="nav-link" href="add_account.html">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Create Collections Report</span>
+                    </a>
+                </li>`;
         }
 
         document.getElementById('sidebarContainer').innerHTML = `<!-- Sidebar -->
@@ -86,7 +93,7 @@ async function initializeSidebar() {
                 </div>
             </li>
             ${createAccountLink}
-
+            ${createCollectionReportLink}
             <!-- Divider -->
             <hr class="sidebar-divider">
 
