@@ -318,7 +318,7 @@ require_once 'verify_session.php';
       if(sessionStorage.getItem('role') === 'admin' || sessionStorage.getItem('role') === 'manager' || sessionStorage.getItem('territory') === paramValue) {
         fetchLocations(paramValue);
       } else {
-        alert('You do not have access to this territory');
+        alert('You do not have access to this territory, territory: ' + sessionStorage.getItem('territory') + ", paramValue: " + paramValue);
         window.location.href = 'index.php';
       }
 
