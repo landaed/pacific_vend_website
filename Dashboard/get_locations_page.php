@@ -136,13 +136,13 @@ require_once 'verify_session.php';
                                       console.log("fullName: " + fullName);
                                       console.log("ID: " + location.LocationID);
 
-                                      var url = `get_machines_at_location.html?locationID=${encodeURIComponent(location.LocationID)}&Name=${encodeURIComponent(fullName)}`;
+                                      var url = `get_machines_at_location_page.php?locationID=${encodeURIComponent(location.LocationID)}&Name=${encodeURIComponent(fullName)}`;
                                       gameListButton.addEventListener('click', function() {
                                           // Assuming you have an input for location name
 
                                           if (location.LocationID) {
                                               // Construct the URL with LocationID and Name as query parameters
-                                              var url = `get_machines_at_location.html?locationID=${encodeURIComponent(location.LocationID)}&Name=${encodeURIComponent(fullName)}`;
+                                              var url = `get_machines_at_location_page.php?locationID=${encodeURIComponent(location.LocationID)}&Name=${encodeURIComponent(fullName)}`;
                                               window.location.href = url; // Redirect to the URL
                                           } else {
                                               alert('Please enter a location ID'); // Handle the empty input
@@ -245,13 +245,13 @@ require_once 'verify_session.php';
                                         console.log("fullName: " + fullName);
                                         console.log("ID: " + location.LocationID);
 
-                                        var url = `get_machines_at_location.html?locationID=${encodeURIComponent(location.LocationID)}&Name=${encodeURIComponent(fullName)}`;
+                                        var url = `get_machines_at_location_page.php?locationID=${encodeURIComponent(location.LocationID)}&Name=${encodeURIComponent(fullName)}`;
                                         gameListButton.addEventListener('click', function() {
                                             // Assuming you have an input for location name
 
                                             if (location.LocationID) {
                                                 // Construct the URL with LocationID and Name as query parameters
-                                                var url = `get_machines_at_location.html?locationID=${encodeURIComponent(location.LocationID)}&Name=${encodeURIComponent(fullName)}`;
+                                                var url = `get_machines_at_location_page.php?locationID=${encodeURIComponent(location.LocationID)}&Name=${encodeURIComponent(fullName)}`;
                                                 window.location.href = url; // Redirect to the URL
                                             } else {
                                                 alert('Please enter a location ID'); // Handle the empty input

@@ -303,7 +303,7 @@ async function initializeTopbar() {
 
             if (locationID) {
                 // Construct the URL with LocationID and Name as query parameters
-                var url = `get_machines_at_location.html?locationID=${encodeURIComponent(locationID)}&Name=${encodeURIComponent(locationName)}`;
+                var url = `get_machines_at_location_page.php?locationID=${encodeURIComponent(locationID)}&Name=${encodeURIComponent(locationName)}`;
                 window.location.href = url; // Redirect to the URL
             } else {
                 alert('Please enter a location ID'); // Handle the empty input
