@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             } else {
                 // Display an error message if username doesn't exist
-                header("Location: index.html?status=loginfailure");
+                header("Location: index.php?status=loginfailure");
             }
         } else {
             echo "Oops! Something went wrong. Please try again later.";

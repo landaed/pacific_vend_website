@@ -28,12 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Commit the transaction
         $db->commit();
-        header("Location: index.html?status=success");
+        header("Location: index.php?status=success");
     }
     catch (Exception $e) {
         // An exception has occurred, which means something went wrong
         $db->rollback();
-        header("Location: index.html?status=failure");
+        header("Location: index.php?status=failure");
     }
 }
 

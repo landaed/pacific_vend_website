@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['machine_id'])) {
         // An exception has occurred, which means something went wrong
         $db->rollback();
         echo "ERROR: Could not execute query (update  machine type failed): " . $e->getMessage();
-        header("Location: index.html");
+        header("Location: index.php");
     }
 }
 
