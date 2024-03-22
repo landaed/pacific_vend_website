@@ -12,57 +12,85 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="css/sb-admin-2.css" rel="stylesheet">
 </head>
+<body id="page-top">
 
-<body class="bg-gradient-primary">
-    
-    <div class="container">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
         <div id="sidebarContainer"></div>
-    <script src="sidebar.js"></script>
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-            <div class="col-xl-10 col-lg-12 col-md-9">
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6-center">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Create a New Account</h1>
+        <script src="sidebar.js"></script>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                    <!-- Topbar -->
+                    <div id="topbarContainer"></div>
+                    <script src="topbar.js"></script>
+                    <!-- Outer Row -->
+                    <div class="row justify-content-center">
+                        <div class="col-xl-10 col-lg-12 col-md-9">
+                            <div class="card o-hidden border-0 shadow-lg my-5">
+                                <div class="card-body p-0">
+                                    <!-- Nested Row within Card Body -->
+                                    <div class="row">
+                                        <div class="col-lg-6-center">
+                                            <div class="p-5">
+                                                <div class="text-center">
+                                                    <h1 class="h4 text-gray-900 mb-4">Create a New Account</h1>
+                                                </div>
+                                                <form class="user" action="add_account.php" method="post">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username" autocomplete="off" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password" autocomplete="off" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select class="form-control form-control-user-dropdown" id="role" name="role">
+                                                            <option value="">Select Role</option>
+                                                            <option value="admin">Admin</option>
+                                                            <option value="manager">Manager</option>
+                                                            <option value="employee">Employee</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select class="form-control form-control-user-dropdown" id="territory" name="territory">
+                                                            <option value="">Select Territory</option>
+                                                            <option value="Vancouver">Vancouver</option>
+                                                            <option value="Edmonton">Edmonton</option>
+                                                            <option value="Calgary">Calgary</option>
+                                                        </select>
+                                                    </div>
+                                                    <input type="submit" class="btn btn-primary btn-user btn-block" value="Create Account">
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <form class="user" action="add_account.php" method="post">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control form-control-user-dropdown" id="role" name="role">
-                                                <option value="">Select Role</option>
-                                                <option value="admin">Admin</option>
-                                                <option value="manager">Manager</option>
-                                                <option value="employee">Employee</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control form-control-user-dropdown" id="territory" name="territory">
-                                                <option value="">Select Territory</option>
-                                                <option value="Vancouver">Vancouver</option>
-                                                <option value="Edmonton">Edmonton</option>
-                                                <option value="Calgary">Calgary</option>
-                                            </select>
-                                        </div>
-                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="Create Account">
-                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; Landa Investments Ltd.</span>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
+        
                 </div>
+                <!-- End of Content Wrapper -->
+        
             </div>
-        </div>
+            <!-- End of Page Wrapper -->
     </div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
