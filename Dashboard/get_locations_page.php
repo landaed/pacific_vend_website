@@ -312,16 +312,25 @@ require_once 'verify_session.php';
     <!-- Page level plugins -->
 
     <script>
+        async function VerifyRole(paramValue) {
+            let sessionData = await fetchSessionInfo();
+            if (sessionData && sessionData.status === 'loggedin') {
+                if(sessionStorage.getItem('role') === 'admin' || sessionStorage.getItem('role') === 'manager' || sessionStorage.getItem('territory') === paramValue) {
+                    fetchLocations(paramValue);
+                } else {
+                    alert('You do not have access to this territory, territory: ' + sessionStorage.getItem('territory') + ", paramValue: " + paramValue);
+                    window.location.href = 'index.php';
+                }
+            }
+        }
+
+        
+
       window.onload = function() {
       const params = new URLSearchParams(window.location.search);
       const paramValue = params.get('territory');
-      if(sessionStorage.getItem('role') === 'admin' || sessionStorage.getItem('role') === 'manager' || sessionStorage.getItem('territory') === paramValue) {
-        fetchLocations(paramValue);
-      } else {
-        alert('You do not have access to this territory, territory: ' + sessionStorage.getItem('territory') + ", paramValue: " + paramValue);
-        window.location.href = 'index.php';
-      }
-
+      
+      VerifyRole(paramValue);
       fetchLocations(paramValue);
       fetch('edit-modal.html')
         .then(response => response.text())
