@@ -23,7 +23,7 @@ async function initializeSidebar() {
                 </li>`;
                 createCollectionReportLink = `
                 <li class="nav-item">
-                    <a class="nav-link" href="add_account.html">
+                    <a class="nav-link" href="add_collection_report.php">
                         <i class="fas fa-file-invoice-dollar"></i>
                         <span>Create Collections Report</span>
                     </a>
