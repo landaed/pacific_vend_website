@@ -9,6 +9,18 @@ async function initializeSidebar() {
         } else if (sessionData.territory === 'Calgary') {
             territoryLinks = '<a class="collapse-item" href="get_locations.html?territory=Calgary">Calgary</a>';
         }
+
+        let createAccountLink = '';
+        if (sessionData.role === 'admin') {
+            createAccountLink = `
+                <li class="nav-item">
+                    <a class="nav-link" href="add_account.html">
+                        <i class="fas fa-fw fa-user-plus"></i>
+                        <span>Create Account</span>
+                    </a>
+                </li>`;
+        }
+
         document.getElementById('sidebarContainer').innerHTML = `<!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -71,12 +83,7 @@ async function initializeSidebar() {
                     </div>
                 </div>
             </li>
-            <li class="nav-item">
-                    <a class="nav-link" href="add_account.html">
-                        <i class="fas fa-fw fa-user-plus"></i>
-                        <span>Create Account</span>
-                    </a>
-            </li>
+            ${createAccountLink}
 
             <!-- Divider -->
             <hr class="sidebar-divider">
