@@ -30,7 +30,7 @@ require_once 'verify_role.php';
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
+        <script src="get_session_info.js"></script>
         <div id="sidebarContainer"></div>
         <script src="sidebar.js"></script>
         <!-- End of Sidebar -->
@@ -43,7 +43,7 @@ require_once 'verify_role.php';
 
                 <!-- Topbar -->
                 <div id="topbarContainer"></div>
-                <script src="get_session_info.js"></script>
+                
                 <script src="topbar.js"></script>
 
 
