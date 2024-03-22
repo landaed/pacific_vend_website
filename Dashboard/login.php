@@ -36,6 +36,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION['loggedin'] = true;
                         $_SESSION['id'] = $id;
                         $_SESSION['username'] = $username;
+                        // Now fetch the role and territory for the user
+                        $sql = "SELECT role, territory FROM Users WHERE id = ?";
+                        $stmt = $db->prepare($sql);
+                        $stmt->bind_param("i", $id);
+                        if ($stmt->execute()) {
+                            $stmt->bind_result($role, $territory);
+                            if ($stmt->fetch()) {
+                                $_SESSION['role'] = $role;
+                                $_SESSION['territory'] = $territory;
+                            }
+                        }
+                        $stmt->close();
                         
                         // Redirect user to welcome page
                         header("Location: index.html?status=loginsuccess");
