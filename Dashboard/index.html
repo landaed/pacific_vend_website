@@ -286,6 +286,12 @@
             } else if (status === 'failure') {
                 banner.innerHTML = '<div class="notification-banner" style="background-color: red; color: white; text-align: center;">Account creation failed.</div>';
             }
+            else if (status === 'loginsuccess') {
+                banner.innerHTML = '<div class="notification-banner" style="background-color: green; color: white; text-align: center;">Login Success</div>';
+            }
+            else if (status === 'loginfailure') {
+                banner.innerHTML = '<div class="notification-banner" style="background-color: red; color: white; text-align: center;">Login Failure: Severe Error</div>';
+            }
 
             if (status) {
                 setTimeout(() => banner.innerHTML = '', 10000); // Clear banner after 10 seconds
