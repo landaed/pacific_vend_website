@@ -7,7 +7,11 @@ fetch('session_info.php')
             window.userId = data.id;
             window.username = data.username;
             window.userRole = data.role;
-            window.userTerritory = data.territory;
+            window.userTerritory = window.territory;
+            console.log("User ID: " + window.id);
+            console.log("Username: " + window.username);
+            console.log("Role: " + window.role);
+            console.log("Territory: " + window.territory);
 
             // Now these variables can be accessed globally in any other script
         } else {
