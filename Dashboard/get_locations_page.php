@@ -315,10 +315,10 @@ require_once 'verify_session.php';
         async function VerifyRole(paramValue) {
             let sessionData = await fetchSessionInfo();
             if (sessionData && sessionData.status === 'loggedin') {
-                if(sessionStorage.getItem('role') === 'admin' || sessionStorage.getItem('role') === 'manager' || sessionStorage.getItem('territory') === paramValue) {
+                if(sessionData.role === 'admin' || sessionData.role === 'manager' || sessionData.territory === paramValue) {
                     fetchLocations(paramValue);
                 } else {
-                    alert('You do not have access to this territory, territory: ' + sessionStorage.getItem('territory') + ", paramValue: " + paramValue);
+                    alert('You do not have access to this territory, territory: ' + sessionData.territory + ", paramValue: " + paramValue);
                     window.location.href = 'index.php';
                 }
             }
