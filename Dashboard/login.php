@@ -1,73 +1,114 @@
-<?php
-// Include database connection file
-require_once 'db_connect.php';
+<!DOCTYPE html>
+<html lang="en">
 
-// Start the session
-session_start();
+<head>
 
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve the submitted credentials
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    // Prepare a select statement to check the username and retrieve account details
-    $sql = "SELECT id, username, password FROM Users WHERE username = ?";
-    
-    if ($stmt = $db->prepare($sql)) {
-        // Bind variables to the prepared statement as parameters
-        $stmt->bind_param("s", $param_username);
+    <title>SB Admin 2 - Login</title>
 
-        // Set parameters
-        $param_username = $username;
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
-        // Attempt to execute the prepared statement
-        if ($stmt->execute()) {
-            // Store result
-            $stmt->store_result();
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-            // Check if username exists
-            if ($stmt->num_rows == 1) {
-                // Bind result variables
-                $stmt->bind_result($id, $username, $hashed_password);
-                if ($stmt->fetch()) {
-                    if (password_verify($password, $hashed_password)) {
-                        // Password is correct, so start a new session and save the username and id
-                        $_SESSION['loggedin'] = true;
-                        $_SESSION['id'] = $id;
-                        $_SESSION['username'] = $username;
-                        // Now fetch the role and territory for the user
-                        $sql = "SELECT role, territory FROM Users WHERE id = ?";
-                        $stmt = $db->prepare($sql);
-                        $stmt->bind_param("i", $id);
-                        if ($stmt->execute()) {
-                            $stmt->bind_result($role, $territory);
-                            if ($stmt->fetch()) {
-                                $_SESSION['role'] = $role;
-                                $_SESSION['territory'] = $territory;
-                            }
-                        }
-                        $stmt->close();
-                        
-                        // Redirect user to welcome page
-                        header("Location: index.php?status=loginsuccess");
-                    } else {
-                        // Display an error message if password is not valid
-                        header("Location: login.php?status=loginfailure");
-                    }
-                }
-            } else {
-                // Display an error message if username doesn't exist
-                header("Location: index.html?status=loginfailure");
-            }
-        } else {
-            echo "Oops! Something went wrong. Please try again later.";
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    </div>
+                                    <form class="user" action="login_endpoint.php" method="post">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                                name="username" placeholder="Enter Username" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                name="password" placeholder="Password" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">Remember
+                                                    Me</label>
+                                            </div>
+                                        </div>
+                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="Login">
+                                        <hr>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+    <div id="notificationBanner"></div>
+    <script>
+        // Function to get URL parameter
+        function getQueryParam(param) {
+            let searchParams = new URLSearchParams(window.location.search);
+            return searchParams.get(param);
         }
 
-        // Close statement
-        $stmt->close();
-    }
-    // Close connection
-    $db->close();
-}
-?>
+        // Function to display notification banner
+        function showNotificationBanner(status) {
+            const banner = document.getElementById('notificationBanner');
+            if (status === 'loginfailure') {
+                banner.innerHTML = '<div class="notification-banner" style="background-color: red; color: white; text-align: center;">Login Failure: Username or password is wrong</div>';
+            }
+
+            if (status) {
+                setTimeout(() => banner.innerHTML = '', 10000); // Clear banner after 10 seconds
+            }
+        }
+
+        // Show banner based on URL parameter
+        showNotificationBanner(getQueryParam('status'));
+    </script>
+
+</body>
+
+</html>
