@@ -3,13 +3,13 @@ async function initializeSidebar() {
     if (sessionData && sessionData.status === 'loggedin') {
         let territoryLinks = '';
         if (sessionData.territory === 'Vancouver' || sessionData.role === 'admin') {
-            territoryLinks = '<a class="collapse-item" href="get_locations_page.php?territory=Vancouver">Vancouver</a>';
+            territoryLinks += '<a class="collapse-item" href="get_locations_page.php?territory=Vancouver">Vancouver</a>';
         }
         if (sessionData.territory === 'Edmonton' || sessionData.role === 'admin') {
-            territoryLinks = '<a class="collapse-item" href="get_locations_page.php?territory=Edmonton">Edmonton</a>';
+            territoryLinks += '<a class="collapse-item" href="get_locations_page.php?territory=Edmonton">Edmonton</a>';
         }
         if (sessionData.territory === 'Calgary' || sessionData.role === 'admin') {
-            territoryLinks = '<a class="collapse-item" href="get_locations_page.php?territory=Calgary">Calgary</a>';
+            territoryLinks += '<a class="collapse-item" href="get_locations_page.php?territory=Calgary">Calgary</a>';
         }
 
         let createAccountLink = '';
