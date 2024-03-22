@@ -79,7 +79,7 @@ async function initializeSidebar() {
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Sorting</h6>
                         <a class="collapse-item" href="get_machines_all.html">Placed Machines</a>
-                        <a class="collapse-item" href="get_machines_types.html">Machine Types</a>
+                        <a class="collapse-item" href="get_machines_types_page.php">Machine Types</a>
                         <a class="collapse-item" href="add_machine_type.html">Create Machine Type</a>
                         <a class="collapse-item" href="add_machine.html">Create a Placed Machine</a>
                     </div>

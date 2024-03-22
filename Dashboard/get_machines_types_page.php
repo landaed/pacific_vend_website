@@ -1,3 +1,7 @@
+<?php
+session_start();
+require_once 'verify_session.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +30,7 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
+      <script src="get_session_info.js"></script>
       <div id="sidebarContainer"></div>
       <script src="sidebar.js"></script>
 
