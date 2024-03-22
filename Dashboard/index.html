@@ -280,15 +280,18 @@
 
         // Function to display notification banner
         function showNotificationBanner(status) {
+            console.log("showing notification banner");
             const banner = document.getElementById('notificationBanner');
             if (status === 'success') {
+                console.log("success!;")
                 banner.innerHTML = '<div style="background-color: green; color: white; text-align: center;">Account added successfully!</div>';
             } else if (status === 'failure') {
+                console.log("failure!");
                 banner.innerHTML = '<div style="background-color: red; color: white; text-align: center;">Account creation failed.</div>';
             }
 
             if (status) {
-                setTimeout(() => banner.innerHTML = '', 3000); // Clear banner after 3 seconds
+                setTimeout(() => banner.innerHTML = '', 10000); // Clear banner after 10 seconds
             }
         }
 
