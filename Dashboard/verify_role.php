@@ -15,8 +15,6 @@ function checkAccess($requiredRole, $requiredTerritory = null) {
 // Example usage
 // For a page that requires admin access
 checkAccess('admin');
-checkAccess('employee');
-checkAccess('manager');
-// For a page that requires employee access in the Vancouver territory
-//checkAccess('employee', 'Vancouver');
+//checkAccess('employee');
+//checkAccess('manager');
 ?>

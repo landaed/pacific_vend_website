@@ -13,9 +13,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         'territory' => $_SESSION['territory']
     ]);
 } else {
-    // Return a not-logged-in status
-    echo json_encode([
-        'status' => 'notloggedin'
-    ]);
+    header("Location: login.php");
+    exit;
 }
 ?>
