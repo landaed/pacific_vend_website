@@ -317,27 +317,22 @@ require_once 'verify_session.php';
             if (sessionData && sessionData.status === 'loggedin') {
                 if(sessionData.role === 'admin' || sessionData.territory === paramValue) {
                     fetchLocations(paramValue);
+                    fetch('edit-modal.html')
+                    .then(response => response.text())
+                    .then(html => {
+                    document.getElementById('editModalContainer').innerHTML = html;
+                    });
                 } else {
                     alert('You do not have access to this territory, territory: ' + sessionData.territory + ", paramValue: " + paramValue);
                     window.location.href = 'index.php';
                 }
             }
         }
-
-        
-
-      window.onload = function() {
-      const params = new URLSearchParams(window.location.search);
-      const paramValue = params.get('territory');
-      
-      VerifyRole(paramValue);
-      fetchLocations(paramValue);
-      fetch('edit-modal.html')
-        .then(response => response.text())
-        .then(html => {
-          document.getElementById('editModalContainer').innerHTML = html;
-        });
-      };
+        window.onload = function() {
+        const params = new URLSearchParams(window.location.search);
+        const paramValue = params.get('territory');
+        VerifyRole(paramValue);
+        };
     </script>
 
 </body>
