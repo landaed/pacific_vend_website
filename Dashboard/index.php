@@ -43,6 +43,7 @@ require_once 'verify_role.php';
 
                 <!-- Topbar -->
                 <div id="topbarContainer"></div>
+                <script>var username = "<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest'; ?>";</script>
                 <script src="topbar.js"></script>
 
 
