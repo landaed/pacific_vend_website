@@ -40,7 +40,7 @@ require_once 'verify_session.php';
 
             <!-- Main Content -->
             <div id="content">
-
+                    <script src="get_session_info.js"></script>
                     <!-- Topbar -->
                     <div id="topbarContainer"></div>
                     <script src="topbar.js"></script>
