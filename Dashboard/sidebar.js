@@ -13,6 +13,7 @@ async function initializeSidebar() {
         }
 
         let createAccountLink = '';
+        let createCollectionReportLink = '';
         if (sessionData.role === 'admin') {
             createAccountLink = `
                 <li class="nav-item">
