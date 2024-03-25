@@ -60,10 +60,10 @@ require_once 'verify_session.php';
                                                     <h1 class="h4 text-gray-900 mb-4">Add a Placed Machine</h1>
                                                 </div>
                                                 <form class="user" action="add_machine.php" method="post">
-                                                    <input type="hidden" id="location_id" name="location_id">
+                                                    <input type="hidden" id="formLocationId" name="formLocationId">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control form-control-user" id="locationInput_1" placeholder="Current Location (Required)" autocomplete="off" required>
-                                                        <div id="locationSuggestions" class="suggestions-box"></div>
+                                                        <input type="text" class="form-control form-control-user" id="formLocationInput" placeholder="Current Location (Required)" autocomplete="off" required>
+                                                        <div id="formLocationSuggestions" class="suggestions-box"></div>
                                                     </div>
                                                     <div class="form-group">
                                                         <b>Start Date</b>
@@ -71,41 +71,7 @@ require_once 'verify_session.php';
                                                     </div>
                                                     <input type="submit" class="btn btn-primary btn-user btn-block" value="Submit">
                                                 </form>
-                                                <script>
-
-                                                document.getElementById('addPrizeButton').addEventListener('click', function() {
-                                                    const prizeContainer = document.getElementById('prizesContainer');
-                                                    const prizeNumber = prizeContainer.children.length + 1;
-
-                                                    const prizeDiv = document.createElement('div');
-                                                    prizeDiv.innerHTML = `
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" name="prize_name_${prizeNumber}" placeholder="Prize Name">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <select class="form-control" name="prize_tier_${prizeNumber}">
-                                                                <option value="">Tier (0-8)</option>
-                                                                <option value="0">0</option>
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                                <option value="6">6</option>
-                                                                <option value="7">7</option>
-                                                                <option value="8">8</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="number" class="form-control" name="prize_capacity_${prizeNumber}" placeholder="Capacity">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="number" class="form-control" name="prize_current_amount_${prizeNumber}" placeholder="Current Amount">
-                                                        </div>
-                                                    `;
-                                                    prizeContainer.appendChild(prizeDiv);
-                                                });
-                                            </script>
+                                            
                                             </div>
                                         </div>
                                     </div>
@@ -134,7 +100,7 @@ require_once 'verify_session.php';
     </div>
 
     <script src="./js/location_suggestions.js"></script>
-    <script>initializeLocationSuggestions("locationInput_1");</script>
+    <script>initializeLocationSuggestions("formLocationInput", "formLocationSuggestions", "formLocationId");</script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

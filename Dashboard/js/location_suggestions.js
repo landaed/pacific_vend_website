@@ -1,17 +1,20 @@
-function initializeLocationSuggestions(input = "locationInput") {
-    var locationInput = document.getElementById(input);
+function initializeLocationSuggestions(inputId = "locationInput", suggestionsBoxId = "locationSuggestions", locationId = "location_id") {
+    var locationInput = document.getElementById(inputId);
     if (locationInput) {
         console.log("Got location input");
-        locationInput.addEventListener('input', locationInputHandler);
+        locationInput.addEventListener('input', function() {
+            locationInputHandler(inputId, suggestionsBoxId, locationId);
+        });
     } else {
-        console.log("ERROR: cant find machine type input!");
+        console.log("ERROR: Can't find input element with ID: " + inputId);
     }
 }
-function locationInputHandler() {
-    console.log("inside input handler for location suggestions");
-    var locationInput = document.getElementById('locationInput');
-    var suggestionsBox = document.getElementById('locationSuggestions');
-    var locationID = document.getElementById('location_id');
+
+function locationInputHandler(inputId, suggestionsBoxId, locationId) {
+    console.log("Inside input handler for location suggestions");
+    var locationInput = document.getElementById(inputId);
+    var suggestionsBox = document.getElementById(suggestionsBoxId);
+    var locationIDField = document.getElementById(locationId);
 
     if(!suggestionsBox){
       console.log("Error: no suggestionsBox found");
