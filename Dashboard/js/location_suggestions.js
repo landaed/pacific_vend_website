@@ -14,7 +14,7 @@ function locationInputHandler(inputId, suggestionsBoxId, locationId) {
     console.log("Inside input handler for location suggestions");
     var locationInput = document.getElementById(inputId);
     var suggestionsBox = document.getElementById(suggestionsBoxId);
-    var locationIDField = document.getElementById(locationId);
+    var locationID = document.getElementById(locationId);
 
     if(!suggestionsBox){
       console.log("Error: no suggestionsBox found");
