@@ -25,6 +25,7 @@ function locationInputHandler(inputId, suggestionsBoxId, locationId) {
 
     var searchTerm = locationInput.value;
     if (searchTerm.length > 1) {
+        suggestionsBox.style.display = 'block';
         console.log("search term > 1")
         fetch(`location_suggestions.php?search=${searchTerm}`)
             .then(response => response.json())
@@ -59,6 +60,8 @@ function locationInputHandler(inputId, suggestionsBoxId, locationId) {
                 console.error('Error:', error);
             });
     } else {
+        suggestionsBox.style.display = 'none';
         suggestionsBox.innerHTML = '';
+        
     }
 }
