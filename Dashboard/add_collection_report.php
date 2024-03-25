@@ -62,7 +62,7 @@ require_once 'verify_session.php';
                                                 <form class="user" action="add_machine.php" method="post">
                                                     <input type="hidden" id="location_id" name="location_id">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control form-control-user" id="locationInput" placeholder="Current Location (Required)" autocomplete="off" required>
+                                                        <input type="text" class="form-control form-control-user" id="locationInput_1" placeholder="Current Location (Required)" autocomplete="off" required>
                                                         <div id="locationSuggestions" class="suggestions-box"></div>
                                                     </div>
                                                     <div class="form-group">
@@ -134,7 +134,7 @@ require_once 'verify_session.php';
     </div>
 
     <script src="./js/location_suggestions.js"></script>
-    <script>initializeLocationSuggestions();</script>
+    <script>initializeLocationSuggestions("locationInput_1");</script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
