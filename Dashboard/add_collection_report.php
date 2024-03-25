@@ -61,62 +61,13 @@ require_once 'verify_session.php';
                                                 </div>
                                                 <form class="user" action="add_machine.php" method="post">
                                                     <input type="hidden" id="location_id" name="location_id">
-                                                    <input type="hidden" id="machine_type_id" name="machine_type_id">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control form-control-user" id="machineTypeInput" placeholder="Machine Type (Required)" autocomplete="off" required>
-                                                        <div id="machineTypeSuggestions" class="suggestions-box"></div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control form-control-user" id="serial_number" name="serial_number" placeholder="Serial_Number">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control form-control-user" id="legacy_id" name="legacy_id" placeholder="Legacy_ID (Required)" required>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control form-control-user" id="description" name="description" placeholder="Notes">
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control form-control-user" id="cid_number" name="cid_number" placeholder="CID_Number">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control form-control-user" id="purchase_price" name="purchase_price" placeholder="Purchase Price">
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <b>Purchase Date:</b>
-                                                        <input type="date" class="form-control form-control-user" id="purchase_date" name="purchase_date" placeholder="Purchase Date">
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control form-control-user" id="sale_price" name="sale_price" placeholder="Sale Price">
-                                                    </div>
-                                                    <div class="form-group">
-                                                    <b>Sale Date:</b>
-                                                    <input type="date" class="form-control form-control-user" id="sale_date" name="sale_date" placeholder="Sale Date">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control form-control-user" id="sold_to" name="sold_to" placeholder="Sold To">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control form-control-user" id="supplier" name="supplier" placeholder="Supplier">
-                                                    </div>
-
                                                     <div class="form-group">
                                                         <input type="text" class="form-control form-control-user" id="locationInput" placeholder="Current Location (Required)" autocomplete="off" required>
                                                         <div id="locationSuggestions" class="suggestions-box"></div>
                                                     </div>
-
                                                     <div class="form-group">
                                                         <b>Start Date</b>
                                                         <input type="date" class="form-control form-control-user" id="start_date" name="start_date" placeholder="Start Date">
-                                                    </div>
-
-                                                    <div id="prizesSection">
-                                                        <h4>Prizes</h4>
-                                                        <button type="button" id="addPrizeButton" class="btn btn-primary mb-2">Add Prize</button>
-                                                        <div id="prizesContainer"></div>
                                                     </div>
                                                     <input type="submit" class="btn btn-primary btn-user btn-block" value="Submit">
                                                 </form>
@@ -183,9 +134,7 @@ require_once 'verify_session.php';
     </div>
 
     <script src="./js/location_suggestions.js"></script>
-    <script src="./js/machine_type_suggestions.js"></script>
     <script>initializeLocationSuggestions();</script>
-    <script>initializeMachineTypeSuggestions();</script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
