@@ -59,15 +59,17 @@ require_once 'verify_session.php';
                                                 <div class="text-center">
                                                     <h1 class="h4 text-gray-900 mb-4">Add a Placed Machine</h1>
                                                 </div>
-                                                <form class="user" action="add_machine.php" method="post">
+                                                <div id="machinesList" class="machines-list-container"></div>
+
+                                                <form class="user" id="collectionReportForm">
                                                     <input type="hidden" id="formLocationId" name="formLocationId">
                                                     <div class="form-group">
                                                         <input type="text" class="form-control form-control-user" id="formLocationInput" placeholder="Current Location (Required)" autocomplete="off" required>
                                                         <div id="formLocationSuggestions" class="suggestions-box"></div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <b>Start Date</b>
-                                                        <input type="date" class="form-control form-control-user" id="start_date" name="start_date" placeholder="Start Date">
+                                                        <b>Collection Date</b>
+                                                        <input type="date" class="form-control form-control-user" id="collection_date" name="collection_date" placeholder="Collection Date">
                                                     </div>
                                                     <input type="submit" class="btn btn-primary btn-user btn-block" value="Submit">
                                                 </form>
@@ -98,6 +100,44 @@ require_once 'verify_session.php';
             <!-- End of Page Wrapper -->
 
     </div>
+    <script>
+    document.getElementById('collectionReportForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var locationId = document.getElementById('formLocationId').value;
+        var collectionDate = document.getElementById('collection_date').value;
+
+        fetch('get_machines_for_collections_report.php', {
+            method: 'POST',
+            body: new URLSearchParams({
+                'formLocationId': locationId,
+                'collection_date': collectionDate
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            var machinesList = document.getElementById('machinesList');
+            machinesList.innerHTML = ''; // Clear previous results
+
+            if (data.message) {
+                machinesList.innerHTML = data.message; // Display message (no machines, etc.)
+            } else {
+                data.forEach(function(machine) {
+                    var machineDiv = `
+                        <div class="card-body py-3 d-flex flex-row align-items-center justify-content-between" id="visible_${machine.MachineID}">
+                            <h6 class="m-0 font-weight-bold text-primary">Door #${machine.MachineID} - ${machine.MachineTypeName}</h6>
+                            <!-- Add more machine details here if needed -->
+                        </div>`;
+                    machinesList.innerHTML += machineDiv;
+                });
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+    </script>
 
     <script src="./js/location_suggestions.js"></script>
     <script>initializeLocationSuggestions("formLocationInput", "formLocationSuggestions", "formLocationId");</script>

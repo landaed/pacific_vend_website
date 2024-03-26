@@ -46,6 +46,7 @@ function locationInputHandler(inputId, suggestionsBoxId, locationId) {
                     suggestion.addEventListener('click', function() {
                         locationInput.value = this.textContent;
                         suggestionsBox.innerHTML = '';
+                        suggestionsBox.style.display = 'none';
                         locationID.value = this.name;
                         if(document.getElementById('locationIDInput')){
                           console.log("setting location INPUT id");
