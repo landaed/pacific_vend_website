@@ -109,8 +109,9 @@ require_once 'verify_session.php';
             var formContainer = document.getElementById(`formContainer_${machineId}`);
             formContainer.style.display = 'block';
 
-            // Populate formContainer with the machine-specific form
-            // and a save button which, when clicked, will toggle the form and main list visibility
+            var formData = machineFormData[machineId] || {};
+
+            // Populate formContainer with the machine-specific form and pre-fill with saved data
             formContainer.innerHTML = `
             <h3>Collection Form for Machine ${machineId}</h3>
             <form id="machineForm_${machineId}">
@@ -169,6 +170,13 @@ require_once 'verify_session.php';
         }
 
         function saveMachineForm(machineId) {
+            var form = document.getElementById(`machineForm_${machineId}`);
+            var formData = new FormData(form);
+
+            machineFormData[machineId] = {};
+            formData.forEach((value, key) => {
+                machineFormData[machineId][key] = value;
+            });
             // Implement the save logic for the machine-specific form
             // On successful save, update the icon to show completion
            // On successful save, update the icon to show completion
