@@ -112,11 +112,55 @@ require_once 'verify_session.php';
             // Populate formContainer with the machine-specific form
             // and a save button which, when clicked, will toggle the form and main list visibility
             formContainer.innerHTML = `
-                <h3>Collection Form for Machine ${machineId}</h3>
-                <!-- Add form fields here -->
-                <button class="btn btn-success" onclick="saveMachineForm(${machineId})">Save</button>
-                <button class="btn btn-secondary" onclick="toggleVisibility(${machineId})">Cancel</button>
-            `;
+            <h3>Collection Form for Machine ${machineId}</h3>
+            <form id="machineForm_${machineId}">
+                <div class="form-group">
+                    <label>Meter #1:</label>
+                    <input type="number" class="form-control" name="meter1" required>
+                </div>
+                <div class="form-group">
+                    <label>Meter #2:</label>
+                    <input type="number" class="form-control" name="meter2" required>
+                </div>
+                <div class="form-group">
+                    <label>Prize Meter 1:</label>
+                    <input type="number" class="form-control" name="prizeMeter1" required>
+                </div>
+                <div class="form-group">
+                    <label>Prize Meter 2:</label>
+                    <input type="number" class="form-control" name="prizeMeter2" required>
+                </div>
+                <div class="form-group">
+                    <label>Prize Meter 3:</label>
+                    <input type="number" class="form-control" name="prizeMeter3" required>
+                </div>
+                <!-- Add more input fields for currency types here -->
+                <div class="form-group">
+                    <label>Quarters:</label>
+                    <input type="number" class="form-control" name="quarters">
+                </div>
+                <!-- Add inputs for Loons, Toons, 5, 10, 20, Tokens, etc. -->
+                <!-- ... -->
+                <div class="form-group">
+                    <label>Credit Card:</label>
+                    <input type="number" class="form-control" name="creditCard">
+                </div>
+                <div class="form-group">
+                    <label>MISC:</label>
+                    <input type="number" class="form-control" name="misc">
+                </div>
+                <div class="form-group">
+                    <label>Refunds:</label>
+                    <input type="number" class="form-control" name="refunds">
+                </div>
+                <div class="form-group">
+                    <label>Deductions (e.g., music fees, online fees):</label>
+                    <input type="number" class="form-control" name="deductions">
+                </div>
+                <button type="submit" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-secondary" onclick="toggleVisibility(${machineId})">Cancel</button>
+            </form>
+        `;
         }
 
         function toggleVisibility(machineId) {
