@@ -120,23 +120,23 @@ require_once 'verify_session.php';
             <form id="machineForm_${machineId}">
                 <div class="form-group">
                     <label>Meter #1:</label>
-                    <input type="number" class="form-control" name="meter1" required>
+                    <input type="number" class="form-control" name="meter1" >
                 </div>
                 <div class="form-group">
                     <label>Meter #2:</label>
-                    <input type="number" class="form-control" name="meter2" required>
+                    <input type="number" class="form-control" name="meter2" >
                 </div>
                 <div class="form-group">
                     <label>Prize Meter 1:</label>
-                    <input type="number" class="form-control" name="prizeMeter1" required>
+                    <input type="number" class="form-control" name="prizeMeter1" >
                 </div>
                 <div class="form-group">
                     <label>Prize Meter 2:</label>
-                    <input type="number" class="form-control" name="prizeMeter2" required>
+                    <input type="number" class="form-control" name="prizeMeter2" >
                 </div>
                 <div class="form-group">
                     <label>Prize Meter 3:</label>
-                    <input type="number" class="form-control" name="prizeMeter3" required>
+                    <input type="number" class="form-control" name="prizeMeter3" >
                 </div>
                 <!-- Add more input fields for currency types here -->
                 <div class="form-group">
