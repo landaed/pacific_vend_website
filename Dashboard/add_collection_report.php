@@ -116,7 +116,7 @@ require_once 'verify_session.php';
 
             console.log("positiveSum: " + positiveSum);
             console.log("negativeSum: " + negativeSum);
-            return positiveSum + negativeSum;
+            return positiveSum - negativeSum;
         }
 
         function showMachineForm(machineId) {
