@@ -114,6 +114,8 @@ require_once 'verify_session.php';
             const negatives = ['refunds', 'deductions'];
             let negativeSum = negatives.reduce((sum, key) => sum + (parseFloat(formData[key]) || 0), 0);
 
+            console.log("positiveSum: " + positiveSum);
+            console.log("negativeSum: " + negativeSum);
             return positiveSum + negativeSum;
         }
 
@@ -131,7 +133,6 @@ require_once 'verify_session.php';
             // Populate formContainer with the machine-specific form and pre-fill with saved data
             formContainer.innerHTML = `
             <h3>Collection Form for Machine ${machineId}</h3>
-            <h3>Collection Form for Machine ${machineId} - Current Revenue: $${machineRevenue.toFixed(2)}</h3>
             <form id="machineForm_${machineId}">
                 <div class="form-group">
                     <label>Meter #1:</label>
