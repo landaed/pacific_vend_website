@@ -101,8 +101,20 @@ require_once 'verify_session.php';
 
     </div>
     <script>
+
         var machineFormData = {};
 
+        function calculateRevenue(formData) {
+            // Positive values
+            const positives = ['meter1', 'meter2', 'quarters', 'loons', 'toons', 'fives', 'ten', 'twenty', 'creditCard', 'misc'];
+            let positiveSum = positives.reduce((sum, key) => sum + (parseFloat(formData[key]) || 0), 0);
+
+            // Negative values
+            const negatives = ['refunds', 'deductions'];
+            let negativeSum = negatives.reduce((sum, key) => sum + (parseFloat(formData[key]) || 0), 0);
+
+            return positiveSum - negativeSum;
+        }
 
         function showMachineForm(machineId) {
             // Hide the main collection report form
@@ -113,10 +125,12 @@ require_once 'verify_session.php';
             formContainer.style.display = 'block';
 
             var formData = machineFormData[machineId] || {};
+            let machineRevenue = calculateRevenue(formData);
 
             // Populate formContainer with the machine-specific form and pre-fill with saved data
             formContainer.innerHTML = `
             <h3>Collection Form for Machine ${machineId}</h3>
+            <h3>Collection Form for Machine ${machineId} - Current Revenue: $${machineRevenue.toFixed(2)}</h3>
             <form id="machineForm_${machineId}">
                 <div class="form-group">
                     <label>Meter #1:</label>
@@ -142,6 +156,26 @@ require_once 'verify_session.php';
                 <div class="form-group">
                     <label>Quarters:</label>
                     <input type="number" class="form-control" name="quarters" value="${formData.quarters || ''}">
+                </div>
+                <div class="form-group">
+                    <label>Loons:</label>
+                    <input type="number" class="form-control" name="loons" value="${formData.loons || ''}">
+                </div>
+                <div class="form-group">
+                    <label>Toons:</label>
+                    <input type="number" class="form-control" name="toons" value="${formData.toons || ''}">
+                </div>
+                <div class="form-group">
+                    <label>5:</label>
+                    <input type="number" class="form-control" name="fives" value="${formData.fives || ''}">
+                </div>
+                <div class="form-group">
+                    <label>10:</label>
+                    <input type="number" class="form-control" name="ten" value="${formData.ten || ''}">
+                </div>
+                <div class="form-group">
+                    <label>20:</label>
+                    <input type="number" class="form-control" name="twenty" value="${formData.twenty || ''}">
                 </div>
                 <!-- Add inputs for Loons, Toons, 5, 10, 20, Tokens, etc. -->
                 <!-- ... -->
@@ -183,6 +217,12 @@ require_once 'verify_session.php';
             formData.forEach((value, key) => {
                 machineFormData[machineId][key] = value;
             });
+
+            let updatedFormData = machineFormData[machineId];
+            let machineRevenue = calculateRevenue(updatedFormData);
+            document.querySelector(`#visible_${machineId} .text-primary`).textContent =
+                `Door #${machineId} - ${updatedFormData.MachineTypeName} - Revenue: $${machineRevenue.toFixed(2)}`;
+
             // Implement the save logic for the machine-specific form
             // On successful save, update the icon to show completion
            // On successful save, update the icon to show completion
@@ -220,9 +260,10 @@ require_once 'verify_session.php';
                 machinesList.innerHTML = data.message; // Display message (no machines, etc.)
             } else {
                 data.forEach(function(machine) {
+                    let machineRevenue = calculateRevenue(machineFormData[machine.MachineID] || {});
                     var machineDiv = `
                         <div class="card-body py-3 d-flex flex-row align-items-center justify-content-between" id="visible_${machine.MachineID}">
-                            <h6 class="m-0 font-weight-bold text-primary">Door #${machine.MachineID} - ${machine.MachineTypeName}</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Door #${machine.MachineID} - ${machine.MachineTypeName} - Revenue: $${machineRevenue.toFixed(2)}</h6>
                             <div>
                                 <i class="fas fa-exclamation-circle" id="statusIcon_${machine.MachineID}"></i>
                                 <button class="btn btn-primary btn-sm" onclick="showMachineForm(${machine.MachineID})">View/Edit Collection Form</button>
