@@ -103,6 +103,7 @@ require_once 'verify_session.php';
     <script>
 
         var machineFormData = {};
+        var machineDetails = {};
 
         function calculateRevenue(formData) {
             // Positive values
@@ -220,8 +221,11 @@ require_once 'verify_session.php';
 
             let updatedFormData = machineFormData[machineId];
             let machineRevenue = calculateRevenue(updatedFormData);
+
+            let machineTypeName = machineDetails[machineId].MachineTypeName;
+
             document.querySelector(`#visible_${machineId} .text-primary`).textContent =
-                `Door #${machineId} - ${machine.MachineTypeName} - Revenue: $${machineRevenue.toFixed(2)}`;
+                `Door #${machineId} - ${machineTypeName} - Revenue: $${machineRevenue.toFixed(2)}`;
 
             // Implement the save logic for the machine-specific form
             // On successful save, update the icon to show completion
@@ -260,6 +264,10 @@ require_once 'verify_session.php';
                 machinesList.innerHTML = data.message; // Display message (no machines, etc.)
             } else {
                 data.forEach(function(machine) {
+                    machineDetails[machine.MachineID] = {
+                        MachineTypeName: machine.MachineTypeName,
+                        // Any other details you might need
+                    };
                     let machineRevenue = calculateRevenue(machineFormData[machine.MachineID] || {});
                     var machineDiv = `
                         <div class="card-body py-3 d-flex flex-row align-items-center justify-content-between" id="visible_${machine.MachineID}">
