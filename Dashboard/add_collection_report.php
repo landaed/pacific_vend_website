@@ -189,7 +189,7 @@ require_once 'verify_session.php';
             statusIcon.style.color = 'green'; // Set the color to green
 
             // Hide the form and show the main list again
-            toggleVisibility(machineId);
+            //toggleVisibility(machineId);
         }
 
     document.getElementById('collectionReportForm').addEventListener('submit', function(event) {
