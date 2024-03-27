@@ -101,6 +101,9 @@ require_once 'verify_session.php';
 
     </div>
     <script>
+        var machineFormData = {};
+
+
         function showMachineForm(machineId) {
             // Hide the main collection report form
             document.getElementById('collectionReportForm').style.display = 'none';
