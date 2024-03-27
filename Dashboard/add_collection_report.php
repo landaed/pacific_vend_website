@@ -60,7 +60,7 @@ require_once 'verify_session.php';
                                                     <h1 class="h4 text-gray-900 mb-4">Collections Report</h1>
                                                 </div>
                                                 <div id="machinesList" class="machines-list-container"></div>
-                                                <div id="machineReport"></div>
+
                                                 <form class="user" id="collectionReportForm">
                                                     <input type="hidden" id="formLocationId" name="formLocationId">
                                                     <div class="form-group">
@@ -106,10 +106,10 @@ require_once 'verify_session.php';
 
         function showMachineForm(machineId) {
             // Hide the main collection report form
-            document.getElementById('collectionReportForm').style.display = 'none';
+            //document.getElementById('collectionReportForm').style.display = 'none';
 
             // Show the specific form for the clicked machine
-            var formContainer = document.getElementById(`machineReport`);
+            var formContainer = document.getElementById(`formContainer_${machineId}`);
             formContainer.style.display = 'block';
 
             var formData = machineFormData[machineId] || {};
@@ -168,8 +168,8 @@ require_once 'verify_session.php';
         }
 
         function toggleVisibility(machineId) {
-            document.getElementById(`machineReport${machineId}`).style.display = 'none';
-            document.getElementById('collectionReportForm').style.display = 'block';
+            document.getElementById(`formContainer_${machineId}`).style.display = 'none';
+           // document.getElementById('collectionReportForm').style.display = 'block';
         }
 
         function saveMachineForm(machineId) {
