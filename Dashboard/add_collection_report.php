@@ -171,8 +171,11 @@ require_once 'verify_session.php';
         function saveMachineForm(machineId) {
             // Implement the save logic for the machine-specific form
             // On successful save, update the icon to show completion
-            document.getElementById(`statusIcon_${machineId}`).classList.remove('fa-exclamation-circle');
-            document.getElementById(`statusIcon_${machineId}`).classList.add('fa-check-circle');
+           // On successful save, update the icon to show completion
+            var statusIcon = document.getElementById(`statusIcon_${machineId}`);
+            statusIcon.classList.remove('fa-exclamation-circle');
+            statusIcon.classList.add('fa-check-circle');
+            statusIcon.style.color = 'green'; // Set the color to green
 
             // Hide the form and show the main list again
             toggleVisibility(machineId);
