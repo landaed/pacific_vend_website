@@ -120,46 +120,46 @@ require_once 'verify_session.php';
             <form id="machineForm_${machineId}">
                 <div class="form-group">
                     <label>Meter #1:</label>
-                    <input type="number" class="form-control" name="meter1" >
+                    <input type="number" class="form-control" name="meter1" value="${formData.meter1 || ''}">
                 </div>
                 <div class="form-group">
                     <label>Meter #2:</label>
-                    <input type="number" class="form-control" name="meter2" >
+                    <input type="number" class="form-control" name="meter2" value="${formData.meter2 || ''}">
                 </div>
                 <div class="form-group">
                     <label>Prize Meter 1:</label>
-                    <input type="number" class="form-control" name="prizeMeter1" >
+                    <input type="number" class="form-control" name="prizeMeter1" value="${formData.prizeMeter1 || ''}">
                 </div>
                 <div class="form-group">
                     <label>Prize Meter 2:</label>
-                    <input type="number" class="form-control" name="prizeMeter2" >
+                    <input type="number" class="form-control" name="prizeMeter2" value="${formData.prizeMeter2 || ''}">
                 </div>
                 <div class="form-group">
                     <label>Prize Meter 3:</label>
-                    <input type="number" class="form-control" name="prizeMeter3" >
+                    <input type="number" class="form-control" name="prizeMeter3" value="${formData.prizeMeter3 || ''}" >
                 </div>
                 <!-- Add more input fields for currency types here -->
                 <div class="form-group">
                     <label>Quarters:</label>
-                    <input type="number" class="form-control" name="quarters">
+                    <input type="number" class="form-control" name="quarters" value="${formData.quarters || ''}">
                 </div>
                 <!-- Add inputs for Loons, Toons, 5, 10, 20, Tokens, etc. -->
                 <!-- ... -->
                 <div class="form-group">
                     <label>Credit Card:</label>
-                    <input type="number" class="form-control" name="creditCard">
+                    <input type="number" class="form-control" name="creditCard" value="${formData.creditCard || ''}">
                 </div>
                 <div class="form-group">
                     <label>MISC:</label>
-                    <input type="number" class="form-control" name="misc">
+                    <input type="number" class="form-control" name="misc" value="${formData.misc || ''}">
                 </div>
                 <div class="form-group">
                     <label>Refunds:</label>
-                    <input type="number" class="form-control" name="refunds">
+                    <input type="number" class="form-control" name="refunds" value="${formData.refunds || ''}">
                 </div>
                 <div class="form-group">
                     <label>Deductions (e.g., music fees, online fees):</label>
-                    <input type="number" class="form-control" name="deductions">
+                    <input type="number" class="form-control" name="deductions" value="${formData.deductions || ''}">
                 </div>
                 <button class="btn btn-success" onclick="saveMachineForm(${machineId}, event)">Save</button>
                 <button class="btn btn-secondary" onclick="toggleVisibility(${machineId}, event)">Cancel</button>
