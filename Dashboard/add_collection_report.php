@@ -113,7 +113,7 @@ require_once 'verify_session.php';
             const negatives = ['refunds', 'deductions'];
             let negativeSum = negatives.reduce((sum, key) => sum + (parseFloat(formData[key]) || 0), 0);
 
-            return positiveSum - negativeSum;
+            return positiveSum + negativeSum;
         }
 
         function showMachineForm(machineId) {
