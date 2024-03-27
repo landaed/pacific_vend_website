@@ -109,7 +109,7 @@ require_once 'verify_session.php';
             document.getElementById('collectionReportForm').style.display = 'none';
 
             // Show the specific form for the clicked machine
-            var formContainer = document.getElementById(`machineReport${machineId}`);
+            var formContainer = document.getElementById(`machineReport`);
             formContainer.style.display = 'block';
 
             var formData = machineFormData[machineId] || {};
