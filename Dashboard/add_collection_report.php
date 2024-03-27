@@ -112,12 +112,13 @@ require_once 'verify_session.php';
 
             // Negative values
             const negatives = ['refunds', 'deductions'];
-            let negativeSum = negatives.reduce((sum, key) => sum + (parseFloat(formData[key]) || 0), 0);
+            let negativeSum = negatives.reduce((sum, key) => sum - (parseFloat(formData[key]) || 0), 0); // Subtracting negative values
 
             console.log("positiveSum: " + positiveSum);
-            console.log("negativeSum: " + negativeSum);
-            return positiveSum - negativeSum;
+            console.log("negativeSum: " + negativeSum); // This will be a negative number or zero
+            return positiveSum + negativeSum; // Adding the negative sum (which is a negative number or zero)
         }
+
 
         function showMachineForm(machineId) {
             // Hide the main collection report form
