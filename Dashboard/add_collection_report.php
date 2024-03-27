@@ -161,18 +161,21 @@ require_once 'verify_session.php';
                     <label>Deductions (e.g., music fees, online fees):</label>
                     <input type="number" class="form-control" name="deductions">
                 </div>
-                <button class="btn btn-success" onclick="saveMachineForm(${machineId})">Save</button>
-                <button class="btn btn-secondary" onclick="toggleVisibility(${machineId})">Cancel</button>
+                <button class="btn btn-success" onclick="saveMachineForm(${machineId}, event)">Save</button>
+                <button class="btn btn-secondary" onclick="toggleVisibility(${machineId}, event)">Cancel</button>
+
             </form>
         `;
         }
 
-        function toggleVisibility(machineId) {
+        function toggleVisibility(machineId, event) {
+            event.preventDefault();
             document.getElementById(`formContainer_${machineId}`).style.display = 'none';
            // document.getElementById('collectionReportForm').style.display = 'block';
         }
 
-        function saveMachineForm(machineId) {
+        function saveMachineForm(machineId, event) {
+            event.preventDefault();
             var form = document.getElementById(`machineForm_${machineId}`);
             var formData = new FormData(form);
 
