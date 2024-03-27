@@ -157,8 +157,8 @@ require_once 'verify_session.php';
                     <label>Deductions (e.g., music fees, online fees):</label>
                     <input type="number" class="form-control" name="deductions">
                 </div>
-                <button type="submit" class="btn btn-success">Save</button>
-                <button type="button" class="btn btn-secondary" onclick="toggleVisibility(${machineId})">Cancel</button>
+                <button class="btn btn-success" onclick="saveMachineForm(${machineId})">Save</button>
+                <button class="btn btn-secondary" onclick="toggleVisibility(${machineId})">Cancel</button>
             </form>
         `;
         }
