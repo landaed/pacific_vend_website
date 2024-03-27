@@ -57,7 +57,7 @@ require_once 'verify_session.php';
                                         <div class="col-lg-6-center">
                                             <div class="p-5">
                                                 <div class="text-center">
-                                                    <h1 class="h4 text-gray-900 mb-4">Add a Placed Machine</h1>
+                                                    <h1 class="h4 text-gray-900 mb-4">Collections Report</h1>
                                                 </div>
                                                 <div id="machinesList" class="machines-list-container"></div>
 
@@ -101,6 +101,39 @@ require_once 'verify_session.php';
 
     </div>
     <script>
+        function showMachineForm(machineId) {
+            // Hide the main collection report form
+            document.getElementById('collectionReportForm').style.display = 'none';
+
+            // Show the specific form for the clicked machine
+            var formContainer = document.getElementById(`formContainer_${machineId}`);
+            formContainer.style.display = 'block';
+
+            // Populate formContainer with the machine-specific form
+            // and a save button which, when clicked, will toggle the form and main list visibility
+            formContainer.innerHTML = `
+                <h3>Collection Form for Machine ${machineId}</h3>
+                <!-- Add form fields here -->
+                <button class="btn btn-success" onclick="saveMachineForm(${machineId})">Save</button>
+                <button class="btn btn-secondary" onclick="toggleVisibility(${machineId})">Cancel</button>
+            `;
+        }
+
+        function toggleVisibility(machineId) {
+            document.getElementById(`formContainer_${machineId}`).style.display = 'none';
+            document.getElementById('collectionReportForm').style.display = 'block';
+        }
+
+        function saveMachineForm(machineId) {
+            // Implement the save logic for the machine-specific form
+            // On successful save, update the icon to show completion
+            document.getElementById(`statusIcon_${machineId}`).classList.remove('fa-exclamation-circle');
+            document.getElementById(`statusIcon_${machineId}`).classList.add('fa-check-circle');
+
+            // Hide the form and show the main list again
+            toggleVisibility(machineId);
+        }
+
     document.getElementById('collectionReportForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -129,7 +162,13 @@ require_once 'verify_session.php';
                     var machineDiv = `
                         <div class="card-body py-3 d-flex flex-row align-items-center justify-content-between" id="visible_${machine.MachineID}">
                             <h6 class="m-0 font-weight-bold text-primary">Door #${machine.MachineID} - ${machine.MachineTypeName}</h6>
-                            <!-- Add more machine details here if needed -->
+                            <div>
+                                <i class="fas fa-exclamation-circle" id="statusIcon_${machine.MachineID}"></i>
+                                <button class="btn btn-primary btn-sm" onclick="showMachineForm(${machine.MachineID})">View/Edit Collection Form</button>
+                            </div>
+                        </div>
+                        <div id="formContainer_${machine.MachineID}" class="machine-form-container" style="display: none;">
+                            <!-- Machine specific form goes here -->
                         </div>`;
                     machinesList.innerHTML += machineDiv;
                 });
