@@ -221,7 +221,7 @@ require_once 'verify_session.php';
             let updatedFormData = machineFormData[machineId];
             let machineRevenue = calculateRevenue(updatedFormData);
             document.querySelector(`#visible_${machineId} .text-primary`).textContent =
-                `Door #${machineId} - ${updatedFormData.MachineTypeName} - Revenue: $${machineRevenue.toFixed(2)}`;
+                `Door #${machineId} - ${machine.MachineTypeName} - Revenue: $${machineRevenue.toFixed(2)}`;
 
             // Implement the save logic for the machine-specific form
             // On successful save, update the icon to show completion
