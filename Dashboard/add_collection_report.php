@@ -251,15 +251,7 @@ require_once 'verify_session.php';
         function saveMachineForm(machineId, event) {
             event.preventDefault();
 
-            var totalPercentage = 0;
-            form.querySelectorAll('.split-group').forEach(group => {
-                totalPercentage += parseFloat(group.querySelector('[name^="splitPercentage_"]').value || 0);
-            });
-
-            if (totalPercentage > 100) {
-                alert('Total split percentage exceeds 100%. Please adjust the percentages.');
-                return;
-            }
+            
             var form = document.getElementById(`machineForm_${machineId}`);
             var formData = new FormData(form);
 
@@ -269,6 +261,16 @@ require_once 'verify_session.php';
             });
 
             let updatedFormData = machineFormData[machineId];
+
+            var totalPercentage = 0;
+            form.querySelectorAll('.split-group').forEach(group => {
+                totalPercentage += parseFloat(group.querySelector('[name^="splitPercentage_"]').value || 0);
+            });
+
+            if (totalPercentage > 100) {
+                alert('Total split percentage exceeds 100%. Please adjust the percentages.');
+                return;
+            }
             let machineRevenue = calculateRevenue(updatedFormData);
 
             let machineTypeName = machineDetails[machineId].MachineTypeName;
