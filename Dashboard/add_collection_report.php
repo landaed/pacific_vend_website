@@ -258,37 +258,37 @@ require_once 'verify_session.php';
 
         function saveMachineForm(machineId, event) {
             event.preventDefault();
-
             
             var form = document.getElementById(`machineForm_${machineId}`);
             var formData = new FormData(form);
 
+            // Save form data
             machineFormData[machineId] = {};
             formData.forEach((value, key) => {
                 machineFormData[machineId][key] = value;
             });
 
+            // Calculate and update revenue and splits
             let updatedFormData = machineFormData[machineId];
-
-            var totalPercentage = 0;
-            form.querySelectorAll('.split-group').forEach(group => {
-                totalPercentage += parseFloat(group.querySelector('[name^="splitPercentage_"]').value || 0);
-            });
-
-            if (totalPercentage > 100) {
-                alert('Total split percentage exceeds 100%. Please adjust the percentages.');
-                return;
-            }
             let machineRevenue = calculateRevenue(updatedFormData);
 
-            let machineTypeName = machineDetails[machineId].MachineTypeName;
+            // Save split details
+            let splits = [];
+            form.querySelectorAll('.split-group').forEach(group => {
+                let name = group.querySelector('[name^="splitName_"]').value;
+                let percentage = parseFloat(group.querySelector('[name^="splitPercentage_"]').value) || 0;
+                if (name && percentage > 0) {
+                    splits.push({ LocationName: name, SplitPercentage: percentage });
+                }
+            });
+            machineDetails[machineId].Splits = splits;
 
-            document.querySelector(`#visible_${machineId} .text-primary`).textContent =
-                `Door #${machineId} - ${machineTypeName} - Revenue: $${machineRevenue.toFixed(2)}`;
+            // Update machine list display
+            let splitDetailsHtml = calculateSplitDetailsHtml(splits, machineRevenue);
+            document.querySelector(`#visible_${machineId} .text-primary`).innerHTML =
+                `Door #${machineId} - ${machineDetails[machineId].MachineTypeName} - Revenue: $${machineRevenue.toFixed(2)} ${splitDetailsHtml}`;
 
-            // Implement the save logic for the machine-specific form
-            // On successful save, update the icon to show completion
-           // On successful save, update the icon to show completion
+            // Update status icon
             var statusIcon = document.getElementById(`statusIcon_${machineId}`);
             statusIcon.classList.remove('fa-exclamation-circle');
             statusIcon.classList.add('fa-check-circle');
@@ -297,6 +297,7 @@ require_once 'verify_session.php';
             // Hide the form and show the main list again
             toggleVisibility(machineId, event);
         }
+
 
     document.getElementById('collectionReportForm').addEventListener('submit', function(event) {
         event.preventDefault();
