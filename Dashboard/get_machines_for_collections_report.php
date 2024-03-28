@@ -14,17 +14,22 @@ if ($locationID && $collectionDate) {
                 mt.Name AS MachineTypeName, mt.Model AS MachineTypeModel,
                 mt.Manufacture AS MachineTypeManufacture, mt.Genre AS MachineTypeGenre,
                 mt.Dimensions AS MachineTypeDimensions,
-                mh.StartDate
+                mh.StartDate,
+                rs.SplitPercentage, l.Name AS LocationName
             FROM 
                 Machines m
             LEFT JOIN
                 MachineType mt ON m.MachineTypeID = mt.MachineTypeID
             JOIN 
                 MachineHistory mh ON m.MachineID = mh.MachineID
+            LEFT JOIN
+                RevenueSplits rs ON m.MachineID = rs.MachineID
+            LEFT JOIN
+                Locations l ON rs.LocationID = l.LocationID
             WHERE 
                 mh.LocationID = ? AND mh.StartDate <= ? AND (mh.EndDate IS NULL OR mh.EndDate > ?)
             ORDER BY 
-                mh.StartDate DESC";
+                mh.StartDate DESC, l.Name ASC";
 
     $stmt = $db->prepare($sql);
     $stmt->bind_param("iss", $locationID, $collectionDate, $collectionDate);
@@ -35,22 +40,20 @@ if ($locationID && $collectionDate) {
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            // Fetch prizes for each machine
-            $sql_prizes = "SELECT * FROM Prizes WHERE MachineID = ?";
-            $stmt_prizes = $db->prepare($sql_prizes);
-            $stmt_prizes->bind_param("i", $row['MachineID']);
-            $stmt_prizes->execute();
-            $result_prizes = $stmt_prizes->get_result();
-
-            $prizes = array();
-            while($prize_row = $result_prizes->fetch_assoc()) {
-                array_push($prizes, $prize_row);
+            $machineId = $row['MachineID'];
+            if (!isset($machines[$machineId])) {
+                $machines[$machineId] = $row;
+                $machines[$machineId]['Splits'] = array();
             }
-            $row['Prizes'] = $prizes; // Add prizes to machine array
 
-            $machines[] = $row;
+            if ($row['SplitPercentage'] != null) {
+                array_push($machines[$machineId]['Splits'], array(
+                    "SplitPercentage" => $row['SplitPercentage'],
+                    "LocationName" => $row['LocationName']
+                ));
+            }
         }
-        echo json_encode($machines);
+        echo json_encode(array_values($machines));
     } else {
         echo json_encode(array('message' => 'No Machines Found at the specified location'));
     }
@@ -61,5 +64,4 @@ if ($locationID && $collectionDate) {
 }
 
 $db->close();
-
 ?>

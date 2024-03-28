@@ -104,6 +104,22 @@ require_once 'verify_session.php';
 
         var machineFormData = {};
         var machineDetails = {};
+        function addNewSplit(machineId) {
+            var form = document.getElementById(`machineForm_${machineId}`);
+            var newIndex = form.querySelectorAll('.split-group').length;
+            var newSplitHtml = `
+                <div class="form-group split-group" data-index="${newIndex}">
+                    <label>Payee (Location Name):</label>
+                    <input type="text" class="form-control" name="splitName_${newIndex}">
+                    <label>Split Percentage:</label>
+                    <input type="number" class="form-control" name="splitPercentage_${newIndex}">
+                </div>
+            `;
+            // Append new split HTML before the Add New Split button
+            var addButton = form.querySelector('button[type="button"]');
+            addButton.insertAdjacentHTML('beforebegin', newSplitHtml);
+        }
+
 
         function calculateRevenue(formData) {
             // Positive values
@@ -131,10 +147,35 @@ require_once 'verify_session.php';
             var formData = machineFormData[machineId] || {};
             let machineRevenue = calculateRevenue(formData);
 
+            // Retrieve split information for the machine
+            var splits = machineDetails[machineId].Splits || [];
+            
+            // Create HTML for each split
+            var splitsHtml = splits.map((split, index) => `
+                <div class="form-group split-group" data-index="${index}">
+                    <label>Payee (Location Name):</label>
+                    <input type="text" class="form-control" name="splitName_${index}" value="${split.LocationName || ''}">
+                    <label>Split Percentage:</label>
+                    <input type="number" class="form-control" name="splitPercentage_${index}" value="${split.SplitPercentage || ''}">
+                </div>
+            `).join('');
+
+            // Add button for adding a new split
+            splitsHtml += `
+                <div class="form-group">
+                    <button class="btn btn-secondary" type="button" onclick="addNewSplit(${machineId})">Add New Split</button>
+                </div>
+            `;
+
             // Populate formContainer with the machine-specific form and pre-fill with saved data
             formContainer.innerHTML = `
             <h3>Collection Form for Machine ${machineId}</h3>
             <form id="machineForm_${machineId}">
+                ${splitsHtml}
+                <div class="form-group">
+                    <label>Split % for us:</label>
+                    <input type="number" class="form-control" name="split" value="${formData.split || ''}">
+                </div>
                 <div class="form-group">
                     <label>Meter #1:</label>
                     <input type="number" class="form-control" name="meter1" value="${formData.meter1 || ''}">
@@ -213,6 +254,16 @@ require_once 'verify_session.php';
 
         function saveMachineForm(machineId, event) {
             event.preventDefault();
+
+            var totalPercentage = 0;
+            form.querySelectorAll('.split-group').forEach(group => {
+                totalPercentage += parseFloat(group.querySelector('[name^="splitPercentage_"]').value || 0);
+            });
+
+            if (totalPercentage > 100) {
+                alert('Total split percentage exceeds 100%. Please adjust the percentages.');
+                return;
+            }
             var form = document.getElementById(`machineForm_${machineId}`);
             var formData = new FormData(form);
 
@@ -268,7 +319,7 @@ require_once 'verify_session.php';
                 data.forEach(function(machine) {
                     machineDetails[machine.MachineID] = {
                         MachineTypeName: machine.MachineTypeName,
-                        // Any other details you might need
+                        Splits: machine.Splits || [] // Store splits array for each machine
                     };
                     let machineRevenue = calculateRevenue(machineFormData[machine.MachineID] || {});
                     var machineDiv = `
