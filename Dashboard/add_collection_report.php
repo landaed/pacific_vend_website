@@ -173,10 +173,6 @@ require_once 'verify_session.php';
             <form id="machineForm_${machineId}">
                 ${splitsHtml}
                 <div class="form-group">
-                    <label>Split % for us:</label>
-                    <input type="number" class="form-control" name="split" value="${formData.split || ''}">
-                </div>
-                <div class="form-group">
                     <label>Meter #1:</label>
                     <input type="number" class="form-control" name="meter1" value="${formData.meter1 || ''}">
                 </div>
