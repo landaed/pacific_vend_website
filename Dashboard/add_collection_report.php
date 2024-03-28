@@ -104,6 +104,14 @@ require_once 'verify_session.php';
 
         var machineFormData = {};
         var machineDetails = {};
+
+        function calculateSplitDetailsHtml(splits, totalRevenue) {
+            return splits.map(split => {
+                let splitRevenue = (totalRevenue * (split.SplitPercentage / 100)).toFixed(2);
+                return `<p>${split.LocationName}: $${splitRevenue} (${split.SplitPercentage}%)</p>`;
+            }).join('');
+        }
+
         function addNewSplit(machineId) {
             var form = document.getElementById(`machineForm_${machineId}`);
             var newIndex = form.querySelectorAll('.split-group').length;
@@ -320,9 +328,14 @@ require_once 'verify_session.php';
                         Splits: machine.Splits || [] // Store splits array for each machine
                     };
                     let machineRevenue = calculateRevenue(machineFormData[machine.MachineID] || {});
+                    let splitDetailsHtml = calculateSplitDetailsHtml(machineDetails[machine.MachineID].Splits, machineRevenue);
+
                     var machineDiv = `
                         <div class="card-body py-3 d-flex flex-row align-items-center justify-content-between" id="visible_${machine.MachineID}">
-                        <h6 class="m-0 font-weight-bold text-primary">Door #${machine.MachineID} - ${machine.MachineTypeName} - Revenue: $${machineRevenue.toFixed(2)}</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">
+                            Door #${machine.MachineID} - ${machine.MachineTypeName} - Revenue: $${machineRevenue.toFixed(2)}
+                            ${splitDetailsHtml}
+                        </h6>
                             <div>
                                 <i class="fas fa-exclamation-circle" id="statusIcon_${machine.MachineID}"></i>
                                 <button class="btn btn-primary btn-sm" onclick="showMachineForm(${machine.MachineID})">View/Edit Collection Form</button>
