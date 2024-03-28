@@ -245,6 +245,7 @@ async function initializeTopbar() {
                     fetch(`location_suggestions.php?search=${searchTerm}`)
                         .then(response => response.json())
                         .then(data => {
+                            suggestionsBox.style.display = 'block';
                             suggestionsBox.innerHTML = '';
                             data.forEach(location => {
                                 var suggestion = document.createElement('div');
@@ -267,6 +268,7 @@ async function initializeTopbar() {
                             console.error('Error:', error);
                         });
                 } else {
+                    suggestionsBox.style.display = 'none';
                     suggestionsBox.innerHTML = '';
                 }
             });
